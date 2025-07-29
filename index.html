@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chizel: Rise of Skillionaire</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #42C2FF;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: #f5f5ff;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Game Screens */
+        .screen {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .screen.active {
+            display: flex;
+        }
+        
+        /* Story Screen */
+        .story-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .story-image {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+        }
+        
+        .story-text {
+            flex: 1;
+            margin-bottom: 20px;
+            overflow-y: auto;
+        }
+        
+        .character-name {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Task Screen */
+        .task-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .task {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .task:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task.completed {
+            background-color: #e8f5e9;
+            border-left-color: var(--success);
+        }
+        
+        .task-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .task-info {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .task-xp {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .task-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .task.completed .task-status {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        
+        /* Battle Screen */
+        .battle-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .boss-image {
+            width: 200px;
+            height: 200px;
+            background-color: #ffebee;
+            border-radius: 50%;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .boss-health {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .boss-health-bar {
+            height: 100%;
+            background-color: var(--danger);
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .battle-message {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            min-height: 60px;
+        }
+        
+        .attack-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .attack-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .attack-btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* Win Screen */
+        .win-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .win-image {
+            width: 150px;
+            height: 150px;
+            background-color: #e8f5e9;
+            border-radius: 50%;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--success);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 15px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Streak Counter */
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            background-color: var(--warning);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .streak-icon {
+            margin-right: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .screen {
+                padding: 15px;
+            }
+            
+            .boss-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Chizel</div>
+        <div class="tagline">Rise of Skillionaire</div>
+    </header>
+    
+    <div class="container">
+        <!-- Story Screen -->
+        <div id="story-screen" class="screen active">
+            <div class="story-container">
+                <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                </div>
+                <div class="story-text">
+                    <p><span class="character-name">CORA:</span> Hello young hero! I'm CORA, your digital learning assistant. We have an emergency!</p>
+                    <p><span class="character-name">CORA:</span> Raj, one of India's most successful professionals, has fallen victim to Brainrot - a digital virus that drains skills and knowledge!</p>
+                    <p><span class="character-name">CORA:</span> His XP (experience points) have dropped from 100 to 0! Without your help, he'll lose everything.</p>
+                    <p><span class="character-name">CORA:</span> But there's hope! By completing daily learning tasks, you can convert screen time into skill time and restore Raj's XP.</p>
+                    <p><span class="character-name">CORA:</span> Are you ready to become a Skillionaire and save Raj?</p>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="skip-story">Skip</button>
+                <button class="btn btn-primary" id="next-story">Continue</button>
+            </div>
+        </div>
+        
+        <!-- Task Screen -->
+        <div id="task-screen" class="screen">
+            <h2>Daily Missions</h2>
+            <p>Complete tasks to earn XP and restore Raj's skills!</p>
+            
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>Raj's XP: <span id="current-xp">0</span>/100</span>
+                    <span>Today's streak: <span id="streak-count">1</span> day</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="xp-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="streak-counter">
+                <span class="streak-icon">🔥</span>
+                <span>Daily Streak!</span>
+            </div>
+            
+            <div class="task-list">
+                <div class="task" id="task1">
+                    <div class="task-icon">🧠</div>
+                    <div class="task-info">
+                        <div class="task-title">Brain Game</div>
+                        <div class="task-desc">Solve a quick puzzle to sharpen your mind</div>
+                    </div>
+                    <div class="task-status">✓</div>
+                </div>
+                
+                <div class="task" id="task2">
+                    <div class="task-icon">📚</div>
+                    <div class="task-info">
+                        <div class="task-title">Learning Byte</div>
+                        <div class="task-desc">1-minute fun fact about science or history</div>
+                    </div>
+                    <div class="task-status">✓</div>
+                </div>
+                
+                <div class="task" id="task3">
+                    <div class="task-icon">🛠️</div>
+                    <div class="task-info">
+                        <div class="task-title">Skill Builder</div>
+                        <div class="task-desc">Practice typing or math skills</div>
+                    </div>
+                    <div class="task-status">✓</div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="back-to-story">Back</button>
+                <button class="btn btn-primary" id="battle-btn" disabled>Fight Brainrot!</button>
+            </div>
+        </div>
+        
+        <!-- Battle Screen -->
+        <div id="battle-screen" class="screen">
+            <div class="battle-container">
+                <h2>Battle Against Brainrot!</h2>
+                <p>The Scroll Naga has appeared! Defeat it to restore Raj's XP!</p>
+                
+                <div class="boss-image">📱🐍</div>
+                
+                <div class="boss-health">
+                    <div class="boss-health-bar" id="boss-health" style="width: 100%"></div>
+                </div>
+                
+                <div class="battle-message" id="battle-message">
+                    The Scroll Naga is distracting you with endless content!
+                </div>
+                
+                <button class="attack-btn" id="attack-btn">ATTACK!</button>
+            </div>
+        </div>
+        
+        <!-- Win Screen -->
+        <div id="win-screen" class="screen">
+            <div class="win-container">
+                <h2>Victory!</h2>
+                <p>You defeated the Scroll Naga and restored Raj's skills!</p>
+                
+                <div class="win-image">🏆</div>
+                
+                <p>Raj's XP is now <span id="new-xp">30</span>/100!</p>
+                <p>Keep completing daily tasks to fully restore Raj and become a Skillionaire!</p>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-primary" id="back-to-tasks">Continue Mission</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            currentScreen: 'story',
+            xp: 0,
+            streak: 1,
+            completedTasks: 0,
+            bossHealth: 100,
+            battleWon: false
+        };
+
+        // DOM Elements
+        const screens = {
+            story: document.getElementById('story-screen'),
+            task: document.getElementById('task-screen'),
+            battle: document.getElementById('battle-screen'),
+            win: document.getElementById('win-screen')
+        };
+
+        const buttons = {
+            nextStory: document.getElementById('next-story'),
+            skipStory: document.getElementById('skip-story'),
+            backToStory: document.getElementById('back-to-story'),
+            battleBtn: document.getElementById('battle-btn'),
+            attackBtn: document.getElementById('attack-btn'),
+            backToTasks: document.getElementById('back-to-tasks')
+        };
+
+        const taskElements = [
+            document.getElementById('task1'),
+            document.getElementById('task2'),
+            document.getElementById('task3')
+        ];
+
+        const xpElements = {
+            current: document.getElementById('current-xp'),
+            progress: document.getElementById('xp-progress'),
+            new: document.getElementById('new-xp')
+        };
+
+        const streakElement = document.getElementById('streak-count');
+        const bossHealthElement = document.getElementById('boss-health');
+        const battleMessageElement = document.getElementById('battle-message');
+
+        // Initialize the game
+        function initGame() {
+            // Load saved game state if available
+            const savedState = localStorage.getItem('chizelGameState');
+            if (savedState) {
+                Object.assign(gameState, JSON.parse(savedState));
+            }
+
+            updateUI();
+            setupEventListeners();
+        }
+
+        // Update UI based on game state
+        function updateUI() {
+            // Update XP display
+            xpElements.current.textContent = gameState.xp;
+            xpElements.progress.style.width = `${gameState.xp}%`;
+            
+            // Update streak
+            streakElement.textContent = gameState.streak;
+            
+            // Update task completion
+            taskElements.forEach((task, index) => {
+                if (index < gameState.completedTasks) {
+                    task.classList.add('completed');
+                } else {
+                    task.classList.remove('completed');
+                }
+            });
+            
+            // Enable/disable battle button
+            buttons.battleBtn.disabled = gameState.completedTasks < 3;
+            
+            // Update boss health
+            bossHealthElement.style.width = `${gameState.bossHealth}%`;
+            
+            // Show current screen
+            Object.values(screens).forEach(screen => screen.classList.remove('active'));
+            screens[gameState.currentScreen].classList.add('active');
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Navigation buttons
+            buttons.nextStory.addEventListener('click', () => {
+                gameState.currentScreen = 'task';
+                saveGameState();
+                updateUI();
+            });
+            
+            buttons.skipStory.addEventListener('click', () => {
+                gameState.currentScreen = 'task';
+                saveGameState();
+                updateUI();
+            });
+            
+            buttons.backToStory.addEventListener('click', () => {
+                gameState.currentScreen = 'story';
+                saveGameState();
+                updateUI();
+            });
+            
+            buttons.battleBtn.addEventListener('click', () => {
+                gameState.currentScreen = 'battle';
+                saveGameState();
+                updateUI();
+            });
+            
+            buttons.backToTasks.addEventListener('click', () => {
+                gameState.currentScreen = 'task';
+                gameState.completedTasks = 0;
+                gameState.bossHealth = 100;
+                gameState.battleWon = false;
+                saveGameState();
+                updateUI();
+            });
+            
+            // Task completion
+            taskElements.forEach((task, index) => {
+                task.addEventListener('click', () => {
+                    if (index >= gameState.completedTasks) {
+                        // Show task completion animation
+                        task.classList.add('completed');
+                        
+                        // Add XP (10 per task)
+                        gameState.xp = Math.min(gameState.xp + 10, 100);
+                        gameState.completedTasks++;
+                        
+                        // Update streak if all tasks completed
+                        if (gameState.completedTasks === 3) {
+                            gameState.streak++;
+                        }
+                        
+                        saveGameState();
+                        updateUI();
+                    }
+                });
+            });
+            
+            // Battle system
+            buttons.attackBtn.addEventListener('click', () => {
+                if (gameState.bossHealth > 0 && !gameState.battleWon) {
+                    // Player attack (random damage 15-25)
+                    const damage = Math.floor(Math.random() * 11) + 15;
+                    gameState.bossHealth = Math.max(0, gameState.bossHealth - damage);
+                    
+                    // Update battle message
+                    battleMessageElement.textContent = `You hit the Scroll Naga for ${damage} damage!`;
+                    
+                    // Check if boss is defeated
+                    if (gameState.bossHealth <= 0) {
+                        gameState.battleWon = true;
+                        battleMessageElement.textContent = 'You defeated the Scroll Naga!';
+                        buttons.attackBtn.textContent = 'Claim Victory!';
+                    } else {
+                        // Boss attack after a delay
+                        setTimeout(() => {
+                            if (gameState.bossHealth > 0) { // Check if not already defeated
+                                // Boss attack (random damage 5-15)
+                                const bossDamage = Math.floor(Math.random() * 11) + 5;
+                                battleMessageElement.textContent = `Scroll Naga distracts you with memes! You lose ${bossDamage} focus!`;
+                            }
+                        }, 800);
+                    }
+                    
+                    updateUI();
+                } else if (gameState.battleWon) {
+                    // Go to win screen
+                    gameState.currentScreen = 'win';
+                    xpElements.new.textContent = gameState.xp;
+                    saveGameState();
+                    updateUI();
+                }
+            });
+        }
+
+        // Save game state to localStorage
+        function saveGameState() {
+            localStorage.setItem('chizelGameState', JSON.stringify(gameState));
+        }
+
+        // Initialize the game when the page loads
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
