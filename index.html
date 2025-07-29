@@ -3,68 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chizel: Rise of Skillionaire</title>
+    <title>Chizel - Defeat Brainrot!</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="game-container">
         <div class="background"></div>
         
-        <div class="character-container">
-            <div class="character zippy">
+        <div class="character left">
+            <div class="character-image">
                 <img src="assets/zippy.png" alt="Zippy the AI Mentor">
-                <div class="speech-bubble left" id="zippy-bubble"></div>
-            </div>
-            
-            <div class="character user">
-                <img src="assets/user.png" alt="Player">
-                <div class="speech-bubble right" id="user-bubble"></div>
-            </div>
-        </div>
-        
-        <div class="options-container" id="options-container"></div>
-        
-        <div class="progress-container">
-            <div class="xp-bar">
-                <div class="xp-fill" id="xp-fill"></div>
-                <span class="xp-text" id="xp-text">0 XP</span>
-            </div>
-            <div class="streak-counter">
-                <span>🔥</span>
-                <span id="streak">Day 1</span>
-            </div>
-        </div>
-        
-        <div class="task-container" id="task-container">
-            <h2>Your Daily Missions</h2>
-            <div class="tasks" id="tasks"></div>
-            <button class="btn battle-btn" id="battle-btn">Fight Brainrot!</button>
-        </div>
-        
-        <div class="battle-container" id="battle-container">
-            <h2>Battle Against Brainrot!</h2>
-            <div class="boss" id="boss">
-                <div class="boss-health">
-                    <div class="health-bar" id="health-bar"></div>
+                <div class="speech-bubble left-bubble hidden">
+                    <div class="bubble-content"></div>
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
-            <div class="battle-message" id="battle-message"></div>
-            <button class="btn attack-btn" id="attack-btn">ATTACK!</button>
         </div>
         
-        <div class="win-container" id="win-container">
-            <h1>Victory!</h1>
-            <p>You defeated Brainrot!</p>
-            <p class="final-message">You're now a Skillionaire-in-progress.</p>
-            <p class="final-message">STAY TUNED with CHIZEL!</p>
-            <button class="btn restart-btn" id="restart-btn">Play Again</button>
+        <div class="character right">
+            <div class="character-image">
+                <img src="assets/user.png" alt="You">
+                <div class="speech-bubble right-bubble hidden">
+                    <div class="bubble-content"></div>
+                </div>
+            </div>
         </div>
         
-        <audio id="click-sound" src="assets/button-click.mp3"></audio>
-        <button class="music-toggle" id="music-toggle">🔊</button>
+        <div class="options-container hidden"></div>
+        
+        <div class="xp-bar-container">
+            <div class="xp-label">XP: <span class="xp-value">0</span></div>
+            <div class="xp-bar">
+                <div class="xp-progress"></div>
+            </div>
+        </div>
+        
+        <div class="task-container hidden">
+            <div class="task-header">Your Mission</div>
+            <div class="task-content"></div>
+            <button class="task-submit hidden">Submit</button>
+        </div>
+        
+        <div class="audio-control">
+            <button class="audio-toggle">🔊</button>
+        </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
