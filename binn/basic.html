@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mother & Child - CHIZEL Story</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .mother {
+            position: absolute;
+            left: 20%;
+            bottom: 50px;
+            width: 200px;
+            height: 300px;
+            background: url('assets/mummy.jpg') no-repeat center center;
+            background-size: contain;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+        }
+        
+        .child {
+            position: absolute;
+            right: 20%;
+            bottom: 50px;
+            width: 150px;
+            height: 250px;
+            background: url('assets/kid.jpg') no-repeat center center;
+            background-size: contain;
+            animation: float 3s ease-in-out infinite 0.5s;
+            z-index: 10;
+        }
+        
+        .speech-bubble {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            max-width: 250px;
+            font-size: 16px;
+            line-height: 1.4;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        
+        .speech-bubble.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .speech-bubble.left {
+            left: 25%;
+            bottom: 350px;
+            background-color: #a8e6cf;
+            color: #333;
+        }
+        
+        .speech-bubble.right {
+            right: 25%;
+            bottom: 350px;
+            background-color: #ffaaa5;
+            color: #333;
+        }
+        
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: inherit;
+            border-bottom: 0;
+            bottom: -15px;
+        }
+        
+        .speech-bubble.left::after {
+            left: 20px;
+            border-right: 0;
+        }
+        
+        .speech-bubble.right::after {
+            right: 20px;
+            border-left: 0;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 5px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #666;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .chizel-promo {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 30;
+        }
+        
+        .chizel-promo span {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="clouds" id="clouds"></div>
+        <div class="mother"></div>
+        <div class="child"></div>
+        
+        <!-- Mother's speech bubble -->
+        <div class="speech-bubble left" id="mother-speech">
+            <div class="bubble-content"></div>
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+        
+        <!-- Child's speech bubble -->
+        <div class="speech-bubble right" id="child-speech">
+            <div class="bubble-content"></div>
+        </div>
+        
+        <div class="chizel-promo">
+            Fight brainrot with <span>CHIZEL</span> - Story-based learning that actually works!
+        </div>
+    </div>
+
+    <script>
+        // Conversation script
+        const conversation = [
+            {
+                speaker: 'mother',
+                message: "Sweetheart, I've noticed you've been spending so much time on short videos lately...",
+                delay: 2000
+            },
+            {
+                speaker: 'child',
+                message: "I know mom... but they're so fun and easy to watch!",
+                delay: 2000
+            },
+            {
+                speaker: 'mother',
+                message: "I worry they might be making it harder for you to focus on important things. Remember how you loved reading books?",
+                delay: 2500
+            },
+            {
+                speaker: 'child',
+                message: "Yeah... but books feel so boring now. I can't concentrate like before.",
+                delay: 2000
+            },
+            {
+                speaker: 'mother',
+                message: "That's what I mean about 'brainrot' honey. But I found something amazing - it's called CHIZEL!",
+                delay: 2500
+            },
+            {
+                speaker: 'child',
+                message: "CHIZEL? What's that?",
+                delay: 1500
+            },
+            {
+                speaker: 'mother',
+                message: "It's a special app that makes learning fun through stories and games! No boring lectures, just exciting adventures where you learn without even realizing it!",
+                delay: 3000
+            },
+            {
+                speaker: 'child',
+                message: "Really? Like playing games but actually learning stuff?",
+                delay: 2000
+            },
+            {
+                speaker: 'mother',
+                message: "Exactly! And the best part? It helps reverse that 'brainrot' by gradually increasing your attention span with engaging content.",
+                delay: 3000
+            },
+            {
+                speaker: 'child',
+                message: "That sounds way better than mindless scrolling! Can we try it?",
+                delay: 2000
+            },
+            {
+                speaker: 'mother',
+                message: "Of course! Let's start your first learning adventure together! ❤️",
+                delay: 2500
+            }
+        ];
+
+        // DOM elements
+        const motherSpeech = document.getElementById('mother-speech');
+        const childSpeech = document.getElementById('child-speech');
+        const motherContent = motherSpeech.querySelector('.bubble-content');
+        const childContent = childSpeech.querySelector('.bubble-content');
+        const motherTyping = motherSpeech.querySelector('.typing-indicator');
+        
+        // Create clouds
+        function createClouds() {
+            const cloudsContainer = document.getElementById('clouds');
+            for (let i = 0; i < 10; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.width = `${Math.random() * 200 + 100}px`;
+                cloud.style.height = `${Math.random() * 60 + 40}px`;
+                cloud.style.left = `${Math.random() * 100}%`;
+                cloud.style.top = `${Math.random() * 50}%`;
+                cloud.style.filter = `blur(${Math.random() * 5 + 5}px)`;
+                cloud.style.animation = `float ${Math.random() * 20 + 10}s linear infinite ${Math.random() * 5}s`;
+                cloudsContainer.appendChild(cloud);
+            }
+        }
+        
+        // Type message with typing animation
+        function typeMessage(message, element, callback) {
+            let i = 0;
+            element.textContent = '';
+            
+            function typing() {
+                if (i < message.length) {
+                    element.textContent += message.charAt(i);
+                    i++;
+                    setTimeout(typing, 30);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            
+            typing();
+        }
+        
+        // Start conversation
+        function startConversation() {
+            let currentLine = 0;
+            
+            function showNextLine() {
+                if (currentLine >= conversation.length) return;
+                
+                const line = conversation[currentLine];
+                
+                // Hide all bubbles first
+                motherSpeech.classList.remove('visible');
+                childSpeech.classList.remove('visible');
+                
+                if (line.speaker === 'mother') {
+                    // Show typing indicator
+                    motherTyping.style.display = 'flex';
+                    
+                    // Type out the message
+                    typeMessage(line.message, motherContent, () => {
+                        // Hide typing indicator when done
+                        motherTyping.style.display = 'none';
+                        
+                        // Show bubble
+                        motherSpeech.classList.add('visible');
+                        
+                        // Schedule next line
+                        setTimeout(showNextLine, line.delay);
+                    });
+                } else {
+                    // Child's response
+                    childContent.textContent = line.message;
+                    childSpeech.classList.add('visible');
+                    
+                    // Schedule next line
+                    setTimeout(showNextLine, line.delay);
+                }
+                
+                currentLine++;
+            }
+            
+            // Start with first line
+            showNextLine();
+        }
+        
+        // Initialize
+        function init() {
+            createClouds();
+            
+            // Show characters with slight delay
+            setTimeout(() => {
+                document.querySelector('.mother').style.opacity = '1';
+                document.querySelector('.child').style.opacity = '1';
+                
+                // Start conversation after characters appear
+                setTimeout(startConversation, 1000);
+            }, 500);
+        }
+        
+        // Start the scene
+        window.onload = init;
+    </script>
+</body>
+</html>

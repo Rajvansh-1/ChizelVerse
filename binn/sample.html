@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chizel - Fight Brainrot with Learning!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Comic+Neue:wght@400;700&display=swap">
+    <title>Chizel - Galactic Brainrot Battle</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&family=Baloo+2:wght@400;700&display=swap">
     <style>
         :root {
-            --primary: #4A90E2;
-            --secondary: #50E3C2;
-            --accent: #F8E71C;
-            --dark: #1A2E40;
+            --primary: #6C63FF;
+            --secondary: #00F0FF;
+            --accent: #FFC107;
+            --dark: #0F0E1D;
             --light: #E0F7FF;
-            --success: #7ED321;
-            --warning: #F5A623;
-            --danger: #D0021B;
-            --mummy-color: #4A90E2;
-            --kid-color: #F5A623;
-            --space-purple: #9013FE;
-            --space-blue: #1A2E40;
+            --success: #00FFA3;
+            --warning: #FF9F1C;
+            --danger: #FF3860;
+            --zippy-color: #00F0FF;
+            --user-color: #FF9F1C;
+            --space-purple: #4B0082;
+            --space-blue: #1A1A2E;
             --neon-pink: #FF10F0;
             --neon-green: #39FF14;
         }
@@ -30,7 +30,7 @@
         }
 
         body {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Baloo 2', cursive;
             background-color: var(--space-blue);
             color: var(--light);
             height: 100vh;
@@ -163,7 +163,7 @@
         }
 
         .xp-label {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 14px;
             color: var(--secondary);
             text-shadow: 0 0 5px var(--secondary);
@@ -212,7 +212,7 @@
         }
 
         .xp-value {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 16px;
             color: white;
             text-shadow: 0 0 5px white;
@@ -226,14 +226,14 @@
         }
 
         .level-label {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 14px;
             color: var(--accent);
             text-shadow: 0 0 5px var(--accent);
         }
 
         .level-value {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 16px;
             color: white;
             text-shadow: 0 0 5px white;
@@ -244,7 +244,7 @@
             box-shadow: 0 0 10px var(--accent);
         }
 
-        /* Characters - Fixed positioning and animations */
+        /* Characters */
         .character-container {
             position: absolute;
             bottom: 10%;
@@ -253,21 +253,20 @@
             justify-content: space-between;
             padding: 0 5%;
             z-index: 5;
-            left: 0;
-            right: 0;
         }
 
         .character {
             position: relative;
             width: 25%;
             max-width: 300px;
-            bottom: 0;
-            margin: 0;
-            transition: transform 0.3s ease;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
         }
 
-        .character:hover {
-            transform: translateY(-10px);
+        .character.visible {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .character-image {
@@ -280,11 +279,11 @@
             width: 100%;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(74, 144, 226, 0.5));
-            position: relative;
+            filter: drop-shadow(0 10px 20px rgba(0, 240, 255, 0.5));
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Speech Bubbles - Improved positioning */
+        /* Speech Bubbles */
         .speech-bubble {
             position: absolute;
             padding: 15px;
@@ -297,7 +296,6 @@
             transform: scale(0);
             transform-origin: bottom;
             z-index: 6;
-            font-family: 'Comic Neue', cursive;
         }
 
         .speech-bubble.visible {
@@ -310,8 +308,8 @@
             left: 25%;
             bottom: 100%;
             margin-bottom: 20px;
-            border: 2px solid var(--mummy-color);
-            box-shadow: 0 0 15px var(--mummy-color);
+            border: 2px solid var(--zippy-color);
+            box-shadow: 0 0 15px var(--zippy-color);
         }
 
         .left-bubble::after {
@@ -330,13 +328,13 @@
         }
 
         .right-bubble {
-            background-color: var(--kid-color);
+            background-color: var(--user-color);
             color: var(--dark);
             right: 25%;
             bottom: 100%;
             margin-bottom: 20px;
-            border: 2px solid var(--kid-color);
-            box-shadow: 0 0 15px var(--kid-color);
+            border: 2px solid var(--user-color);
+            box-shadow: 0 0 15px var(--user-color);
         }
 
         .right-bubble::after {
@@ -347,7 +345,7 @@
             width: 0;
             height: 0;
             border: 15px solid transparent;
-            border-top-color: var(--kid-color);
+            border-top-color: var(--user-color);
             border-bottom: 0;
             border-right: 0;
             margin-right: -7.5px;
@@ -386,7 +384,7 @@
             30% { transform: translateY(-5px); opacity: 1; }
         }
 
-        /* Options Container - Simplified layout */
+        /* Options Container */
         .options-container {
             position: absolute;
             bottom: 10%;
@@ -399,9 +397,9 @@
             width: 80%;
             max-width: 800px;
             padding: 20px;
-            background-color: rgba(26, 46, 64, 0.9);
+            background-color: rgba(15, 14, 29, 0.9);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(80, 227, 194, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
             border: 2px solid var(--secondary);
             z-index: 10;
             opacity: 0;
@@ -420,27 +418,27 @@
             border-radius: 50px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 5px 15px rgba(80, 227, 194, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
             flex: 1 1 200px;
             max-width: 300px;
         }
 
         .option-btn:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(80, 227, 194, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 240, 255, 0.5);
         }
 
         .option-btn:active {
             transform: translateY(1px);
         }
 
-        /* Task Container - Simplified UI */
+        /* Task Container */
         .task-container {
             position: absolute;
             top: 50%;
@@ -450,7 +448,7 @@
             max-width: 700px;
             max-height: 80vh;
             overflow-y: auto;
-            background: linear-gradient(135deg, rgba(26, 46, 64, 0.95) 0%, rgba(26, 46, 64, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 14, 29, 0.95) 100%);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
@@ -468,7 +466,7 @@
         }
 
         .task-header {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Press Start 2P', cursive;
             font-size: 22px;
             color: var(--secondary);
             margin-bottom: 25px;
@@ -491,7 +489,7 @@
             color: var(--dark);
             border: none;
             border-radius: 50px;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
@@ -512,7 +510,7 @@
             display: none;
         }
 
-        /* Cloud Thinking Box - Improved styling */
+        /* Cloud Thinking Box */
         .thinking-box {
             position: absolute;
             top: 20%;
@@ -553,7 +551,6 @@
             font-size: 18px;
             line-height: 1.6;
             text-align: center;
-            font-family: 'Comic Neue', cursive;
         }
 
         /* Brain Teaser Styles */
@@ -576,8 +573,8 @@
 
         .teaser-option {
             padding: 15px;
-            background-color: rgba(74, 144, 226, 0.1);
-            border: 2px solid var(--primary);
+            background-color: rgba(0, 240, 255, 0.1);
+            border: 2px solid var(--secondary);
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -586,15 +583,15 @@
         }
 
         .teaser-option:hover {
-            background-color: rgba(74, 144, 226, 0.3);
+            background-color: rgba(0, 240, 255, 0.3);
             transform: translateX(5px);
         }
 
         .teaser-option.selected {
-            background-color: var(--primary);
-            color: white;
+            background-color: var(--secondary);
+            color: var(--dark);
             font-weight: bold;
-            box-shadow: 0 0 15px var(--primary);
+            box-shadow: 0 0 15px var(--secondary);
             transform: scale(1.05);
         }
 
@@ -622,7 +619,7 @@
             border: 2px dashed var(--secondary);
             border-radius: 15px;
             padding: 20px;
-            background-color: rgba(80, 227, 194, 0.05);
+            background-color: rgba(0, 240, 255, 0.05);
             transition: all 0.3s ease;
         }
 
@@ -644,7 +641,7 @@
 
         .drag-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(80, 227, 194, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
         }
 
         .drag-item:active {
@@ -653,8 +650,8 @@
 
         .drop-target.highlight {
             border-color: var(--success);
-            background-color: rgba(126, 211, 33, 0.1);
-            box-shadow: 0 0 20px rgba(126, 211, 33, 0.3);
+            background-color: rgba(0, 255, 163, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
         }
 
         /* Learn a Fact Styles */
@@ -667,7 +664,7 @@
             line-height: 1.6;
             margin-bottom: 25px;
             color: var(--light);
-            background-color: rgba(144, 19, 254, 0.2);
+            background-color: rgba(106, 13, 173, 0.2);
             padding: 20px;
             border-radius: 15px;
             border-left: 4px solid var(--neon-pink);
@@ -697,8 +694,8 @@
 
         .fact-option {
             padding: 15px;
-            background-color: rgba(245, 166, 35, 0.1);
-            border: 2px solid var(--kid-color);
+            background-color: rgba(255, 159, 28, 0.1);
+            border: 2px solid var(--user-color);
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -707,15 +704,15 @@
         }
 
         .fact-option:hover {
-            background-color: rgba(245, 166, 35, 0.3);
+            background-color: rgba(255, 159, 28, 0.3);
             transform: translateX(5px);
         }
 
         .fact-option.selected {
-            background-color: var(--kid-color);
+            background-color: var(--user-color);
             color: var(--dark);
             font-weight: bold;
-            box-shadow: 0 0 15px var(--kid-color);
+            box-shadow: 0 0 15px var(--user-color);
             transform: scale(1.05);
         }
 
@@ -760,7 +757,7 @@
             white-space: pre-wrap;
         }
 
-        /* Memory Game Styles - Fixed layout */
+        /* Memory Game Styles */
         .memory-game {
             text-align: center;
         }
@@ -803,7 +800,35 @@
             background: var(--success);
             transform: rotateY(180deg);
             cursor: default;
-            pointer-events: none;
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .audio-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--secondary);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .audio-toggle:hover {
+            background: rgba(0, 240, 255, 0.4);
+            transform: scale(1.1);
         }
 
         /* Achievement Badges */
@@ -837,7 +862,7 @@
         }
 
         .badge-title {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Press Start 2P', cursive;
             font-size: 20px;
             margin-bottom: 15px;
             color: white;
@@ -854,7 +879,7 @@
             background: var(--accent);
             border: none;
             border-radius: 50px;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -884,165 +909,6 @@
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
-        }
-
-        /* Daily Reward Button */
-        .daily-reward-btn {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background: rgba(80, 227, 194, 0.2);
-            border: 2px solid var(--secondary);
-            border-radius: 50px;
-            color: white;
-            font-family: 'Fredoka', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .daily-reward-btn:hover {
-            background: rgba(80, 227, 194, 0.4);
-            transform: translateX(-50%) scale(1.05);
-        }
-
-        /* Story Progress Tracker */
-        .story-tracker {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            gap: 5px;
-            z-index: 10;
-        }
-
-        .story-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(80, 227, 194, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .story-dot.active {
-            background-color: var(--secondary);
-            transform: scale(1.3);
-            box-shadow: 0 0 10px var(--secondary);
-        }
-
-        /* Mummy AI Assistant */
-        .mummy-assistant {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 90%;
-            max-width: 600px;
-            background: linear-gradient(135deg, rgba(26, 46, 64, 0.95) 0%, rgba(26, 46, 64, 0.95) 100%);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--secondary);
-            z-index: 30;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .mummy-assistant.visible {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .mummy-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .mummy-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            color: white;
-        }
-
-        .mummy-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
-            color: var(--secondary);
-            text-shadow: 0 0 10px var(--secondary);
-        }
-
-        .mummy-message {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--light);
-        }
-
-        .mummy-input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid var(--secondary);
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-            font-family: 'Comic Neue', cursive;
-            font-size: 16px;
-            margin-bottom: 15px;
-            resize: none;
-        }
-
-        .mummy-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .mummy-btn {
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: none;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .mummy-submit {
-            background: linear-gradient(135deg, var(--success) 0%, var(--neon-green) 100%);
-            color: var(--dark);
-        }
-
-        .mummy-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.5);
-        }
-
-        .mummy-close {
-            background: rgba(208, 2, 27, 0.2);
-            color: var(--light);
-            border: 2px solid var(--danger);
-        }
-
-        .mummy-close:hover {
-            background: rgba(208, 2, 27, 0.4);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(208, 2, 27, 0.3);
         }
 
         /* Responsive Design */
@@ -1153,11 +1019,225 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(80, 227, 194, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, transparent 70%);
             z-index: 25;
             opacity: 0;
             pointer-events: none;
             animation: pulse 2s infinite;
+        }
+
+        /* Story Progress Tracker */
+        .story-tracker {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .story-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .story-dot.active {
+            background-color: var(--secondary);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        /* Inventory Button */
+        .inventory-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--secondary);
+            border-radius: 50px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inventory-btn:hover {
+            background: rgba(0, 240, 255, 0.4);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        /* Inventory Panel */
+        .inventory-panel {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background: rgba(15, 14, 29, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--secondary);
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .inventory-panel.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .inventory-item {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .inventory-item:hover {
+            background: rgba(0, 240, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .item-icon {
+            font-size: 30px;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .item-name {
+            font-size: 12px;
+            color: white;
+        }
+
+        /* Zippy AI Assistant */
+        .zippy-assistant {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 14, 29, 0.95) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--secondary);
+            z-index: 30;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .zippy-assistant.visible {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .zippy-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .zippy-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        .zippy-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        .zippy-message {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .zippy-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--secondary);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-family: 'Baloo 2', cursive;
+            font-size: 16px;
+            margin-bottom: 15px;
+            resize: none;
+        }
+
+        .zippy-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .zippy-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zippy-submit {
+            background: linear-gradient(135deg, var(--success) 0%, var(--neon-green) 100%);
+            color: var(--dark);
+        }
+
+        .zippy-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.5);
+        }
+
+        .zippy-close {
+            background: rgba(255, 56, 96, 0.2);
+            color: var(--light);
+            border: 2px solid var(--danger);
+        }
+
+        .zippy-close:hover {
+            background: rgba(255, 56, 96, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 56, 96, 0.3);
         }
     </style>
 </head>
@@ -1168,8 +1248,8 @@
             <div class="stars" id="stars"></div>
             <div class="nebula" style="top: 20%; left: 10%;"></div>
             <div class="nebula" style="top: 60%; left: 70%;"></div>
-            <div class="planet" style="width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #9013FE, #1A2E40); top: 15%; left: 70%; --float-duration: 300s;"></div>
-            <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #F5A623, #D0021B); top: 70%; left: 10%; --float-duration: 250s;"></div>
+            <div class="planet" style="width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #4B0082, #1A1A2E); top: 15%; left: 70%; --float-duration: 300s;"></div>
+            <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #FF9F1C, #FF3860); top: 70%; left: 10%; --float-duration: 250s;"></div>
             <div class="comet" style="top: 10%; left: 5%; --comet-duration: 15s;"></div>
             <div class="comet" style="top: 30%; left: 80%; --comet-duration: 20s;"></div>
         </div>
@@ -1192,31 +1272,32 @@
             </div>
         </div>
 
-        <!-- Characters - Fixed positioning -->
+        <!-- Characters -->
         <div class="character-container">
             <div class="character left">
                 <div class="character-image">
-                    <img src="assets/mummy.png" alt="Mummy the Learning Guide">
-                </div>
-                <!-- Speech bubble for mother -->
-                <div class="speech-bubble left-bubble" id="mother-speech">
-                    <div class="bubble-content"></div>
-                    <div class="typing-indicator">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    </div>
+                    <img src="assets/zippy.png" alt="Zippy the AI Mentor">
                 </div>
             </div>
             <div class="character right">
                 <div class="character-image">
-                    <img src="assets/kid.png" alt="You">
-                </div>
-                <!-- Speech bubble for kid -->
-                <div class="speech-bubble right-bubble" id="kid-speech">
-                    <div class="bubble-content"></div>
+                    <img src="assets/user.png" alt="You">
                 </div>
             </div>
+        </div>
+
+        <!-- Speech Bubbles -->
+        <div class="speech-bubble left-bubble">
+            <div class="bubble-content"></div>
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+        
+        <div class="speech-bubble right-bubble">
+            <div class="bubble-content"></div>
         </div>
 
         <!-- Options Container -->
@@ -1234,13 +1315,21 @@
             <div class="thinking-content"></div>
         </div>
 
+        <!-- Audio Control -->
+        <div class="audio-control">
+            <button class="audio-toggle">🔊</button>
+        </div>
+
         <!-- Story Progress Tracker -->
         <div class="story-tracker" id="story-tracker"></div>
 
-        <!-- Daily Reward Button -->
-        <button class="daily-reward-btn" id="daily-reward-btn">
-            <span>🎁</span> Daily Reward
+        <!-- Inventory Button -->
+        <button class="inventory-btn" id="inventory-btn">
+            <span>🛍️</span> Inventory
         </button>
+
+        <!-- Inventory Panel -->
+        <div class="inventory-panel" id="inventory-panel"></div>
 
         <!-- Achievement Badge -->
         <div class="achievement-badge" id="achievement-badge">
@@ -1253,17 +1342,17 @@
         <!-- Power Up Effect -->
         <div class="power-up-effect" id="power-up-effect"></div>
 
-        <!-- Mummy AI Assistant -->
-        <div class="mummy-assistant" id="mummy-assistant">
-            <div class="mummy-header">
-                <div class="mummy-avatar">M</div>
-                <div class="mummy-title">MUMMY HELPER</div>
+        <!-- Zippy AI Assistant -->
+        <div class="zippy-assistant" id="zippy-assistant">
+            <div class="zippy-header">
+                <div class="zippy-avatar">Z</div>
+                <div class="zippy-title">ZIPPY AI ASSISTANT</div>
             </div>
-            <div class="mummy-message" id="mummy-message">How can I help you with your learning today?</div>
-            <textarea class="mummy-input" id="mummy-input" placeholder="Ask me anything about learning..."></textarea>
-            <div class="mummy-controls">
-                <button class="mummy-btn mummy-close" id="mummy-close">Close</button>
-                <button class="mummy-btn mummy-submit" id="mummy-submit">Ask</button>
+            <div class="zippy-message" id="zippy-message">How can I help you on your mission today?</div>
+            <textarea class="zippy-input" id="zippy-input" placeholder="Ask me anything about the mission..."></textarea>
+            <div class="zippy-controls">
+                <button class="zippy-btn zippy-close" id="zippy-close">Close</button>
+                <button class="zippy-btn zippy-submit" id="zippy-submit">Ask</button>
             </div>
         </div>
     </div>
@@ -1275,23 +1364,25 @@
             xp: localStorage.getItem('chizelXP') ? parseInt(localStorage.getItem('chizelXP')) : 0,
             level: localStorage.getItem('chizelLevel') ? parseInt(localStorage.getItem('chizelLevel')) : 1,
             completedTasks: JSON.parse(localStorage.getItem('chizelCompletedTasks')) || [],
+            inventory: JSON.parse(localStorage.getItem('chizelInventory')) || [],
             achievements: JSON.parse(localStorage.getItem('chizelAchievements')) || [],
+            audioEnabled: true,
             currentTask: null,
             taskCompleted: false,
+            brainrotHealth: 100,
+            userHealth: 100,
             storyProgress: 0,
-            mummyKnowledge: {},
-            lastLoginDate: localStorage.getItem('chizelLastLogin') || null,
-            audioEnabled: false
+            zippyKnowledge: {}
         };
 
         // DOM Elements
         const elements = {
             leftCharacter: document.querySelector('.character.left'),
             rightCharacter: document.querySelector('.character.right'),
-            motherSpeech: document.getElementById('mother-speech'),
-            kidSpeech: document.getElementById('kid-speech'),
-            motherBubbleContent: document.querySelector('#mother-speech .bubble-content'),
-            kidBubbleContent: document.querySelector('#kid-speech .bubble-content'),
+            leftBubble: document.querySelector('.left-bubble'),
+            rightBubble: document.querySelector('.right-bubble'),
+            leftBubbleContent: document.querySelector('.left-bubble .bubble-content'),
+            rightBubbleContent: document.querySelector('.right-bubble .bubble-content'),
             optionsContainer: document.querySelector('.options-container'),
             xpBar: document.querySelector('.xp-progress'),
             xpValue: document.querySelector('.xp-value'),
@@ -1300,19 +1391,31 @@
             taskContent: document.querySelector('.task-content'),
             taskSubmit: document.querySelector('.task-submit'),
             taskHeader: document.querySelector('.task-header'),
+            audioToggle: document.querySelector('.audio-toggle'),
             typingIndicator: document.querySelector('.typing-indicator'),
             thinkingBox: document.querySelector('.thinking-box'),
             thinkingContent: document.querySelector('.thinking-content'),
             starsContainer: document.getElementById('stars'),
             storyTracker: document.getElementById('story-tracker'),
-            dailyRewardBtn: document.getElementById('daily-reward-btn'),
+            inventoryBtn: document.getElementById('inventory-btn'),
+            inventoryPanel: document.getElementById('inventory-panel'),
             achievementBadge: document.getElementById('achievement-badge'),
             powerUpEffect: document.getElementById('power-up-effect'),
-            mummyAssistant: document.getElementById('mummy-assistant'),
-            mummyMessage: document.getElementById('mummy-message'),
-            mummyInput: document.getElementById('mummy-input'),
-            mummySubmit: document.getElementById('mummy-submit'),
-            mummyClose: document.getElementById('mummy-close')
+            zippyAssistant: document.getElementById('zippy-assistant'),
+            zippyMessage: document.getElementById('zippy-message'),
+            zippyInput: document.getElementById('zippy-input'),
+            zippySubmit: document.getElementById('zippy-submit'),
+            zippyClose: document.getElementById('zippy-close')
+        };
+
+        // Audio Elements
+        const audio = {
+            success: new Audio('assets/success.mp3'),
+            notification: new Audio('assets/notification.mp3'),
+            powerup: new Audio('assets/powerup.mp3'),
+            achievement: new Audio('assets/achievement.mp3'),
+            typing: new Audio('assets/typing.mp3'),
+            battle: new Audio('assets/battle.mp3')
         };
 
         // Create stars for background
@@ -1335,243 +1438,233 @@
         const storyScript = [
             // Introduction
             {
-                speaker: 'mummy',
-                message: "👋 Hi there! Welcome to CHIZEL - the coolest learning app in the universe! I'm Mummy, your learning guide!",
+                speaker: 'zippy',
+                message: "🚨 ALERT! 🚨 This is Commander Zippy of the Chizel Starship! The galaxy is under attack by the evil BRAINROT!",
                 options: [
-                    { text: "What's CHIZEL?", nextStep: 1, xp: 5 },
-                    { text: "How does it work?", nextStep: 2, xp: 5 }
+                    { text: "What's Brainrot?", nextStep: 1, xp: 5 },
+                    { text: "How can I help?", nextStep: 2, xp: 5 }
                 ],
-                thinking: "CHIZEL is a revolutionary app that turns learning into an exciting adventure..."
+                thinking: "Brainrot is a cosmic entity that drains knowledge from young minds across the galaxy, replacing it with mindless scrolling and wasted time..."
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL is a special app that helps kids learn while having fun! It turns math, science, and reading into exciting games!",
+                speaker: 'zippy',
+                message: "Brainrot is a knowledge-draining cosmic parasite! It feeds on wasted potential and turns bright young minds into zombies!",
                 options: [
-                    { text: "That sounds cool!", nextStep: 3, xp: 5 },
-                    { text: "What can I learn?", nextStep: 4, xp: 5 }
+                    { text: "That's terrifying!", nextStep: 3, xp: 5 },
+                    { text: "What's its weakness?", nextStep: 4, xp: 5 }
                 ],
-                thinking: "With CHIZEL, kids don't even realize they're learning because they're having so much fun..."
+                thinking: "Our scanners show Brainrot's core is vulnerable to concentrated bursts of knowledge and skill-building..."
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL makes learning an adventure! You'll earn XP for every question you answer, and level up your skills!",
+                speaker: 'zippy',
+                message: "We need YOU to pilot our XP Cannon! Each skill you master fires knowledge missiles that weaken Brainrot's defenses!",
                 options: [
-                    { text: "I want to try!", nextStep: 5, xp: 10 },
-                    { text: "Tell me more!", nextStep: 6, xp: 5 }
+                    { text: "I'm ready to fight!", nextStep: 5, xp: 10 },
+                    { text: "How does the XP Cannon work?", nextStep: 6, xp: 5 }
                 ],
-                thinking: "The more you learn, the more XP you earn. Parents love seeing their kids progress with CHIZEL!"
+                thinking: "The XP Cannon converts your learning into pure energy. More XP = stronger attacks against Brainrot!"
             },
             {
-                speaker: 'mummy',
-                message: "Great attitude! CHIZEL has games for math, reading, science, and even coding! All designed by teachers to be super fun!",
+                speaker: 'zippy',
+                message: "Don't worry cadet! With Chizel's training system, we'll turn you into a Skillionaire Warrior in no time!",
                 options: [
-                    { text: "Let's play!", nextStep: 7, xp: 5 },
-                    { text: "How does it help me?", nextStep: 8, xp: 5 }
+                    { text: "What's first?", nextStep: 7, xp: 5 },
+                    { text: "Show me Brainrot!", nextStep: 8, xp: 5 }
                 ],
-                thinking: "CHIZEL adapts to each child's level, making sure they're always challenged but never frustrated..."
+                thinking: "Initializing combat simulation... preparing first training mission..."
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL teaches everything from ABCs to multiplication! It helps with focus, memory, and problem-solving - skills you'll use forever!",
+                speaker: 'zippy',
+                message: "Brainrot hates LEARNING! Every math problem solved, every fact memorized weakens its power over young minds!",
                 options: [
-                    { text: "I'm ready to learn!", nextStep: 7, xp: 10 },
-                    { text: "Show me a game!", nextStep: 9, xp: 5 }
+                    { text: "Let's learn then!", nextStep: 7, xp: 10 },
+                    { text: "Show me the enemy!", nextStep: 8, xp: 5 }
                 ],
-                thinking: "Studies show kids using CHIZEL improve their test scores by 30% compared to traditional learning..."
+                thinking: "Scanning Brainrot's energy signature... detecting high concentrations near social media and gaming platforms..."
             },
             {
-                speaker: 'mummy',
-                message: "That's the spirit! Your first mission has three fun challenges: Math Puzzle, Memory Game, and Word Challenge!",
+                speaker: 'zippy',
+                message: "That's the spirit! Your first mission has three phases: Logic Training, Memory Boost, and Coding Power-Up!",
                 options: [],
                 action: 'startTasks',
-                thinking: "Mission parameters set. Remember: in CHIZEL, we make learning as fun as playing your favorite game!"
+                thinking: "Mission parameters set. Engaging safety protocols. Remember cadet: in Chizel, we turn screen time into SKILL time!"
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL grows with you! As you level up, the games get more exciting and you unlock new learning adventures!",
+                speaker: 'zippy',
+                message: "The XP Cannon charges as you complete challenges! Each level unlocks new weapons against Brainrot!",
                 options: [
-                    { text: "Got it!", nextStep: 5, xp: 5 },
-                    { text: "What are levels?", nextStep: 10, xp: 5 }
+                    { text: "Understood!", nextStep: 5, xp: 5 },
+                    { text: "What kind of weapons?", nextStep: 9, xp: 5 }
                 ],
-                thinking: "Parents can track progress through our secure dashboard, seeing exactly what their child is mastering..."
+                thinking: "Weapon systems include: Math Missiles, Vocabulary Lasers, and the ultimate History Hyperbeam!"
             },
             {
-                speaker: 'mummy',
-                message: "Let's play! *ding* This game will help you practice addition while saving cute aliens! Ready?",
+                speaker: 'zippy',
+                message: "ACTIVATE VIEWSCREEN! *static* This is Brainrot's current form... it's already infected 78% of young minds in this sector!",
                 options: [
-                    { text: "Yes, let's go!", nextStep: 5, xp: 10 },
-                    { text: "How do I play?", nextStep: 11, xp: 5 }
+                    { text: "We have to stop it!", nextStep: 5, xp: 10 },
+                    { text: "It's huge!", nextStep: 10, xp: 5 }
                 ],
-                thinking: "Game-based learning increases engagement by 70% compared to traditional methods..."
+                thinking: "Analysis: Brainrot manifestation appears as infinite scroll feeds and auto-play videos... must... resist... clicking..."
             },
             {
-                speaker: 'mummy',
-                message: "At level 5 you unlock Math Blaster! Level 10 gets Story Builder! The ultimate Science Explorer requires level 20!",
+                speaker: 'zippy',
+                message: "At level 5 you unlock Math Missiles! Level 10 gets Vocabulary Lasers! The ultimate History Hyperbeam requires level 20!",
                 options: [
                     { text: "I'll level up fast!", nextStep: 5, xp: 10 },
-                    { text: "Tell me more", nextStep: 12, xp: 5 }
+                    { text: "Tell me more", nextStep: 11, xp: 5 }
                 ],
-                thinking: "Pro tip: Playing daily gives bonus XP! CHIZEL's algorithm ensures optimal learning retention..."
+                thinking: "Pro tip: Completing bonus challenges gives XP boosts! Watch for flashing asteroids - they contain power-ups!"
             },
             {
-                speaker: 'mummy',
-                message: "Here's a secret: CHIZEL games strengthen your brain muscles! You'll get better at focusing, remembering, and solving problems!",
+                speaker: 'zippy',
+                message: "Our scanners show Brainrot is WEAK against: Critical Thinking, Problem Solving, and Creative Expression!",
                 options: [
                     { text: "My brain is ready!", nextStep: 5, xp: 10 },
-                    { text: "How does that work?", nextStep: 13, xp: 5 }
+                    { text: "What else hurts it?", nextStep: 12, xp: 5 }
                 ],
-                thinking: "Neuroscience shows that game-based learning creates stronger neural pathways..."
+                thinking: "Interesting... Brainrot's energy signature fluctuates when exposed to genuine curiosity and perseverance..."
             },
             {
-                speaker: 'mummy',
-                message: "Levels show your progress! Each level means you've learned new skills. Parents can see all your achievements!",
+                speaker: 'zippy',
+                message: "Each skill you master creates a 'Knowledge Shield' that protects you from Brainrot's attention-draining attacks!",
                 options: [
-                    { text: "I want to level up!", nextStep: 5, xp: 10 },
-                    { text: "Can parents see?", nextStep: 14, xp: 5 }
+                    { text: "Let's build shields!", nextStep: 5, xp: 10 },
+                    { text: "How strong are they?", nextStep: 13, xp: 5 }
                 ],
-                thinking: "The parent dashboard shows learning progress, time spent, and skills mastered..."
+                thinking: "Calculating shield strength... current projection: 1 skill = 5% resistance to distraction attacks..."
             },
             {
-                speaker: 'mummy',
-                message: "Exactly! CHIZEL is kid-safe with no ads. Parents get reports showing what you're learning and how you're improving!",
+                speaker: 'zippy',
+                message: "A fully charged History Hyperbeam can wipe out a Brainrot tendril in one shot! But it requires mastering 50 history facts!",
                 options: [
-                    { text: "That's awesome!", nextStep: 5, xp: 15 },
-                    { text: "What about safety?", nextStep: 15, xp: 5 }
+                    { text: "I'll start studying!", nextStep: 5, xp: 15 },
+                    { text: "What about other subjects?", nextStep: 14, xp: 5 }
                 ],
-                thinking: "CHIZEL is COPPA compliant with strict privacy protections for all children..."
+                thinking: "Cross-indexing curriculum with combat effectiveness... math skills particularly potent against probability manipulators..."
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL is super safe! No strangers can contact you, no inappropriate content, and parents control everything!",
+                speaker: 'zippy',
+                message: "Shield strength increases exponentially! 5 skills = 30% resistance! 10 skills = 60%! Max level = 95% resistance!",
                 options: [
-                    { text: "Great! Let's play!", nextStep: 5, xp: 15 },
-                    { text: "What else makes CHIZEL special?", nextStep: 16, xp: 5 }
+                    { text: "I want max shields!", nextStep: 5, xp: 15 },
+                    { text: "What about armor?", nextStep: 15, xp: 5 }
                 ],
-                thinking: "Unlike other apps, CHIZEL focuses on real learning, not just mindless tapping..."
+                thinking: "Developing anti-Brainrot armor prototypes... current design uses spaced repetition plating and active recall alloy..."
             },
             {
-                speaker: 'mummy',
-                message: "CHIZEL is different because: 1) Real teachers designed it 2) It adapts to your level 3) It makes learning FUN!",
+                speaker: 'zippy',
+                message: "Science gives EMP grenades! Literature provides Decryption Codes! Even Art Skills can disrupt Brainrot's visual hypnosis!",
                 options: [
-                    { text: "I love it!", nextStep: 5, xp: 20 },
-                    { text: "Let's play now!", nextStep: 5, xp: 10 }
+                    { text: "I'll learn everything!", nextStep: 5, xp: 20 },
+                    { text: "Let's fight now!", nextStep: 5, xp: 10 }
                 ],
-                thinking: "The secret sauce is combining educational expertise with game design magic..."
+                thinking: "Warning: Brainrot adapts quickly! Recommend varied skill development to prevent resistance buildup..."
             },
             {
-                speaker: 'mummy',
-                message: "One more thing! CHIZEL gives daily rewards for learning, with special weekend bonuses!",
+                speaker: 'zippy',
+                message: "Our engineers are working on Focus Helmets and Productivity Gauntlets! Earn them by completing achievement chains!",
                 options: [
-                    { text: "I want rewards!", nextStep: 5, xp: 15 },
-                    { text: "How do I earn them?", nextStep: 17, xp: 5 }
+                    { text: "I want that gear!", nextStep: 5, xp: 15 },
+                    { text: "Show me achievements", nextStep: 16, xp: 5 }
                 ],
-                thinking: "Daily engagement creates consistent learning habits that last a lifetime..."
+                thinking: "Current prototype: Pomodoro Plasma Rifle - fires 25-minute concentration bursts with 5-minute shield recharge..."
             },
             {
-                speaker: 'mummy',
-                message: "Just play every day! You'll get XP bonuses, collectible stars, and unlock special avatars!",
+                speaker: 'zippy',
+                message: "Achievements unlock special abilities! 'Quick Learner' boosts XP! 'Streak Master' gives daily bonuses!",
                 options: [
-                    { text: "I'll play daily!", nextStep: 5, xp: 20 },
-                    { text: "Let's start now!", nextStep: 5, xp: 10 }
+                    { text: "How do I earn them?", nextStep: 17, xp: 5 },
+                    { text: "Let's just fight!", nextStep: 5, xp: 10 }
                 ],
-                thinking: "Daily users show 3x the learning gains compared to occasional players..."
+                thinking: "Achievement system uses operant conditioning principles... carefully calibrated reward schedules maximize engagement..."
+            },
+            {
+                speaker: 'zippy',
+                message: "Complete challenges in record time! Maintain daily streaks! Help other cadets! The more you do, the more you unlock!",
+                options: [
+                    { text: "I'll go for all!", nextStep: 5, xp: 20 },
+                    { text: "Enough talk - FIGHT!", nextStep: 5, xp: 10 }
+                ],
+                thinking: "Cadet shows promising motivation levels... initiating combat training sequence..."
             },
             // After tasks are completed
             {
-                speaker: 'mummy',
-                message: "⭐ AMAZING JOB! ⭐ You've earned 150 XP and learned new skills! Parents will be so proud!",
+                speaker: 'zippy',
+                message: "⚡ MISSION ACCOMPLISHED! ⚡ You've earned 150 XP and weakened Brainrot's hold on this sector!",
                 options: [],
                 action: 'showFinalMessage',
-                thinking: "Learning analytics show excellent progress... skills mastered... ready for next challenge..."
+                thinking: "Scanning results... Brainrot energy signature reduced by 23% in this quadrant... excellent work cadet!"
             }
         ];
 
-        // Initialize Mummy's knowledge base
-        function initMummyKnowledge() {
-            gameState.mummyKnowledge = {
-                "chizel": "CHIZEL is a revolutionary learning app that makes education fun through games. It teaches math, reading, science and more while keeping kids engaged and motivated.",
-                "learning": "Learning with CHIZEL strengthens your brain! It helps with focus, memory, and problem-solving - skills you'll use in school and life!",
-                "xp": "XP (Experience Points) measure your learning progress. Earn XP by completing challenges. More XP = higher levels and cooler rewards!",
-                "levels": "Levels show your progress. Each level means you've mastered new skills. Parents can see your level in their dashboard.",
-                "parents": "CHIZEL has a special parent dashboard showing learning progress, time spent, and skills mastered. Parents love seeing their kids learn!",
-                "safety": "CHIZEL is 100% kid-safe with no ads or strangers. It's COPPA compliant with strict privacy protections for all children.",
-                "games": "CHIZEL games include: Math Blaster, Word Explorer, Science Adventure, Memory Master, and Coding Quest - all designed by teachers!",
-                "rewards": "Earn daily rewards for learning! Special bonuses on weekends! Collect stars and unlock fun avatars!",
-                "help": "I'm here to help with: learning tips, game instructions, XP explanations, and parent information. Ask me anything!",
-                "features": "What makes CHIZEL special: 1) Designed by teachers 2) Adapts to your level 3) Makes learning FUN 4) Parent dashboard 5) Kid-safe environment"
+        // Initialize Zippy's knowledge base
+        function initZippyKnowledge() {
+            gameState.zippyKnowledge = {
+                "brainrot": "Brainrot is a cosmic entity that drains knowledge from young minds. It manifests as endless scrolling, wasted time, and unproductive screen use. Weaknesses include: learning activities, skill-building, and focused attention.",
+                "chizel": "Chizel is an intergalactic initiative to turn screen time into skill time. Our mission: equip young minds with knowledge weapons to fight Brainrot and become Skillionaires!",
+                "xp": "XP (Experience Points) measure your learning progress. Earn XP by completing challenges. More XP = stronger attacks against Brainrot and cooler upgrades!",
+                "mission": "Your current mission: Complete training challenges to power up the XP Cannon. We need to weaken Brainrot's hold on this sector by at least 20%.",
+                "weapons": "Available weapons: Math Missiles (unlock at Lv5), Vocabulary Lasers (Lv10), History Hyperbeam (Lv20). Each requires mastering specific skills.",
+                "skills": "Critical skills against Brainrot: Problem Solving, Memory Training, Logical Thinking, Creativity, and Focus. Developing these creates Knowledge Shields.",
+                "levels": "Level up by earning XP. Each level unlocks new abilities. Level 1-5: Cadet, 6-10: Officer, 11-20: Commander, 20+: Skillionaire Champion!",
+                "achievements": "Achievements reward special accomplishments. Examples: 'Quick Learner' (complete 3 tasks fast), 'Streak Master' (7 daily logins), 'Knowledge Warrior' (50 correct answers).",
+                "inventory": "Your inventory holds power-ups and collectibles. Earn them by completing challenges or finding hidden items. Use them strategically in battle!",
+                "help": "I'm here to help with: mission info, Brainrot facts, XP explanations, achievement tracking, and learning strategies. Ask me anything!",
+                "story": "The Chizel storyline: In the year 2042, Brainrot emerged from the digital dimension, draining knowledge from millions. The Chizel Initiative was founded to fight back using gamified learning."
             };
         }
 
-        // Extended Task Data with Learning Focus
+        // Extended Task Data with Space Theme
         const tasks = [
             {
                 id: 'brain-teaser',
-                title: "MATH QUEST: Save the Aliens!",
+                title: "LOGIC TRAINING: XP Cannon Calibration",
                 type: "brain-teaser",
-                question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
-                options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
+                question: "To calibrate the XP Cannon, solve this: If an asteroid hits Brainrot for 15 damage and another hits for 20, but Brainrot regenerates 10 health, what's the total damage?",
+                options: ["25 damage", "35 damage", "30 damage", "5 damage"],
                 correctAnswer: 0,
                 xp: 50,
-                thinking: "Great math practice! 20 cookies ÷ 5 per alien = 4 aliens. You're helping them so much!"
+                thinking: "Remember cadet: total damage = (15 + 20) - 10 regeneration = 25. This calibrates our weapons perfectly!"
             },
             {
                 id: 'memory-game',
-                title: "MEMORY MASTER: Match the Planets",
+                title: "MEMORY BOOST: Shield Pattern Sequence",
                 type: "memory-game",
-                pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽", "🔭", "⭐"],
+                pairs: ["⚡", "🔋", "🚀", "🛡️", "🌌", "🎯", "🧠", "💡"],
                 xp: 50,
-                thinking: "Matching games strengthen your memory - an important skill for school and life!"
+                thinking: "Matching these symbols trains your hippocampus - the brain's memory center. Stronger memory = better shield patterns!"
             },
             {
                 id: 'coding-challenge',
-                title: "CODE QUEST: Fix the Rocket",
+                title: "CODING POWER-UP: Shield Algorithm",
                 type: "coding-challenge",
-                instruction: "Debug this rocket launch code by fixing the errors:",
-                code: `function launchRocket() {\n  if fuel > 100\n    return "Blast Off!"\n  else\n    console.log("Need more fuel!")\n}`,
-                correctAnswer: `function launchRocket() {\n  if (fuel > 100) {\n    return "Blast Off!";\n  } else {\n    console.log("Need more fuel!");\n  }\n}`,
+                instruction: "Debug this shield algorithm by fixing the syntax errors:",
+                code: `function activateShield(strength) {\n  if strength > 50\n    return "MAX POWER!"\n  else\n    console.log("Shield at " + strength + "%")\n}`,
+                correctAnswer: `function activateShield(strength) {\n  if (strength > 50) {\n    return "MAX POWER!";\n  } else {\n    console.log("Shield at " + strength + "%");\n  }\n}`,
                 xp: 50,
-                thinking: "Coding teaches logical thinking - a super valuable skill for your future!"
+                thinking: "Proper syntax is crucial for shield stability! Remember your curly braces and parentheses cadet!"
             },
             {
                 id: 'quick-challenge',
-                title: "WORD EXPLORER: Sentence Builder",
+                title: "SPACE NAVIGATION: Planet Order Challenge",
                 type: "quick-challenge",
-                instruction: "Drag the words to build a proper sentence:",
-                items: ["jumps", "The", "dog", "happy"],
-                correctOrder: ["The", "happy", "dog", "jumps"],
+                instruction: "Drag the planets to order them by distance from the Sun:",
+                items: ["Mars", "Venus", "Earth", "Mercury"],
+                correctOrder: ["Mercury", "Venus", "Earth", "Mars"],
                 xp: 50,
-                thinking: "Building sentences helps with reading and writing skills. Great job!"
+                thinking: "Correct order: Mercury, Venus, Earth, Mars. Knowing planetary positions helps navigate while dodging Brainrot's attacks!"
             },
             {
                 id: 'learn-fact',
-                title: "SCIENCE DISCOVERY: Amazing Animals",
+                title: "SCIENCE FACT: Nebula Knowledge",
                 type: "learn-fact",
-                fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
-                question: "What gives flamingos their pink color?",
-                options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
+                fact: "A nebula is a giant cloud of dust and gas in space. Some nebulae come from dying stars, while others are regions where new stars are being born!",
+                question: "What is a nebula primarily made of?",
+                options: ["Rock and metal", "Dust and gas", "Plasma only", "Dark matter"],
                 correctAnswer: 1,
                 xp: 50,
-                thinking: "Learning fun facts makes science exciting and helps you remember important concepts!"
-            },
-            {
-                id: 'math-puzzle',
-                title: "NUMBER NINJA: Treasure Hunt",
-                type: "brain-teaser",
-                question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
-                options: ["15 coins", "20 coins", "10 coins", "25 coins"],
-                correctAnswer: 0,
-                xp: 50,
-                thinking: "12 + 8 - 5 = 15. Math is everywhere, even in treasure hunts!"
-            },
-            {
-                id: 'word-game',
-                title: "LETTER LEGEND: Find the Vowels",
-                type: "quick-challenge",
-                instruction: "Drag all the vowels to the target area:",
-                items: ["A", "B", "E", "C", "I", "D", "O", "F"],
-                correctOrder: ["A", "E", "I", "O"],
-                xp: 50,
-                thinking: "Knowing vowels helps with reading and spelling. You're doing great!"
+                thinking: "Nebulae are star nurseries made of dust and gas. This knowledge helps repair our ship's plasma filters!"
             }
         ];
 
@@ -1580,61 +1673,84 @@
             {
                 id: 'quick-learner',
                 title: "Quick Learner",
-                description: "Completed 3 challenges quickly!",
+                description: "Completed 3 tasks in record time!",
                 icon: "🏎️",
                 xpBonus: 20
             },
             {
-                id: 'daily-star',
-                title: "Daily Star",
-                description: "Played 3 days in a row!",
-                icon: "🌟",
+                id: 'streak-starter',
+                title: "Streak Starter",
+                description: "Logged in 3 days in a row!",
+                icon: "🔥",
                 xpBonus: 30
             },
             {
-                id: 'math-whiz',
-                title: "Math Whiz",
-                description: "Solved 10 math problems!",
-                icon: "➕",
+                id: 'brainrot-basher',
+                title: "Brainrot Basher",
+                description: "Defeated Brainrot in 5 battles!",
+                icon: "👊",
                 xpBonus: 50
             },
             {
-                id: 'word-wizard',
-                title: "Word Wizard",
-                description: "Completed 5 word challenges!",
-                icon: "🔠",
-                xpBonus: 50
+                id: 'knowledge-knight',
+                title: "Knowledge Knight",
+                description: "Earned 500 XP!",
+                icon: "🛡️",
+                xpBonus: 75
+            }
+        ];
+
+        // Inventory Items
+        const inventoryItems = [
+            {
+                id: 'xp-boost',
+                name: "XP Boost",
+                description: "+20% XP for 1 hour",
+                icon: "⚡"
             },
             {
-                id: 'science-star',
-                title: "Science Star",
-                description: "Learned 10 science facts!",
-                icon: "🔬",
-                xpBonus: 50
+                id: 'shield-cell',
+                name: "Shield Cell",
+                description: "Restores 25% shield",
+                icon: "🛡️"
+            },
+            {
+                id: 'brainrot-scanner',
+                name: "Brainrot Scanner",
+                description: "Reveals weak points",
+                icon: "📡"
+            },
+            {
+                id: 'knowledge-grenade',
+                name: "Knowledge Grenade",
+                description: "Deals 50 damage",
+                icon: "💣"
             }
         ];
 
         // Initialize the game
         function initGame() {
             createStars();
-            initMummyKnowledge();
+            initZippyKnowledge();
             updateXPDisplay();
             updateLevel();
             showStoryStep(0);
             createStoryTracker();
-            checkDailyReward();
+            
+            // Set up audio toggle
+            elements.audioToggle.addEventListener('click', toggleAudio);
             
             // Set up task submit button
             elements.taskSubmit.addEventListener('click', checkTaskAnswer);
             
-            // Set up daily reward button
-            elements.dailyRewardBtn.addEventListener('click', giveDailyReward);
+            // Set up inventory button
+            elements.inventoryBtn.addEventListener('click', toggleInventory);
             
-            // Set up Mummy assistant
-            elements.mummyClose.addEventListener('click', () => toggleMummyAssistant(false));
-            elements.mummySubmit.addEventListener('click', handleMummyQuery);
-            elements.mummyInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleMummyQuery();
+            // Set up Zippy AI assistant
+            elements.zippyClose.addEventListener('click', () => toggleZippyAssistant(false));
+            elements.zippySubmit.addEventListener('click', handleZippyQuery);
+            elements.zippyInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleZippyQuery();
             });
             
             // Show characters with animation
@@ -1645,32 +1761,6 @@
             
             // Check for achievements
             checkAchievements();
-        }
-
-        // Check for daily reward eligibility
-        function checkDailyReward() {
-            const today = new Date().toDateString();
-            if (gameState.lastLoginDate !== today) {
-                elements.dailyRewardBtn.style.display = 'flex';
-            } else {
-                elements.dailyRewardBtn.style.display = 'none';
-            }
-        }
-
-        // Give daily reward
-        function giveDailyReward() {
-            const today = new Date().toDateString();
-            gameState.lastLoginDate = today;
-            localStorage.setItem('chizelLastLogin', today);
-            
-            // Weekend bonus
-            const isWeekend = [0, 6].includes(new Date().getDay());
-            const rewardAmount = isWeekend ? 50 : 30;
-            
-            addXP(rewardAmount);
-            showAchievement(`Daily Reward: ${rewardAmount} XP!`, isWeekend ? "🎉" : "🎁");
-            
-            elements.dailyRewardBtn.style.display = 'none';
         }
 
         // Create story progress tracker
@@ -1712,10 +1802,10 @@
             elements.optionsContainer.innerHTML = '';
             elements.optionsContainer.classList.remove('visible');
             
-            // Hide kid bubble if it's Mummy's turn to speak
-            elements.kidSpeech.classList.remove('visible');
+            // Hide right bubble if it's Zippy's turn to speak
+            elements.rightBubble.classList.remove('visible');
             
-            if (step.speaker === 'mummy') {
+            if (step.speaker === 'zippy') {
                 // Show thinking box if available
                 if (step.thinking) {
                     elements.thinkingContent.textContent = step.thinking;
@@ -1724,14 +1814,22 @@
                 
                 // Show typing indicator
                 elements.typingIndicator.style.display = 'flex';
+                elements.leftBubble.classList.remove('hidden');
+                
+                // Play typing sound if audio is enabled
+                if (gameState.audioEnabled) {
+                    audio.typing.currentTime = 0;
+                    audio.typing.play();
+                }
                 
                 // Type out the message
-                typeMessage(step.message, elements.motherBubbleContent, () => {
+                typeMessage(step.message, elements.leftBubbleContent, () => {
                     // Hide typing indicator when done
                     elements.typingIndicator.style.display = 'none';
+                    audio.typing.pause();
                     
                     // Show bubble
-                    elements.motherSpeech.classList.add('visible');
+                    elements.leftBubble.classList.add('visible');
                     
                     // Hide thinking box after a delay
                     if (step.thinking) {
@@ -1752,8 +1850,8 @@
                 });
             } else {
                 // For user responses
-                elements.kidBubbleContent.textContent = step.message;
-                elements.kidSpeech.classList.add('visible');
+                elements.rightBubbleContent.textContent = step.message;
+                elements.rightBubble.classList.add('visible');
                 
                 // Move to next step after delay
                 setTimeout(() => {
@@ -1793,6 +1891,12 @@
                 button.textContent = option.text;
                 
                 button.addEventListener('click', () => {
+                    // Play sound if audio is enabled
+                    if (gameState.audioEnabled) {
+                        audio.notification.currentTime = 0;
+                        audio.notification.play();
+                    }
+                    
                     // Show user's response
                     showUserResponse(option.text);
                     
@@ -1817,10 +1921,9 @@
 
         // Show user response in bubble
         function showUserResponse(message) {
-            elements.kidBubbleContent.textContent = message;
-            elements.kidSpeech.classList.add('visible');
+            elements.rightBubbleContent.textContent = message;
+            elements.rightBubble.classList.add('visible');
             elements.optionsContainer.classList.remove('visible');
-            elements.motherSpeech.classList.remove('visible');
         }
 
         // Perform special action
@@ -1940,7 +2043,7 @@
             
             const instruction = document.createElement('div');
             instruction.className = 'challenge-instruction';
-            instruction.textContent = "Match the pairs to strengthen your memory!";
+            instruction.textContent = "Match the pairs to strengthen your memory shields!";
             container.appendChild(instruction);
             
             // Duplicate and shuffle the pairs
@@ -1982,9 +2085,6 @@
                                 c.classList.remove('flipped');
                             });
                             matchedPairs++;
-                            
-                            // Clear flipped cards array
-                            flippedCards = [];
                             
                             // Check if all pairs are matched
                             if (matchedPairs === task.pairs.length) {
@@ -2038,12 +2138,12 @@
                 try {
                     // In a real app, you'd use a proper code evaluation method
                     if (editor.value.trim() === task.correctAnswer) {
-                        output.textContent = "Rocket launched successfully!\nOutput: Blast Off!";
+                        output.textContent = "Shield algorithm activated successfully!\nOutput: Shield at 100%";
                         output.style.color = "var(--success)";
                         gameState.currentTask.completed = true;
                         elements.taskSubmit.classList.remove('hidden');
                     } else {
-                        output.textContent = "Error: Rocket unstable! Check your syntax.";
+                        output.textContent = "Error: Shield unstable! Check your syntax.";
                         output.style.color = "var(--danger)";
                     }
                 } catch (e) {
@@ -2223,6 +2323,12 @@
             }
             
             if (isCorrect) {
+                // Play success sound if audio is enabled
+                if (gameState.audioEnabled) {
+                    audio.success.currentTime = 0;
+                    audio.success.play();
+                }
+                
                 // Add XP
                 addXP(task.xp);
                 
@@ -2230,12 +2336,22 @@
                 gameState.completedTasks.push(task.id);
                 gameState.taskCompleted = true;
                 
+                // Add random inventory item
+                if (Math.random() > 0.7) { // 30% chance
+                    const randomItem = inventoryItems[Math.floor(Math.random() * inventoryItems.length)];
+                    if (!gameState.inventory.some(item => item.id === randomItem.id)) {
+                        gameState.inventory.push(randomItem);
+                        localStorage.setItem('chizelInventory', JSON.stringify(gameState.inventory));
+                        showAchievement("You found a " + randomItem.name + "!", randomItem.icon);
+                    }
+                }
+                
                 // Show success message
                 elements.taskContent.innerHTML = `
                     <div style="text-align: center;">
-                        <h3 style="color: var(--success);">GREAT JOB! 🎉</h3>
+                        <h3 style="color: var(--success);">MISSION SUCCESS! 🎉</h3>
                         <p>You earned ${task.xp} XP!</p>
-                        <p>Your learning power increased by ${Math.floor(task.xp/2)}%!</p>
+                        <p>Brainrot's power in this sector decreased by ${Math.floor(task.xp/2)}%!</p>
                         <button class="option-btn" style="margin-top: 20px;" id="next-task-btn">Next Challenge</button>
                     </div>
                 `;
@@ -2262,23 +2378,29 @@
                 errorMsg.style.marginTop = "20px";
                 errorMsg.style.color = "var(--danger)";
                 errorMsg.innerHTML = `
-                    <p>Not quite right! Try again - you can do it!</p>
-                    <p>Remember: Mistakes help us learn!</p>
+                    <p>Not quite right! Brainrot regenerated ${Math.floor(Math.random() * 5) + 1}% power!</p>
+                    <p>Try again cadet!</p>
                 `;
                 elements.taskContent.appendChild(errorMsg);
+                
+                // Play error sound if audio is enabled
+                if (gameState.audioEnabled) {
+                    audio.notification.currentTime = 0;
+                    audio.notification.play();
+                }
             }
         }
 
         // Show final message
         function showFinalMessage() {
-            elements.taskHeader.textContent = "LEARNING COMPLETE!";
+            elements.taskHeader.textContent = "MISSION ACCOMPLISHED!";
             elements.taskContent.innerHTML = `
                 <div style="text-align: center;">
-                    <h3 style="color: var(--success);">You're becoming a learning superstar!</h3>
-                    <p style="font-size: 1.2em; margin: 20px 0;">Your skills improved by ${Math.floor(gameState.xp/6)}%!</p>
-                    <p>Keep playing to unlock more learning adventures!</p>
-                    <button class="option-btn" style="margin-top: 20px;" id="restart-btn">Play Again</button>
-                    <button class="option-btn" style="margin-top: 10px; background: var(--mummy-color);" id="mummy-btn">Ask MUMMY</button>
+                    <h3 style="color: var(--success);">You're now a Skillionaire-in-training!</h3>
+                    <p style="font-size: 1.2em; margin: 20px 0;">Brainrot's power reduced by ${Math.floor(gameState.xp/6)}% in this sector!</p>
+                    <p>Keep training to unlock more weapons against Brainrot!</p>
+                    <button class="option-btn" style="margin-top: 20px;" id="restart-btn">New Mission</button>
+                    <button class="option-btn" style="margin-top: 10px; background: var(--zippy-color);" id="zippy-btn">Ask ZIPPY</button>
                 </div>
             `;
             
@@ -2293,9 +2415,9 @@
                 showStoryStep(0);
             });
             
-            // Set up Mummy button
-            document.getElementById('mummy-btn').addEventListener('click', () => {
-                toggleMummyAssistant(true);
+            // Set up Zippy button
+            document.getElementById('zippy-btn').addEventListener('click', () => {
+                toggleZippyAssistant(true);
             });
         }
 
@@ -2326,6 +2448,19 @@
                 gameState.level++;
                 updateLevel();
                 showAchievement(`Level ${gameState.level} Unlocked!`, "⬆️");
+                
+                // Add level-up power-up
+                const powerUp = {
+                    id: `level-${gameState.level}-boost`,
+                    name: `Level ${gameState.level} Boost`,
+                    description: `Special ability unlocked at level ${gameState.level}`,
+                    icon: "✨"
+                };
+                
+                if (!gameState.inventory.some(item => item.id === powerUp.id)) {
+                    gameState.inventory.push(powerUp);
+                    localStorage.setItem('chizelInventory', JSON.stringify(gameState.inventory));
+                }
             }
         }
 
@@ -2335,9 +2470,15 @@
             localStorage.setItem('chizelLevel', gameState.level.toString());
         }
 
+        // Toggle audio
+        function toggleAudio() {
+            gameState.audioEnabled = !gameState.audioEnabled;
+            elements.audioToggle.textContent = gameState.audioEnabled ? "🔊" : "🔇";
+        }
+
         // Create confetti effect
         function createConfetti() {
-            const colors = ['#4A90E2', '#50E3C2', '#F8E71C', '#FF10F0', '#39FF14'];
+            const colors = ['#6C63FF', '#00F0FF', '#FFC107', '#FF10F0', '#39FF14'];
             
             for (let i = 0; i < 150; i++) {
                 const confetti = document.createElement('div');
@@ -2361,6 +2502,10 @@
         // Show power up effect
         function showPowerUpEffect() {
             elements.powerUpEffect.style.opacity = '1';
+            if (gameState.audioEnabled) {
+                audio.powerup.currentTime = 0;
+                audio.powerup.play();
+            }
             
             setTimeout(() => {
                 elements.powerUpEffect.style.opacity = '0';
@@ -2371,6 +2516,11 @@
         function showAchievement(title, icon) {
             elements.achievementBadge.querySelector('.badge-title').textContent = title;
             elements.achievementBadge.querySelector('.badge-icon').textContent = icon;
+            
+            if (gameState.audioEnabled) {
+                audio.achievement.currentTime = 0;
+                audio.achievement.play();
+            }
             
             elements.achievementBadge.classList.add('visible');
             
@@ -2391,49 +2541,84 @@
                 addXP(20);
             }
             
-            // Math Whiz achievement
-            const mathTasksCompleted = gameState.completedTasks.filter(id => 
-                id === 'brain-teaser' || id === 'math-puzzle').length;
-            if (mathTasksCompleted >= 3 && 
-                !gameState.achievements.includes('math-whiz')) {
-                gameState.achievements.push('math-whiz');
+            // Knowledge Knight achievement (earn 500 XP)
+            if (gameState.xp >= 500 && 
+                !gameState.achievements.includes('knowledge-knight')) {
+                gameState.achievements.push('knowledge-knight');
                 localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
-                showAchievement("Math Whiz", "➕");
-                addXP(50);
+                showAchievement("Knowledge Knight", "🛡️");
+                addXP(75);
+            }
+        }
+
+        // Toggle inventory panel
+        function toggleInventory() {
+            if (elements.inventoryPanel.classList.contains('visible')) {
+                elements.inventoryPanel.classList.remove('visible');
+            } else {
+                updateInventoryPanel();
+                elements.inventoryPanel.classList.add('visible');
+            }
+        }
+
+        // Update inventory panel
+        function updateInventoryPanel() {
+            elements.inventoryPanel.innerHTML = '';
+            
+            if (gameState.inventory.length === 0) {
+                const emptyMsg = document.createElement('div');
+                emptyMsg.textContent = "Your inventory is empty. Complete challenges to find items!";
+                emptyMsg.style.gridColumn = "1 / -1";
+                emptyMsg.style.textAlign = "center";
+                emptyMsg.style.padding = "20px";
+                emptyMsg.style.color = "var(--light)";
+                elements.inventoryPanel.appendChild(emptyMsg);
+                return;
             }
             
-            // Word Wizard achievement
-            const wordTasksCompleted = gameState.completedTasks.filter(id => 
-                id === 'quick-challenge' || id === 'word-game').length;
-            if (wordTasksCompleted >= 3 && 
-                !gameState.achievements.includes('word-wizard')) {
-                gameState.achievements.push('word-wizard');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
-                showAchievement("Word Wizard", "🔠");
-                addXP(50);
-            }
+            gameState.inventory.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'inventory-item';
+                itemElement.innerHTML = `
+                    <div class="item-icon">${item.icon}</div>
+                    <div class="item-name">${item.name}</div>
+                `;
+                
+                itemElement.addEventListener('click', () => {
+                    // Show item info
+                    elements.thinkingContent.textContent = `${item.name}: ${item.description}`;
+                    elements.thinkingBox.classList.add('visible');
+                    
+                    // Hide after delay
+                    setTimeout(() => {
+                        elements.thinkingBox.classList.remove('visible');
+                    }, 3000);
+                });
+                
+                elements.inventoryPanel.appendChild(itemElement);
+            });
         }
 
-        // Toggle Mummy assistant
-        function toggleMummyAssistant(show) {
+        // Toggle Zippy AI assistant
+        function toggleZippyAssistant(show) {
             if (show) {
-                elements.mummyAssistant.classList.add('visible');
-                elements.mummyInput.focus();
+                elements.zippyAssistant.classList.add('visible');
+                elements.zippyInput.focus();
             } else {
-                elements.mummyAssistant.classList.remove('visible');
-                elements.mummyInput.value = '';
+                elements.zippyAssistant.classList.remove('visible');
+                elements.zippyInput.value = '';
             }
         }
 
-        // Handle Mummy query
-        function handleMummyQuery() {
-            const query = elements.mummyInput.value.trim().toLowerCase();
+        // Handle Zippy query
+        function handleZippyQuery() {
+            const query = elements.zippyInput.value.trim().toLowerCase();
             if (!query) return;
             
             // Find matching knowledge
-            let response = "I'm not sure about that. Try asking about: CHIZEL, learning, XP, levels, or parents.";
+            let response = "I'm not sure about that. Try asking about: Brainrot, Chizel, XP, weapons, or achievements.";
             
-            for (const [keyword, info] of Object.entries(gameState.mummyKnowledge)) {
+            for (const [keyword, info] of Object.entries(gameState.zippyKnowledge)) {
                 if (query.includes(keyword)) {
                     response = info;
                     break;
@@ -2442,15 +2627,15 @@
             
             // Special responses
             if (query.includes('hello') || query.includes('hi')) {
-                response = "Hi there! Ready to learn something new today?";
+                response = "Greetings cadet! Ready to continue the fight against Brainrot?";
             } else if (query.includes('thank')) {
-                response = "You're welcome! Learning is more fun when we help each other!";
-            } else if (query.includes('parent')) {
-                response = "Parents can see your progress in their special dashboard. They'll be so proud of your learning!";
+                response = "You're welcome! Remember, every bit of knowledge helps defeat Brainrot!";
+            } else if (query.includes('mission')) {
+                response = `Current mission progress: ${gameState.storyProgress.toFixed(1)}% complete. ${gameState.completedTasks.length} of ${tasks.length} tasks completed.`;
             }
             
-            elements.mummyMessage.textContent = response;
-            elements.mummyInput.value = '';
+            elements.zippyMessage.textContent = response;
+            elements.zippyInput.value = '';
         }
 
         // Utility function to shuffle array
