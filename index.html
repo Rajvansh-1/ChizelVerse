@@ -1873,82 +1873,109 @@
         }
 
         // Create memory game task
-        function createMemoryGame(task) {
-            const container = document.createElement('div');
-            container.className = 'memory-game';
-            
-            const instruction = document.createElement('div');
-            instruction.className = 'challenge-instruction';
+       function createMemoryGame(task) {
+    const container = document.createElement('div');
+    container.className = 'memory-game';
+    
+    const instruction = document.createElement('div');
+    instruction.className = 'challenge-instruction';
+    instruction.textContent = "Match the pairs to strengthen your memory!";
+    
+    // Countdown timer
+    let countdown = 2;
+    const countdownInterval = setInterval(() => {
+        instruction.textContent = `Memorize the cards! Starting in ${countdown}...`;
+        countdown--;
+        if (countdown < 0) {
+            clearInterval(countdownInterval);
             instruction.textContent = "Match the pairs to strengthen your memory!";
-            container.appendChild(instruction);
-            
-            // Duplicate and shuffle the pairs
-            const cards = [...task.pairs, ...task.pairs];
-            shuffleArray(cards);
-            
-            const board = document.createElement('div');
-            board.className = 'memory-board';
-            
-            // Track flipped cards
-            let flippedCards = [];
-            let matchedPairs = 0;
-            
-            cards.forEach((symbol, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.index = index;
-                card.dataset.symbol = symbol;
-                
-                card.addEventListener('click', () => {
-                    // Don't allow flipping if already flipped or matched
-                    if (card.classList.contains('flipped') || 
-                        card.classList.contains('matched') ||
-                        flippedCards.length >= 2) {
-                        return;
-                    }
-                    
-                    // Flip the card
-                    card.classList.add('flipped');
-                    card.textContent = symbol;
-                    flippedCards.push(card);
-                    
-                    // Check for match when two cards are flipped
-                    if (flippedCards.length === 2) {
-                        if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
-                            // Match found
-                            flippedCards.forEach(c => {
-                                c.classList.add('matched');
-                                c.classList.remove('flipped');
-                            });
-                            matchedPairs++;
-                            
-                            // Clear flipped cards array
-                            flippedCards = [];
-                            
-                            // Check if all pairs are matched
-                            if (matchedPairs === task.pairs.length) {
-                                gameState.currentTask.completed = true;
-                                elements.taskSubmit.classList.remove('hidden');
-                            }
-                        } else {
-                            // No match - flip back after delay
-                            setTimeout(() => {
-                                flippedCards.forEach(c => {
-                                    c.classList.remove('flipped');
-                                    c.textContent = '';
-                                });
-                                flippedCards = [];
-                            }, 1000);
-                        }
-                    }
-                });
-                
-                board.appendChild(card);
-            });
-            
-            container.appendChild(board);
-            elements.taskContent.appendChild(container);
         }
+    }, 1000);
+    
+    container.appendChild(instruction);
+    
+    // Duplicate and shuffle the pairs
+    const cards = [...task.pairs, ...task.pairs];
+    shuffleArray(cards);
+    
+    const board = document.createElement('div');
+    board.className = 'memory-board';
+    
+    // Track flipped cards
+    let flippedCards = [];
+    let matchedPairs = 0;
+    
+    cards.forEach((symbol, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.index = index;
+        card.dataset.symbol = symbol;
+        
+        // Initially show all cards
+        card.classList.add('flipped');
+        card.textContent = symbol;
+        
+        board.appendChild(card);
+    });
+    
+    container.appendChild(board);
+    elements.taskContent.appendChild(container);
+    
+    // After 2 seconds, flip all cards back and start the game
+    setTimeout(() => {
+        const allCards = board.querySelectorAll('.memory-card');
+        
+        allCards.forEach(card => {
+            card.classList.remove('flipped');
+            card.textContent = '';
+            
+            // Now add the click event listener
+            card.addEventListener('click', () => {
+                // Don't allow flipping if already flipped or matched
+                if (card.classList.contains('flipped') || 
+                    card.classList.contains('matched') ||
+                    flippedCards.length >= 2) {
+                    return;
+                }
+                
+                // Flip the card
+                card.classList.add('flipped');
+                card.textContent = card.dataset.symbol;
+                flippedCards.push(card);
+                
+                // Check for match when two cards are flipped
+                if (flippedCards.length === 2) {
+                    if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
+                        // Match found
+                        flippedCards.forEach(c => {
+                            c.classList.add('matched');
+                            c.classList.remove('flipped');
+                        });
+                        matchedPairs++;
+                        
+                        // Clear flipped cards array
+                        flippedCards = [];
+                        
+                        // Check if all pairs are matched
+                        if (matchedPairs === task.pairs.length) {
+                            gameState.currentTask.completed = true;
+                            elements.taskSubmit.classList.remove('hidden');
+                        }
+                    } else {
+                        // No match - flip back after delay
+                        setTimeout(() => {
+                            flippedCards.forEach(c => {
+                                c.classList.remove('flipped');
+                                c.textContent = '';
+                            });
+                            flippedCards = [];
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    }, 2000); // 2 second delay before starting the game
+}
 
         // Create reasoning quiz task
         function createReasoningQuiz(task) {
