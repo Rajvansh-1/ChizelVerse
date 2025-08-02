@@ -141,25 +141,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 15px;
             z-index: 10;
+            flex-wrap: wrap;
         }
 
         .logo {
-            height: 50px;
+            height: 40px;
             filter: drop-shadow(0 0 10px var(--secondary));
+            margin-bottom: 10px;
         }
 
         .game-stats {
             display: flex;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         /* XP Bar */
         .xp-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
+            margin: 5px 0;
         }
 
         .xp-label {
@@ -170,8 +175,8 @@
         }
 
         .xp-bar {
-            width: 200px;
-            height: 20px;
+            width: 120px;
+            height: 15px;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             overflow: hidden;
@@ -213,7 +218,7 @@
 
         .xp-value {
             font-family: 'Fredoka', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             color: white;
             text-shadow: 0 0 5px white;
         }
@@ -222,7 +227,8 @@
         .level-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
+            margin: 5px 0;
         }
 
         .level-label {
@@ -234,11 +240,11 @@
 
         .level-value {
             font-family: 'Fredoka', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             color: white;
             text-shadow: 0 0 5px white;
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
             border: 2px solid var(--accent);
             box-shadow: 0 0 10px var(--accent);
@@ -259,8 +265,8 @@
 
         .character {
             position: relative;
-            width: 25%;
-            max-width: 300px;
+            width: 35%;
+            max-width: 200px;
             bottom: 0;
             margin: 0;
             transition: transform 0.3s ease;
@@ -287,10 +293,10 @@
         /* Speech Bubbles - Improved positioning */
         .speech-bubble {
             position: absolute;
-            padding: 15px;
-            border-radius: 20px;
-            max-width: 300px;
-            font-size: 18px;
+            padding: 10px;
+            border-radius: 15px;
+            max-width: 250px;
+            font-size: 16px;
             line-height: 1.4;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
@@ -307,9 +313,9 @@
         .left-bubble {
             background-color: var(--dark);
             color: var(--light);
-            left: 25%;
+            left: 15%;
             bottom: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 2px solid var(--mummy-color);
             box-shadow: 0 0 15px var(--mummy-color);
         }
@@ -317,24 +323,24 @@
         .left-bubble::after {
             content: '';
             position: absolute;
-            left: 20px;
+            left: 15px;
             top: 100%;
             width: 0;
             height: 0;
-            border: 15px solid transparent;
+            border: 12px solid transparent;
             border-top-color: var(--dark);
             border-bottom: 0;
             border-left: 0;
-            margin-left: -7.5px;
+            margin-left: -6px;
             filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
         }
 
         .right-bubble {
             background-color: var(--kid-color);
             color: var(--dark);
-            right: 25%;
+            right: 15%;
             bottom: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 2px solid var(--kid-color);
             box-shadow: 0 0 15px var(--kid-color);
         }
@@ -342,32 +348,32 @@
         .right-bubble::after {
             content: '';
             position: absolute;
-            right: 20px;
+            right: 15px;
             top: 100%;
             width: 0;
             height: 0;
-            border: 15px solid transparent;
+            border: 12px solid transparent;
             border-top-color: var(--kid-color);
             border-bottom: 0;
             border-right: 0;
-            margin-right: -7.5px;
+            margin-right: -6px;
             filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
         }
 
         .bubble-content {
-            min-height: 40px;
+            min-height: 30px;
         }
 
         .typing-indicator {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
-            gap: 5px;
+            margin-top: 8px;
+            gap: 4px;
         }
 
         .typing-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background-color: var(--light);
             border-radius: 50%;
             animation: typing 1.4s infinite ease-in-out;
@@ -383,7 +389,7 @@
 
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
-            30% { transform: translateY(-5px); opacity: 1; }
+            30% { transform: translateY(-3px); opacity: 1; }
         }
 
         /* Options Container - Simplified layout */
@@ -395,12 +401,12 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            width: 80%;
-            max-width: 800px;
-            padding: 20px;
+            gap: 10px;
+            width: 90%;
+            max-width: 600px;
+            padding: 15px;
             background-color: rgba(26, 46, 64, 0.9);
-            border-radius: 20px;
+            border-radius: 15px;
             box-shadow: 0 10px 30px rgba(80, 227, 194, 0.2);
             border: 2px solid var(--secondary);
             z-index: 10;
@@ -415,20 +421,20 @@
         }
 
         .option-btn {
-            padding: 12px 25px;
+            padding: 10px 15px;
             border: none;
             border-radius: 50px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             font-family: 'Fredoka', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             box-shadow: 0 5px 15px rgba(80, 227, 194, 0.3);
-            flex: 1 1 200px;
-            max-width: 300px;
+            flex: 1 1 150px;
+            max-width: 250px;
         }
 
         .option-btn:hover {
@@ -447,12 +453,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 90%;
-            max-width: 700px;
+            max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
             background: linear-gradient(135deg, rgba(26, 46, 64, 0.95) 0%, rgba(26, 46, 64, 0.95) 100%);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 15px;
+            padding: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             border: 2px solid var(--secondary);
             z-index: 20;
@@ -469,30 +475,30 @@
 
         .task-header {
             font-family: 'Fredoka', sans-serif;
-            font-size: 22px;
+            font-size: 18px;
             color: var(--secondary);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-align: center;
             text-shadow: 0 0 10px var(--secondary);
             letter-spacing: 1px;
         }
 
         .task-content {
-            margin-bottom: 25px;
-            font-size: 18px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         .task-submit {
             display: block;
-            margin: 25px auto 0;
-            padding: 12px 35px;
+            margin: 15px auto 0;
+            padding: 10px 25px;
             background: linear-gradient(135deg, var(--success) 0%, var(--neon-green) 100%);
             color: var(--dark);
             border: none;
             border-radius: 50px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -512,62 +518,14 @@
             display: none;
         }
 
-        /* Cloud Thinking Box - Improved styling */
-        .thinking-box {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    max-width: 500px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50px;
-    padding: 20px 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    z-index: 15;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s ease-out;
-    clip-path: polygon(
-        0% 20%, 10% 0%, 20% 10%, 30% 0%, 
-        40% 10%, 50% 0%, 60% 10%, 70% 0%, 
-        80% 10%, 90% 0%, 100% 20%, 
-        90% 30%, 100% 40%, 90% 50%, 
-        100% 60%, 90% 70%, 100% 80%, 
-        80% 100%, 70% 90%, 60% 100%, 
-        50% 90%, 40% 100%, 30% 90%, 
-        20% 100%, 10% 90%, 0% 80%, 
-        10% 70%, 0% 60%, 10% 50%, 
-        0% 40%, 10% 30%
-    );
-}
-
-.thinking-box.visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-        .thinking-box.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .thinking-content {
-            color: var(--dark);
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: center;
-            font-family: 'Comic Neue', cursive;
-        }
-
         /* Brain Teaser Styles */
         .brain-teaser {
             text-align: center;
         }
 
         .teaser-question {
-            font-size: 20px;
-            margin-bottom: 25px;
+            font-size: 16px;
+            margin-bottom: 15px;
             font-weight: bold;
             color: var(--light);
         }
@@ -575,18 +533,18 @@
         .teaser-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .teaser-option {
-            padding: 15px;
+            padding: 12px;
             background-color: rgba(74, 144, 226, 0.1);
             border: 2px solid var(--primary);
-            border-radius: 15px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--light);
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .teaser-option:hover {
@@ -608,24 +566,24 @@
         }
 
         .challenge-instruction {
-            font-size: 18px;
-            margin-bottom: 25px;
+            font-size: 16px;
+            margin-bottom: 15px;
             color: var(--light);
         }
 
         .drag-drop-area {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            gap: 20px;
+            flex-direction: column;
+            margin-bottom: 15px;
+            gap: 15px;
         }
 
         .drag-items, .drop-target {
-            width: 48%;
-            min-height: 200px;
+            width: 100%;
+            min-height: 150px;
             border: 2px dashed var(--secondary);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 15px;
             background-color: rgba(80, 227, 194, 0.05);
             transition: all 0.3s ease;
         }
@@ -633,11 +591,11 @@
         .drag-item {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: grab;
-            font-size: 16px;
+            font-size: 14px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -667,28 +625,28 @@
         }
 
         .fact-content {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 15px;
             color: var(--light);
             background-color: rgba(144, 19, 254, 0.2);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 12px;
             border-left: 4px solid var(--neon-pink);
         }
 
         .fact-image {
             max-width: 100%;
             height: auto;
-            border-radius: 15px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             border: 2px solid var(--secondary);
         }
 
         .fact-question {
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 15px;
             font-weight: bold;
             color: var(--light);
         }
@@ -696,18 +654,18 @@
         .fact-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .fact-option {
-            padding: 15px;
+            padding: 12px;
             background-color: rgba(245, 166, 35, 0.1);
             border: 2px solid var(--kid-color);
-            border-radius: 15px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--light);
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .fact-option:hover {
@@ -723,43 +681,72 @@
             transform: scale(1.05);
         }
 
+        /* Reasoning Quiz Styles */
+        .reasoning-quiz {
+            text-align: center;
+        }
+
+        /* Word Unscramble Styles */
+        .word-unscramble {
+            text-align: center;
+        }
+
+        .unscramble-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            background-color: rgba(80, 227, 194, 0.1);
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .unscramble-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
         /* Coding Challenge Styles */
         .coding-challenge {
             text-align: center;
         }
 
         .code-instruction {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 15px;
             color: var(--light);
         }
 
         .code-editor {
             width: 100%;
-            height: 200px;
+            height: 150px;
             background-color: #1E1E2E;
             border: 2px solid var(--secondary);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 12px;
             font-family: 'Courier New', monospace;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--light);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             resize: none;
             line-height: 1.5;
         }
 
         .code-output {
             width: 100%;
-            min-height: 100px;
+            min-height: 80px;
             background-color: #1E1E2E;
             border: 2px solid var(--secondary);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 12px;
             font-family: 'Courier New', monospace;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--light);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: left;
             white-space: pre-wrap;
         }
@@ -772,19 +759,19 @@
         .memory-board {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 20px auto;
-            max-width: 500px;
+            gap: 8px;
+            margin: 15px auto;
+            max-width: 300px;
         }
 
         .memory-card {
             aspect-ratio: 1;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             cursor: pointer;
@@ -817,15 +804,15 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             z-index: 30;
             opacity: 0;
             transition: all 0.5s ease;
-            max-width: 400px;
-            border: 4px solid var(--accent);
+            max-width: 300px;
+            border: 3px solid var(--accent);
         }
 
         .achievement-badge.visible {
@@ -834,27 +821,27 @@
         }
 
         .badge-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 40px;
+            margin-bottom: 15px;
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
 
         .badge-title {
             font-family: 'Fredoka', sans-serif;
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 18px;
+            margin-bottom: 10px;
             color: white;
         }
 
         .badge-desc {
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
             color: white;
         }
 
         .badge-close {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: var(--accent);
             border: none;
             border-radius: 50px;
@@ -871,8 +858,8 @@
         /* Confetti Effect */
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background-color: var(--primary);
             opacity: 0;
             z-index: 100;
@@ -893,10 +880,10 @@
         /* Daily Reward Button */
         .daily-reward-btn {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 10px 20px;
+            padding: 8px 15px;
             background: rgba(80, 227, 194, 0.2);
             border: 2px solid var(--secondary);
             border-radius: 50px;
@@ -907,7 +894,8 @@
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 14px;
         }
 
         .daily-reward-btn:hover {
@@ -918,16 +906,16 @@
         /* Story Progress Tracker */
         .story-tracker {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
+            bottom: 15px;
+            left: 15px;
             display: flex;
-            gap: 5px;
+            gap: 4px;
             z-index: 10;
         }
 
         .story-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background-color: rgba(80, 227, 194, 0.3);
             transition: all 0.3s ease;
@@ -946,11 +934,11 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             background: linear-gradient(135deg, rgba(26, 46, 64, 0.95) 0%, rgba(26, 46, 64, 0.95) 100%);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             border: 2px solid var(--secondary);
             z-index: 30;
             opacity: 0;
@@ -968,63 +956,64 @@
         .mummy-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         .mummy-avatar {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 24px;
             color: white;
         }
 
         .mummy-title {
             font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             color: var(--secondary);
             text-shadow: 0 0 10px var(--secondary);
         }
 
         .mummy-message {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
             color: var(--light);
         }
 
         .mummy-input {
             width: 100%;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             border: 2px solid var(--secondary);
             background-color: rgba(0, 0, 0, 0.3);
             color: white;
             font-family: 'Comic Neue', cursive;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 12px;
             resize: none;
         }
 
         .mummy-controls {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
+            gap: 8px;
         }
 
         .mummy-btn {
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 50px;
             border: none;
             font-family: 'Fredoka', sans-serif;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .mummy-submit {
@@ -1049,85 +1038,85 @@
             box-shadow: 0 5px 15px rgba(208, 2, 27, 0.3);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .character {
-                width: 35%;
-            }
-            
-            .left-bubble, .right-bubble {
-                max-width: 250px;
-                font-size: 16px;
-            }
-            
-            .options-container {
-                width: 90%;
-                padding: 15px;
-            }
-            
-            .option-btn {
-                font-size: 14px;
-                padding: 10px 15px;
-            }
-            
-            .task-container {
-                padding: 20px;
-            }
-
-            .task-header {
-                font-size: 18px;
-            }
-
-            .teaser-question, .fact-question {
-                font-size: 18px;
-            }
-
-            .drag-drop-area {
-                flex-direction: column;
-            }
-
-            .drag-items, .drop-target {
-                width: 100%;
-            }
+        /* Power Up Effect */
+        .power-up-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(80, 227, 194, 0.3) 0%, transparent 70%);
+            z-index: 25;
+            opacity: 0;
+            pointer-events: none;
+            animation: pulse 2s infinite;
         }
 
+        /* Responsive Design */
         @media (max-width: 480px) {
             .character {
                 width: 40%;
-                bottom: 5%;
+                bottom: 8%;
             }
             
             .left-bubble {
-                left: 15%;
+                left: 10%;
                 bottom: 100%;
+                max-width: 200px;
             }
             
             .right-bubble {
-                right: 15%;
+                right: 10%;
                 bottom: 100%;
+                max-width: 200px;
             }
             
             .options-container {
-                bottom: 5%;
+                bottom: 8%;
+                padding: 10px;
             }
             
-            .xp-bar {
-                width: 150px;
+            .option-btn {
+                font-size: 12px;
+                padding: 8px 12px;
+                flex: 1 1 120px;
+            }
+            
+            .task-container {
+                padding: 15px;
             }
 
-            .header {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
+            .task-header {
+                font-size: 16px;
             }
 
-            .game-stats {
-                width: 100%;
-                justify-content: space-between;
+            .teaser-question, .fact-question {
+                font-size: 14px;
             }
 
             .memory-board {
                 grid-template-columns: repeat(3, 1fr);
+                max-width: 250px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .game-stats {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .xp-bar {
+                width: 100px;
+            }
+
+            .daily-reward-btn {
+                font-size: 12px;
+                padding: 6px 12px;
             }
         }
 
@@ -1143,25 +1132,11 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         .bounce {
             animation: bounce 0.5s ease infinite;
-        }
-
-        /* Power Up Effects */
-        .power-up-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(80, 227, 194, 0.3) 0%, transparent 70%);
-            z-index: 25;
-            opacity: 0;
-            pointer-events: none;
-            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -1172,8 +1147,8 @@
             <div class="stars" id="stars"></div>
             <div class="nebula" style="top: 20%; left: 10%;"></div>
             <div class="nebula" style="top: 60%; left: 70%;"></div>
-            <div class="planet" style="width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #9013FE, #1A2E40); top: 15%; left: 70%; --float-duration: 300s;"></div>
-            <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #F5A623, #D0021B); top: 70%; left: 10%; --float-duration: 250s;"></div>
+            <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #9013FE, #1A2E40); top: 15%; left: 70%; --float-duration: 300s;"></div>
+            <div class="planet" style="width: 120px; height: 120px; background: radial-gradient(circle at 30% 30%, #F5A623, #D0021B); top: 70%; left: 10%; --float-duration: 250s;"></div>
             <div class="comet" style="top: 10%; left: 5%; --comet-duration: 15s;"></div>
             <div class="comet" style="top: 30%; left: 80%; --comet-duration: 20s;"></div>
         </div>
@@ -1231,11 +1206,6 @@
             <div class="task-header"></div>
             <div class="task-content"></div>
             <button class="task-submit hidden">Submit</button>
-        </div>
-
-        <!-- Cloud Thinking Box -->
-        <div class="thinking-box">
-            <div class="thinking-content"></div>
         </div>
 
         <!-- Story Progress Tracker -->
@@ -1305,8 +1275,6 @@
             taskSubmit: document.querySelector('.task-submit'),
             taskHeader: document.querySelector('.task-header'),
             typingIndicator: document.querySelector('.typing-indicator'),
-            thinkingBox: document.querySelector('.thinking-box'),
-            thinkingContent: document.querySelector('.thinking-content'),
             starsContainer: document.getElementById('stars'),
             storyTracker: document.getElementById('story-tracker'),
             dailyRewardBtn: document.getElementById('daily-reward-btn'),
@@ -1321,10 +1289,10 @@
 
         // Create stars for background
         function createStars() {
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 150; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.width = `${Math.random() * 2 + 1}px`;
                 star.style.height = star.style.width;
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
@@ -1335,7 +1303,7 @@
             }
         }
 
-        // Extended Story Script with Brainrot Battle Theme
+        // Story Script
         const storyScript = [
             // Introduction
             {
@@ -1344,8 +1312,7 @@
                 options: [
                     { text: "What's CHIZEL?", nextStep: 1, xp: 5 },
                     { text: "How does it work?", nextStep: 2, xp: 5 }
-                ],
-                thinking: "CHIZEL is a revolutionary app that turns learning into an exciting adventure..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1353,8 +1320,7 @@
                 options: [
                     { text: "That sounds cool!", nextStep: 3, xp: 5 },
                     { text: "What can I learn?", nextStep: 4, xp: 5 }
-                ],
-                thinking: "With CHIZEL, kids don't even realize they're learning because they're having so much fun..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1362,8 +1328,7 @@
                 options: [
                     { text: "I want to try!", nextStep: 5, xp: 10 },
                     { text: "Tell me more!", nextStep: 6, xp: 5 }
-                ],
-                thinking: "The more you learn, the more XP you earn. Parents love seeing their kids progress with CHIZEL!"
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1371,8 +1336,7 @@
                 options: [
                     { text: "Let's play!", nextStep: 7, xp: 5 },
                     { text: "How does it help me?", nextStep: 8, xp: 5 }
-                ],
-                thinking: "CHIZEL adapts to each child's level, making sure they're always challenged but never frustrated..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1380,15 +1344,13 @@
                 options: [
                     { text: "I'm ready to learn!", nextStep: 7, xp: 10 },
                     { text: "Show me a game!", nextStep: 9, xp: 5 }
-                ],
-                thinking: "Studies show kids using CHIZEL improve their test scores by 30% compared to traditional learning..."
+                ]
             },
             {
                 speaker: 'mummy',
                 message: "That's the spirit! Your first mission has three fun challenges: Math Puzzle, Memory Game, and Word Challenge!",
                 options: [],
-                action: 'startTasks',
-                thinking: "Mission parameters set. Remember: in CHIZEL, we make learning as fun as playing your favorite game!"
+                action: 'startTasks'
             },
             {
                 speaker: 'mummy',
@@ -1396,8 +1358,7 @@
                 options: [
                     { text: "Got it!", nextStep: 5, xp: 5 },
                     { text: "What are levels?", nextStep: 10, xp: 5 }
-                ],
-                thinking: "Parents can track progress through our secure dashboard, seeing exactly what their child is mastering..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1405,8 +1366,7 @@
                 options: [
                     { text: "Yes, let's go!", nextStep: 5, xp: 10 },
                     { text: "How do I play?", nextStep: 11, xp: 5 }
-                ],
-                thinking: "Game-based learning increases engagement by 70% compared to traditional methods..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1414,8 +1374,7 @@
                 options: [
                     { text: "I'll level up fast!", nextStep: 5, xp: 10 },
                     { text: "Tell me more", nextStep: 12, xp: 5 }
-                ],
-                thinking: "Pro tip: Playing daily gives bonus XP! CHIZEL's algorithm ensures optimal learning retention..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1423,8 +1382,7 @@
                 options: [
                     { text: "My brain is ready!", nextStep: 5, xp: 10 },
                     { text: "How does that work?", nextStep: 13, xp: 5 }
-                ],
-                thinking: "Neuroscience shows that game-based learning creates stronger neural pathways..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1432,8 +1390,7 @@
                 options: [
                     { text: "I want to level up!", nextStep: 5, xp: 10 },
                     { text: "Can parents see?", nextStep: 14, xp: 5 }
-                ],
-                thinking: "The parent dashboard shows learning progress, time spent, and skills mastered..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1441,8 +1398,7 @@
                 options: [
                     { text: "That's awesome!", nextStep: 5, xp: 15 },
                     { text: "What about safety?", nextStep: 15, xp: 5 }
-                ],
-                thinking: "CHIZEL is COPPA compliant with strict privacy protections for all children..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1450,8 +1406,7 @@
                 options: [
                     { text: "Great! Let's play!", nextStep: 5, xp: 15 },
                     { text: "What else makes CHIZEL special?", nextStep: 16, xp: 5 }
-                ],
-                thinking: "Unlike other apps, CHIZEL focuses on real learning, not just mindless tapping..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1459,8 +1414,7 @@
                 options: [
                     { text: "I love it!", nextStep: 5, xp: 20 },
                     { text: "Let's play now!", nextStep: 5, xp: 10 }
-                ],
-                thinking: "The secret sauce is combining educational expertise with game design magic..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1468,8 +1422,7 @@
                 options: [
                     { text: "I want rewards!", nextStep: 5, xp: 15 },
                     { text: "How do I earn them?", nextStep: 17, xp: 5 }
-                ],
-                thinking: "Daily engagement creates consistent learning habits that last a lifetime..."
+                ]
             },
             {
                 speaker: 'mummy',
@@ -1477,16 +1430,14 @@
                 options: [
                     { text: "I'll play daily!", nextStep: 5, xp: 20 },
                     { text: "Let's start now!", nextStep: 5, xp: 10 }
-                ],
-                thinking: "Daily users show 3x the learning gains compared to occasional players..."
+                ]
             },
             // After tasks are completed
             {
                 speaker: 'mummy',
                 message: "⭐ AMAZING JOB! ⭐ You've earned 150 XP and learned new skills! Parents will be so proud!",
                 options: [],
-                action: 'showFinalMessage',
-                thinking: "Learning analytics show excellent progress... skills mastered... ready for next challenge..."
+                action: 'showFinalMessage'
             }
         ];
 
@@ -1506,58 +1457,78 @@
             };
         }
 
-        // Extended Task Data with Learning Focus
+        // Task Data
         const tasks = [
-    {
-        id: 'brain-teaser',
-        title: "MATH QUEST: Save the Aliens!",
-        type: "brain-teaser",
-        question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
-        options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
-        correctAnswer: 0,
-        xp: 50,
-        thinking: "Great math practice! 20 cookies ÷ 5 per alien = 4 aliens. You're helping them so much!"
-    },
-    {
-        id: 'memory-game',
-        title: "MEMORY MASTER: Match the Planets",
-        type: "memory-game",
-        pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽", "🔭", "⭐"],
-        xp: 50,
-        thinking: "Matching games strengthen your memory - an important skill for school and life!"
-    },
-    {
-        id: 'quick-challenge',
-        title: "WORD EXPLORER: Sentence Builder",
-        type: "quick-challenge",
-        instruction: "Drag the words to build a proper sentence:",
-        items: ["jumps", "The", "dog", "happy"],
-        correctOrder: ["The", "happy", "dog", "jumps"],
-        xp: 50,
-        thinking: "Building sentences helps with reading and writing skills. Great job!"
-    },
-    {
-        id: 'learn-fact',
-        title: "SCIENCE DISCOVERY: Amazing Animals",
-        type: "learn-fact",
-        fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
-        question: "What gives flamingos their pink color?",
-        options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
-        correctAnswer: 1,
-        xp: 50,
-        thinking: "Learning fun facts makes science exciting and helps you remember important concepts!"
-    },
-    {
-        id: 'math-puzzle',
-        title: "NUMBER NINJA: Treasure Hunt",
-        type: "brain-teaser",
-        question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
-        options: ["15 coins", "20 coins", "10 coins", "25 coins"],
-        correctAnswer: 0,
-        xp: 50,
-        thinking: "12 + 8 - 5 = 15. Math is everywhere, even in treasure hunts!"
-    }
-];
+            {
+                id: 'brain-teaser',
+                title: "MATH QUEST: Save the Aliens!",
+                type: "brain-teaser",
+                question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
+                options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
+                correctAnswer: 0,
+                xp: 50
+            },
+            {
+                id: 'memory-game',
+                title: "MEMORY MASTER: Match the Planets",
+                type: "memory-game",
+                pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽", "🔭", "⭐"],
+                xp: 50
+            },
+            {
+                id: 'quick-challenge',
+                title: "WORD EXPLORER: Sentence Builder",
+                type: "quick-challenge",
+                instruction: "Drag the words to build a proper sentence:",
+                items: ["jumps", "The", "dog", "happy"],
+                correctOrder: ["The", "happy", "dog", "jumps"],
+                xp: 50
+            },
+            {
+                id: 'learn-fact',
+                title: "SCIENCE DISCOVERY: Amazing Animals",
+                type: "learn-fact",
+                fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
+                question: "What gives flamingos their pink color?",
+                options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
+                correctAnswer: 1,
+                xp: 50
+            },
+            {
+                id: 'math-puzzle',
+                title: "NUMBER NINJA: Treasure Hunt",
+                type: "brain-teaser",
+                question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
+                options: ["15 coins", "20 coins", "10 coins", "25 coins"],
+                correctAnswer: 0,
+                xp: 50
+            },
+            {
+                id: 'reasoning-quiz',
+                title: "LOGIC MASTER: Reasoning Quiz",
+                type: "reasoning-quiz",
+                questions: [
+                    {
+                        question: "If all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely Lazzies?",
+                        options: ["Yes", "No", "Maybe", "Not enough information"],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Which shape does not belong: Square, Circle, Triangle, Cube?",
+                        options: ["Square", "Circle", "Triangle", "Cube"],
+                        correctAnswer: 3
+                    }
+                ],
+                xp: 60
+            },
+            {
+                id: 'word-unscramble',
+                title: "WORD WIZARD: Unscramble Challenge",
+                type: "word-unscramble",
+                words: ["LEARNING", "PUZZLE", "BRAIN", "KNOWLEDGE"],
+                xp: 50
+            }
+        ];
 
         // Achievements Data
         const achievements = [
@@ -1700,12 +1671,6 @@
             elements.kidSpeech.classList.remove('visible');
             
             if (step.speaker === 'mummy') {
-                // Show thinking box if available
-                if (step.thinking) {
-                    elements.thinkingContent.textContent = step.thinking;
-                    elements.thinkingBox.classList.add('visible');
-                }
-                
                 // Show typing indicator
                 elements.typingIndicator.style.display = 'flex';
                 
@@ -1716,13 +1681,6 @@
                     
                     // Show bubble
                     elements.motherSpeech.classList.add('visible');
-                    
-                    // Hide thinking box after a delay
-                    if (step.thinking) {
-                        setTimeout(() => {
-                            elements.thinkingBox.classList.remove('visible');
-                        }, 2000);
-                    }
                     
                     // If there's an action, perform it
                     if (step.action) {
@@ -1847,12 +1805,6 @@
             elements.taskContent.innerHTML = '';
             elements.taskSubmit.classList.add('hidden');
             
-            // Show thinking box if available
-            if (task.thinking) {
-                elements.thinkingContent.textContent = task.thinking;
-                elements.thinkingBox.classList.add('visible');
-            }
-            
             // Create task based on type
             switch (task.type) {
                 case 'brain-teaser':
@@ -1861,14 +1813,17 @@
                 case 'memory-game':
                     createMemoryGame(task);
                     break;
-                case 'coding-challenge':
-                    createCodingChallenge(task);
-                    break;
                 case 'quick-challenge':
                     createQuickChallenge(task);
                     break;
                 case 'learn-fact':
                     createLearnFact(task);
+                    break;
+                case 'reasoning-quiz':
+                    createReasoningQuiz(task);
+                    break;
+                case 'word-unscramble':
+                    createWordUnscramble(task);
                     break;
             }
             
@@ -1995,48 +1950,115 @@
             elements.taskContent.appendChild(container);
         }
 
-        // Create coding challenge task
-        function createCodingChallenge(task) {
+        // Create reasoning quiz task
+        function createReasoningQuiz(task) {
             const container = document.createElement('div');
-            container.className = 'coding-challenge';
+            container.className = 'reasoning-quiz';
+            
+            let currentQuestion = 0;
+            let score = 0;
+            
+            function showQuestion(index) {
+                container.innerHTML = '';
+                const question = task.questions[index];
+                
+                const questionElement = document.createElement('div');
+                questionElement.className = 'teaser-question';
+                questionElement.textContent = question.question;
+                container.appendChild(questionElement);
+                
+                const options = document.createElement('div');
+                options.className = 'teaser-options';
+                
+                question.options.forEach((option, i) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'teaser-option';
+                    optionElement.textContent = option;
+                    
+                    optionElement.addEventListener('click', () => {
+                        if (i === question.correctAnswer) {
+                            score++;
+                            optionElement.style.backgroundColor = 'var(--success)';
+                        } else {
+                            optionElement.style.backgroundColor = 'var(--danger)';
+                            document.querySelectorAll('.teaser-option')[question.correctAnswer].style.backgroundColor = 'var(--success)';
+                        }
+                        
+                        setTimeout(() => {
+                            if (currentQuestion < task.questions.length - 1) {
+                                currentQuestion++;
+                                showQuestion(currentQuestion);
+                            } else {
+                                // Quiz completed
+                                gameState.currentTask.completed = true;
+                                elements.taskSubmit.classList.remove('hidden');
+                                
+                                container.innerHTML = `
+                                    <div style="text-align: center;">
+                                        <h3 style="color: var(--success);">Quiz Complete!</h3>
+                                        <p>You scored ${score}/${task.questions.length}</p>
+                                        <p>${score === task.questions.length ? "Perfect score! 🎉" : "Good job!"}</p>
+                                    </div>
+                                `;
+                            }
+                        }, 1000);
+                    });
+                    
+                    options.appendChild(optionElement);
+                });
+                
+                container.appendChild(options);
+            }
+            
+            showQuestion(0);
+            elements.taskContent.appendChild(container);
+        }
+
+        // Create word unscramble task
+        function createWordUnscramble(task) {
+            const container = document.createElement('div');
+            container.className = 'word-unscramble';
+            
+            // Select a random word
+            const word = task.words[Math.floor(Math.random() * task.words.length)];
+            const scrambled = shuffleString(word);
             
             const instruction = document.createElement('div');
-            instruction.className = 'code-instruction';
-            instruction.textContent = task.instruction;
+            instruction.className = 'challenge-instruction';
+            instruction.textContent = `Unscramble this word: ${scrambled}`;
             container.appendChild(instruction);
             
-            const editor = document.createElement('textarea');
-            editor.className = 'code-editor';
-            editor.textContent = task.code;
-            container.appendChild(editor);
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'unscramble-input';
+            input.placeholder = 'Type the correct word here...';
+            container.appendChild(input);
             
-            const output = document.createElement('div');
-            output.className = 'code-output';
-            output.textContent = "Debug the code above to see the output here...";
-            container.appendChild(output);
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'option-btn';
+            checkBtn.textContent = 'Check Answer';
+            checkBtn.style.marginTop = '15px';
             
-            const runBtn = document.createElement('button');
-            runBtn.className = 'task-submit';
-            runBtn.textContent = "Run Code";
-            runBtn.addEventListener('click', () => {
-                try {
-                    // In a real app, you'd use a proper code evaluation method
-                    if (editor.value.trim() === task.correctAnswer) {
-                        output.textContent = "Rocket launched successfully!\nOutput: Blast Off!";
-                        output.style.color = "var(--success)";
-                        gameState.currentTask.completed = true;
-                        elements.taskSubmit.classList.remove('hidden');
-                    } else {
-                        output.textContent = "Error: Rocket unstable! Check your syntax.";
-                        output.style.color = "var(--danger)";
-                    }
-                } catch (e) {
-                    output.textContent = "Error: " + e.message;
-                    output.style.color = "var(--danger)";
+            checkBtn.addEventListener('click', () => {
+                if (input.value.trim().toUpperCase() === word) {
+                    gameState.currentTask.completed = true;
+                    elements.taskSubmit.classList.remove('hidden');
+                    container.innerHTML = `
+                        <div style="text-align: center;">
+                            <h3 style="color: var(--success);">Correct! 🎉</h3>
+                            <p>The word was: ${word}</p>
+                        </div>
+                    `;
+                } else {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.style.color = 'var(--danger)';
+                    errorMsg.style.marginTop = '10px';
+                    errorMsg.textContent = 'Not quite! Try again.';
+                    container.appendChild(errorMsg);
                 }
             });
             
-            container.appendChild(runBtn);
+            container.appendChild(checkBtn);
             elements.taskContent.appendChild(container);
         }
 
@@ -2200,8 +2222,9 @@
                     isCorrect = (task.selectedAnswer === task.correctAnswer);
                     break;
                 case 'memory-game':
-                case 'coding-challenge':
                 case 'quick-challenge':
+                case 'reasoning-quiz':
+                case 'word-unscramble':
                     isCorrect = task.completed;
                     break;
             }
@@ -2233,7 +2256,6 @@
                 // Set up next task button
                 document.getElementById('next-task-btn').addEventListener('click', () => {
                     elements.taskContainer.classList.remove('visible');
-                    elements.thinkingBox.classList.remove('visible');
                     showTask(gameState.completedTasks.length);
                 });
                 
@@ -2323,13 +2345,13 @@
         function createConfetti() {
             const colors = ['#4A90E2', '#50E3C2', '#F8E71C', '#FF10F0', '#39FF14'];
             
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.width = `${Math.random() * 10 + 5}px`;
-                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                confetti.style.width = `${Math.random() * 8 + 4}px`;
+                confetti.style.height = `${Math.random() * 8 + 4}px`;
                 confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 confetti.style.animationDelay = `${Math.random() * 0.5}s`;
                 
@@ -2446,10 +2468,18 @@
             return array;
         }
 
+        // Utility function to shuffle string
+        function shuffleString(str) {
+            const arr = str.split('');
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr.join('');
+        }
+
         // Initialize the game when DOM is loaded
         document.addEventListener('DOMContentLoaded', initGame);
-
-        
     </script>
 </body>
 </html>
