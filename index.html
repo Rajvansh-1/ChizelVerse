@@ -1508,76 +1508,56 @@
 
         // Extended Task Data with Learning Focus
         const tasks = [
-            {
-                id: 'brain-teaser',
-                title: "MATH QUEST: Save the Aliens!",
-                type: "brain-teaser",
-                question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
-                options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
-                correctAnswer: 0,
-                xp: 50,
-                thinking: "Great math practice! 20 cookies ÷ 5 per alien = 4 aliens. You're helping them so much!"
-            },
-            {
-                id: 'memory-game',
-                title: "MEMORY MASTER: Match the Planets",
-                type: "memory-game",
-                pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽", "🔭", "⭐"],
-                xp: 50,
-                thinking: "Matching games strengthen your memory - an important skill for school and life!"
-            },
-            {
-                id: 'coding-challenge',
-                title: "CODE QUEST: Fix the Rocket",
-                type: "coding-challenge",
-                instruction: "Debug this rocket launch code by fixing the errors:",
-                code: `function launchRocket() {\n  if fuel > 100\n    return "Blast Off!"\n  else\n    console.log("Need more fuel!")\n}`,
-                correctAnswer: `function launchRocket() {\n  if (fuel > 100) {\n    return "Blast Off!";\n  } else {\n    console.log("Need more fuel!");\n  }\n}`,
-                xp: 50,
-                thinking: "Coding teaches logical thinking - a super valuable skill for your future!"
-            },
-            {
-                id: 'quick-challenge',
-                title: "WORD EXPLORER: Sentence Builder",
-                type: "quick-challenge",
-                instruction: "Drag the words to build a proper sentence:",
-                items: ["jumps", "The", "dog", "happy"],
-                correctOrder: ["The", "happy", "dog", "jumps"],
-                xp: 50,
-                thinking: "Building sentences helps with reading and writing skills. Great job!"
-            },
-            {
-                id: 'learn-fact',
-                title: "SCIENCE DISCOVERY: Amazing Animals",
-                type: "learn-fact",
-                fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
-                question: "What gives flamingos their pink color?",
-                options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
-                correctAnswer: 1,
-                xp: 50,
-                thinking: "Learning fun facts makes science exciting and helps you remember important concepts!"
-            },
-            {
-                id: 'math-puzzle',
-                title: "NUMBER NINJA: Treasure Hunt",
-                type: "brain-teaser",
-                question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
-                options: ["15 coins", "20 coins", "10 coins", "25 coins"],
-                correctAnswer: 0,
-                xp: 50,
-                thinking: "12 + 8 - 5 = 15. Math is everywhere, even in treasure hunts!"
-            },
-            {
-                id: 'word-game',
-                title: "LETTER LEGEND: Find the Vowels",
-                type: "quick-challenge",
-                instruction: "Drag all the vowels to the target area:",
-                items: ["A", "B", "E", "C", "I", "D", "O", "F"],
-                correctOrder: ["A", "E", "I", "O"],
-                xp: 50,
-                thinking: "Knowing vowels helps with reading and spelling. You're doing great!"
-            }
-        ];
+    {
+        id: 'brain-teaser',
+        title: "MATH QUEST: Save the Aliens!",
+        type: "brain-teaser",
+        question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
+        options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
+        correctAnswer: 0,
+        xp: 50,
+        thinking: "Great math practice! 20 cookies ÷ 5 per alien = 4 aliens. You're helping them so much!"
+    },
+    {
+        id: 'memory-game',
+        title: "MEMORY MASTER: Match the Planets",
+        type: "memory-game",
+        pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽", "🔭", "⭐"],
+        xp: 50,
+        thinking: "Matching games strengthen your memory - an important skill for school and life!"
+    },
+    {
+        id: 'quick-challenge',
+        title: "WORD EXPLORER: Sentence Builder",
+        type: "quick-challenge",
+        instruction: "Drag the words to build a proper sentence:",
+        items: ["jumps", "The", "dog", "happy"],
+        correctOrder: ["The", "happy", "dog", "jumps"],
+        xp: 50,
+        thinking: "Building sentences helps with reading and writing skills. Great job!"
+    },
+    {
+        id: 'learn-fact',
+        title: "SCIENCE DISCOVERY: Amazing Animals",
+        type: "learn-fact",
+        fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
+        question: "What gives flamingos their pink color?",
+        options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
+        correctAnswer: 1,
+        xp: 50,
+        thinking: "Learning fun facts makes science exciting and helps you remember important concepts!"
+    },
+    {
+        id: 'math-puzzle',
+        title: "NUMBER NINJA: Treasure Hunt",
+        type: "brain-teaser",
+        question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
+        options: ["15 coins", "20 coins", "10 coins", "25 coins"],
+        correctAnswer: 0,
+        xp: 50,
+        thinking: "12 + 8 - 5 = 15. Math is everywhere, even in treasure hunts!"
+    }
+];
 
         // Achievements Data
         const achievements = [
