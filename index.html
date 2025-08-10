@@ -1262,7 +1262,7 @@
             animation: bounce 0.5s ease infinite;
         }
 
-        /* Character animations */
+         /* Character animations - Updated to remove rotation */
         @keyframes characterFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
@@ -1272,10 +1272,10 @@
             animation: characterFloat 3s ease-in-out infinite;
         }
 
-        /* Emotional animations */
+        /* Emotional animations - Updated to remove rotation */
         @keyframes characterHappy {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
         }
 
         .character-happy {
@@ -1283,9 +1283,9 @@
         }
 
         @keyframes characterExcited {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(5deg); }
-            75% { transform: translateY(-10px) rotate(-5deg); }
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-15px); }
+            75% { transform: translateY(-15px); }
         }
 
         .character-excited {
