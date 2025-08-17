@@ -178,12 +178,13 @@
         }
 
         .logo-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 15px;
-    z-index: 11; /* Make sure it's above other elements */
-}
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 15px;
+            z-index: 11;
+            text-align: center;
+        }
 
         .logo {
             height: 50px;
@@ -206,20 +207,21 @@
         }
 
         .game-stats {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: flex-end; /* Align items to the right */
-    z-index: 10;
-    background: rgba(26, 46, 64, 0.7);
-    padding: 10px;
-    border-radius: 15px;
-    border: 2px solid var(--secondary);
-    box-shadow: 0 0 15px rgba(80, 227, 194, 0.3);
-}
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            z-index: 10;
+            background: rgba(26, 46, 64, 0.7);
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 0 15px rgba(80, 227, 194, 0.3);
+        }
+
         /* Space-Themed XP Bar */
         .xp-container {
             display: flex;
@@ -1221,53 +1223,24 @@
             }
 
             .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    z-index: 10;
-    /* Remove flex properties since we're using absolute positioning */
-    display: block;
-}
-
-
-    @media (max-width: 768px) {
-    .game-stats {
-        top: 70px; /* Move below the logo on mobile */
-        right: 15px;
-        padding: 8px;
-        gap: 10px;
-    }
-    
-    .xp-bar {
-        width: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .game-stats {
-        top: 60px;
-        flex-direction: column; /* Stack items vertically on small screens */
-        align-items: flex-end;
-    }
-    
-    .xp-bar {
-        width: 80px;
-    }
-}
-
-            .daily-reward-btn {
-                font-size: 16px;
-                padding: 10px 15px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 15px;
+                z-index: 10;
+                display: block;
             }
 
-            .logo {
-                height: 40px;
+            .game-stats {
+                top: 70px;
+                right: 15px;
+                padding: 8px;
+                gap: 10px;
             }
-
-            .logo-tagline {
-                font-size: 10px;
+            
+            .xp-bar {
+                width: 100px;
             }
         }
 
@@ -1354,6 +1327,12 @@
 
             .xp-value, .level-value {
                 font-size: 14px;
+            }
+
+            .game-stats {
+                top: 60px;
+                flex-direction: column;
+                align-items: flex-end;
             }
         }
 
@@ -1627,7 +1606,7 @@
             },
             {
                 speaker: 'mummy',
-                message: "That's my superstar! Your first mission has three fun challenges! I'll be right here cheering you on every step of the way!",
+                message: "That's my superstar! Your first mission has five fun challenges! I'll be right here cheering you on every step of the way!",
                 options: [],
                 action: 'startTasks',
                 emotion: 'proud'
@@ -1715,14 +1694,14 @@
             // After tasks are completed
             {
                 speaker: 'mummy',
-                message: "*happy tears* ⭐ AMAZING JOB MY SUPERSTAR! ⭐ You've earned 150 XP and learned so much! I'm SO proud of you! Your parents will be thrilled!",
+                message: "*happy tears* ⭐ AMAZING JOB MY SUPERSTAR! ⭐ You've earned 250 XP and learned so much! I'm SO proud of you! Your parents will be thrilled!",
                 options: [],
                 action: 'showFinalMessage',
                 emotion: 'proud'
             }
         ];
 
-        // Task Data
+        // Task Data - Updated with 5 questions and new word wizard sentence
         const tasks = [
             {
                 id: 'brain-teaser',
@@ -1745,8 +1724,8 @@
                 title: "WORD WIZARD: Sentence Builder",
                 type: "word-arrangement",
                 instruction: "Click the words in order to build a proper sentence:",
-                words: ["jumps", "The", "dog", "happy"],
-                correctOrder: ["The", "happy", "dog", "jumps"],
+                words: ["quick", "The", "fox", "brown", "jumps", "over", "the", "lazy", "dog"],
+                correctOrder: ["The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"],
                 xp: 50
             },
             {
@@ -1782,16 +1761,24 @@
                         question: "Which shape does not belong: Square, Circle, Triangle, Cube?",
                         options: ["Square", "Circle", "Triangle", "Cube"],
                         correctAnswer: 3
+                    },
+                    {
+                        question: "If some cats are dogs and all dogs are cows, which must be true?",
+                        options: ["All cats are cows", "Some cats are cows", "No cats are cows", "All cows are cats"],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "What comes next in this pattern: 2, 4, 8, 16, ___?",
+                        options: ["18", "20", "24", "32"],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Which word doesn't belong: Apple, Banana, Carrot, Orange?",
+                        options: ["Apple", "Banana", "Carrot", "Orange"],
+                        correctAnswer: 2
                     }
                 ],
                 xp: 60
-            },
-            {
-                id: 'word-unscramble',
-                title: "WORD WIZARD: Unscramble Challenge",
-                type: "word-unscramble",
-                words: ["LEARNING", "PUZZLE", "BRAIN", "KNOWLEDGE"],
-                xp: 50
             }
         ];
 
@@ -1850,7 +1837,9 @@
             elements.dailyRewardBtn.addEventListener('click', giveDailyReward);
             
             // Set up back button
-            elements.backBtn.addEventListener('click', goBack);
+            elements.backBtn.addEventListener('click', () => {
+                window.location.href = "https://chizel-websitee.vercel.app/#games";
+            });
             
             // Set up Chizel app promotion
             elements.promoClose.addEventListener('click', () => toggleChizelPromo(false));
@@ -1867,22 +1856,6 @@
             
             // Check for achievements
             checkAchievements();
-        }
-
-        // Go back to previous screen
-        function goBack() {
-            if (elements.taskContainer.classList.contains('visible')) {
-                elements.taskContainer.classList.remove('visible');
-            } else if (elements.chizelPromo.classList.contains('visible')) {
-                toggleChizelPromo(false);
-            } else if (elements.achievementBadge.classList.contains('visible')) {
-                elements.achievementBadge.classList.remove('visible');
-            } else {
-                // Go to previous story step if possible
-                if (gameState.currentStep > 0) {
-                    showStoryStep(gameState.currentStep - 1);
-                }
-            }
         }
 
         // Toggle Chizel app promotion
@@ -1995,7 +1968,7 @@
                 // Move to next step after delay
                 setTimeout(() => {
                     showStoryStep(step.nextStep);
-                }, 1000); // Faster response time
+                }, 1000);
             }
             
             // Update story tracker
@@ -2024,7 +1997,7 @@
                 if (i < message.length) {
                     element.textContent += message.charAt(i);
                     i++;
-                    setTimeout(typing, 20); // Faster typing speed
+                    setTimeout(typing, 20);
                 } else if (callback) {
                     callback();
                 }
@@ -2059,7 +2032,7 @@
                         if (option.nextStep !== undefined) {
                             showStoryStep(option.nextStep);
                         }
-                    }, 800); // Faster transition
+                    }, 800);
                 });
                 
                 elements.optionsContainer.appendChild(button);
@@ -2102,7 +2075,7 @@
         function showTask(taskIndex) {
             if (taskIndex >= tasks.length) {
                 // All tasks completed
-                showStoryStep(storyScript.length - 1); // Show final message
+                showStoryStep(storyScript.length - 1);
                 return;
             }
             
@@ -2132,9 +2105,6 @@
                     break;
                 case 'reasoning-quiz':
                     createReasoningQuiz(task);
-                    break;
-                case 'word-unscramble':
-                    createWordUnscramble(task);
                     break;
             }
             
@@ -2288,7 +2258,7 @@
                         }
                     });
                 });
-            }, 2000); // 2 second delay before starting the game
+            }, 2000);
         }
 
         // Create word arrangement task (more concise UI)
@@ -2426,54 +2396,6 @@
             elements.taskContent.appendChild(container);
         }
 
-        // Create word unscramble task
-        function createWordUnscramble(task) {
-            const container = document.createElement('div');
-            container.className = 'word-unscramble';
-            
-            // Select a random word
-            const word = task.words[Math.floor(Math.random() * task.words.length)];
-            const scrambled = shuffleString(word);
-            
-            const instruction = document.createElement('div');
-            instruction.className = 'challenge-instruction';
-            instruction.textContent = `Unscramble this word: ${scrambled}`;
-            container.appendChild(instruction);
-            
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'unscramble-input';
-            input.placeholder = 'Type the correct word here...';
-            container.appendChild(input);
-            
-            const checkBtn = document.createElement('button');
-            checkBtn.className = 'option-btn';
-            checkBtn.textContent = 'Check Answer';
-            checkBtn.style.marginTop = '15px';
-            
-            checkBtn.addEventListener('click', () => {
-                if (input.value.trim().toUpperCase() === word) {
-                    gameState.currentTask.completed = true;
-                    elements.taskSubmit.classList.remove('hidden');
-                    container.innerHTML = `
-                        <div style="text-align: center;">
-                            <h3 style="color: var(--success);">Correct! 🎉</h3>
-                            <p>The word was: ${word}</p>
-                        </div>
-                    `;
-                } else {
-                    const errorMsg = document.createElement('div');
-                    errorMsg.style.color = 'var(--danger)';
-                    errorMsg.style.marginTop = '10px';
-                    errorMsg.textContent = 'Not quite! Try again.';
-                    container.appendChild(errorMsg);
-                }
-            });
-            
-            container.appendChild(checkBtn);
-            elements.taskContent.appendChild(container);
-        }
-
         // Create learn a fact task
         function createLearnFact(task) {
             const container = document.createElement('div');
@@ -2534,7 +2456,6 @@
                 case 'memory-game':
                 case 'word-arrangement':
                 case 'reasoning-quiz':
-                case 'word-unscramble':
                     isCorrect = task.completed;
                     break;
             }
@@ -2720,7 +2641,7 @@
             
             // Word Wizard achievement
             const wordTasksCompleted = gameState.completedTasks.filter(id => 
-                id === 'word-arrangement' || id === 'word-unscramble').length;
+                id === 'word-arrangement').length;
             if (wordTasksCompleted >= 3 && 
                 !gameState.achievements.includes('word-wizard')) {
                 gameState.achievements.push('word-wizard');
@@ -2737,16 +2658,6 @@
                 [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
-        }
-
-        // Utility function to shuffle string
-        function shuffleString(str) {
-            const arr = str.split('');
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr.join('');
         }
 
         // Initialize the game when DOM is loaded
