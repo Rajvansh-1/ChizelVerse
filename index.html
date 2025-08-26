@@ -1467,227 +1467,174 @@
                 elements.starsContainer.appendChild(star);
             }
         }
-
+ 
         // Story Script - More emotional and interactive
-        const storyScript = [
-            // Introduction
-            {
-                speaker: 'mummy',
-                message: "👋 Hello, my amazing learner! I'm so excited to see you today! Welcome to CHIZEL - where we turn screen time into skill time!",
-                options: [
-                    { text: "Hi Mummy! What's CHIZEL?", nextStep: 1, xp: 5, emotion: 'excited' },
-                    { text: "I'm ready to learn! How does it work?", nextStep: 2, xp: 5, emotion: 'happy' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "CHIZEL is our special learning adventure! Every game helps you grow smarter while having SO much fun! I'm so proud you're here!",
-                options: [
-                    { text: "That sounds awesome! I love learning!", nextStep: 3, xp: 5, emotion: 'happy' },
-                    { text: "What will I learn today?", nextStep: 4, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "That's the spirit! Every challenge you complete earns XP and makes you stronger! I just know you're going to do amazing things today!",
-                options: [
-                    { text: "Let's do this! I'm ready!", nextStep: 5, xp: 10, emotion: 'excited' },
-                    { text: "Tell me more! I want to learn!", nextStep: 6, xp: 5, emotion: 'happy' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Oh sweetie, you make me so proud! Today we have math puzzles, memory games, and word challenges - all designed just for YOU!",
-                options: [
-                    { text: "Yay! Let's play right now!", nextStep: 7, xp: 5, emotion: 'excited' },
-                    { text: "How will this help me grow?", nextStep: 8, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "My dear, CHIZEL teaches everything from ABCs to multiplication! It helps your memory, focus, and problem-solving - skills that will help you shine!",
-                options: [
-                    { text: "I can't wait to get started!", nextStep: 7, xp: 10, emotion: 'excited' },
-                    { text: "Show me a game please!", nextStep: 9, xp: 5, emotion: 'happy' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "That's my superstar! Your first mission has five fun challenges! I'll be right here cheering you on every step of the way!",
-                options: [],
-                action: 'startTasks',
-                emotion: 'proud'
-            },
-            {
-                speaker: 'mummy',
-                message: "Sweetheart, CHIZEL grows WITH you! As you level up, the games get more exciting and you unlock new adventures! I'm getting emotional just thinking about your progress!",
-                options: [
-                    { text: "I understand! Let's go!", nextStep: 5, xp: 5, emotion: 'happy' },
-                    { text: "What are levels?", nextStep: 10, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "*sniff* I'm so proud of your enthusiasm! This first game will help you practice addition while saving cute aliens! Are you ready to be a hero?",
-                options: [
-                    { text: "Yes! I'm so excited!", nextStep: 5, xp: 10, emotion: 'excited' },
-                    { text: "How do I play? I want to do my best!", nextStep: 11, xp: 5, emotion: 'determined' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Oh my! At level 5 you unlock Math Blaster! Level 10 gets Story Builder! And the ultimate Science Explorer requires level 20! I can't wait to see how far you'll go!",
-                options: [
-                    { text: "I'll level up super fast! Watch me!", nextStep: 5, xp: 10, emotion: 'excited' },
-                    { text: "Tell me more about these adventures", nextStep: 12, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "My dear, CHIZEL games strengthen your brain like exercise strengthens muscles! Every challenge makes you better at focusing, remembering, and solving problems! I'm getting teary thinking about your potential!",
-                options: [
-                    { text: "My brain is ready to grow!", nextStep: 5, xp: 10, emotion: 'excited' },
-                    { text: "How does that work exactly?", nextStep: 13, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Sweetie, levels show your amazing progress! Each level means you've learned new skills. Your parents can see all your achievements - they'll be so proud!",
-                options: [
-                    { text: "I want to level up right now!", nextStep: 5, xp: 10, emotion: 'excited' },
-                    { text: "Can parents really see my progress?", nextStep: 14, xp: 5, emotion: 'happy' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Yes darling! CHIZEL is completely kid-safe with no ads. Parents get special reports showing what you're learning and how you're improving! They'll be so impressed with your hard work!",
-                options: [
-                    { text: "That's amazing! I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
-                    { text: "What about safety? I want to be careful", nextStep: 15, xp: 5, emotion: 'concerned' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Oh my thoughtful learner! CHIZEL is super safe! No strangers can contact you, no inappropriate content, and parents control everything! Now let's have some safe fun!",
-                options: [
-                    { text: "Great! Let's play and learn!", nextStep: 5, xp: 15, emotion: 'happy' },
-                    { text: "What else makes CHIZEL special?", nextStep: 16, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "*wipes happy tear* CHIZEL is different because: 1) Real teachers designed it with love 2) It adapts to YOUR level 3) It makes learning SO MUCH FUN! I just know you're going to love it!",
-                options: [
-                    { text: "I already love it! You're the best!", nextStep: 5, xp: 20, emotion: 'excited' },
-                    { text: "Let's play now! I can't wait!", nextStep: 5, xp: 10, emotion: 'excited' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "One more thing sweetie! CHIZEL gives daily rewards for learning, with special weekend bonuses! I get so excited to see you collect them!",
-                options: [
-                    { text: "I want rewards! I'll play every day!", nextStep: 5, xp: 15, emotion: 'excited' },
-                    { text: "How do I earn them? Tell me!", nextStep: 17, xp: 5, emotion: 'curious' }
-                ]
-            },
-            {
-                speaker: 'mummy',
-                message: "Just by playing every day my dear! You'll get XP bonuses, collectible stars, and unlock special avatars! I'm getting emotional thinking about all the fun we'll have!",
-                options: [
-                    { text: "I promise to play daily!", nextStep: 5, xp: 20, emotion: 'happy' },
-                    { text: "Let's start our adventure now!", nextStep: 5, xp: 10, emotion: 'excited' }
-                ]
-            },
-            // After tasks are completed
-            {
-                speaker: 'mummy',
-                message: "*happy tears* ⭐ AMAZING JOB MY SUPERSTAR! ⭐ You've earned 250 XP and learned so much! I'm SO proud of you! Your parents will be thrilled!",
-                options: [],
-                action: 'showFinalMessage',
-                emotion: 'proud'
-            }
-        ];
+       const storyScript = [
+    // Introduction
+    {
+        speaker: 'mummy',
+        message: "👋 Hello my little star! I’m so happy to see you today. Welcome to CHIZEL — where screen time becomes growth time.",
+        options: [
+            { text: "Hi Mummy, what’s CHIZEL?", nextStep: 1, xp: 5, emotion: 'curious' },
+            { text: "I’m ready to learn!", nextStep: 2, xp: 5, emotion: 'excited' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "CHIZEL is our safe space for learning and fun. Every game here makes your mind stronger and your heart happier.",
+        options: [
+            { text: "That sounds wonderful!", nextStep: 3, xp: 5, emotion: 'happy' },
+            { text: "What will I do today?", nextStep: 4, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "Each challenge you complete earns XP and shows how much you’re growing. You’re already making me so proud.",
+        options: [
+            { text: "Let’s start, I’m excited!", nextStep: 5, xp: 10, emotion: 'excited' },
+            { text: "Tell me more first!", nextStep: 6, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "Today we have puzzles, memory games, and word adventures — all chosen just for you.",
+        options: [
+            { text: "Yay! Let’s play!", nextStep: 7, xp: 5, emotion: 'excited' },
+            { text: "How will this help me?", nextStep: 8, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "Every game trains your brain like exercise trains muscles. Soon you’ll notice — sharper focus, better memory, quicker problem solving.",
+        options: [
+            { text: "Wow, I’m ready to grow!", nextStep: 5, xp: 10, emotion: 'happy' },
+            { text: "Show me a game please!", nextStep: 9, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "Alright champ! Your first mission has 5 fun challenges. I’ll be right here, cheering for you all the way.",
+        options: [],
+        action: 'startTasks',
+        emotion: 'proud'
+    },
+    {
+        speaker: 'mummy',
+        message: "As you level up, games unlock new worlds. Each level is a step in your real-life growth journey. I’m already imagining your bright future.",
+        options: [
+            { text: "Let’s go, Mummy!", nextStep: 5, xp: 5, emotion: 'excited' },
+            { text: "What do levels mean?", nextStep: 10, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "Sweetheart, CHIZEL is safe. No strangers, no ads. Only pure learning and love. Parents can also see how amazing you’re becoming.",
+        options: [
+            { text: "I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
+            { text: "What else makes CHIZEL special?", nextStep: 11, xp: 5, emotion: 'curious' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "What makes CHIZEL special? It learns with you, adapts to you, and makes every day joyful. It’s built with care, like a gift from me to you.",
+        options: [
+            { text: "I already love it!", nextStep: 5, xp: 20, emotion: 'excited' },
+            { text: "Let’s start right now!", nextStep: 5, xp: 10, emotion: 'excited' }
+        ]
+    },
+    {
+        speaker: 'mummy',
+        message: "⭐ Incredible job, my superstar! ⭐ You’ve earned 250 XP and grown so much today. My heart is full of pride.",
+        options: [],
+        action: 'showFinalMessage',
+        emotion: 'proud'
+    }
+];
+
 
         // Task Data - Updated with 5 questions and new word wizard sentence
         const tasks = [
+    {
+        id: 'brain-teaser',
+        title: "🚀 MATH QUEST: Save the Hungry Aliens!",
+        type: "brain-teaser",
+        question: "👽 Aliens are trapped on a planet! Each alien needs 5 cookies to survive. You have 20 cookies. How many aliens can you save before the spaceship leaves?",
+        options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
+        correctAnswer: 0,
+        xp: 70
+    },
+    {
+        id: 'memory-game',
+        title: "🪐 MEMORY MASTER: Match the Cosmic Planets",
+        type: "memory-game",
+        instruction: "🚀 Your rocket fuel is locked! Match the cards (🌍 🌕 🪐 ☀️ 🚀 👽) to unlock the booster and continue your space journey!",
+        pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽"],
+        xp: 70
+    },
+    {
+        id: 'word-arrangement-india-4',
+        title: "📜 WORD WIZARD: Anthem Builder",
+        type: "word-arrangement",
+        instruction: "✨ The magic scroll is broken! Arrange the words to rebuild India’s national anthem correctly:",
+        words: ["of", "India", "the", "anthem", "is", "national", "Gana", "Jana", "Mana"],
+        correctOrder: ["Jana", "Gana", "Mana", "is", "the", "national", "anthem", "of", "India"],
+        xp: 70
+    },
+    {
+        id: 'learn-fact',
+        title: "🌍 SCIENCE DISCOVERY: Animal Wonders",
+        type: "learn-fact",
+        fact: "💡 Did you know? A group of flamingos is called a 'flamboyance'! Their pink color comes from the shrimp they eat.",
+        question: "What gives flamingos their pink color?",
+        options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
+        correctAnswer: 1,
+        xp: 70
+    },
+    {
+        id: 'math-puzzle',
+        title: "💰 NUMBER NINJA: Treasure Hunt",
+        type: "brain-teaser",
+        question: "🏝️ You found 12 gold coins in a cave, then 8 more in a chest, but a sneaky parrot stole 5! How many do you have left?",
+        options: ["15 coins", "20 coins", "10 coins", "25 coins"],
+        correctAnswer: 0,
+        xp: 70
+    },
+    {
+        id: 'reasoning-quiz',
+        title: "🧠 LOGIC MASTER: The Puzzle Gate",
+        type: "reasoning-quiz",
+        instruction: "⚡ A magical gate blocks your path. Solve 5 riddles of logic to unlock it:",
+        questions: [
             {
-                id: 'brain-teaser',
-                title: "MATH QUEST: Save the Aliens!",
-                type: "brain-teaser",
-                question: "To rescue the aliens, solve this: If 3 aliens need 5 cookies each, and you have 20 cookies, how many aliens can you feed?",
-                options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
-                correctAnswer: 0,
-                xp: 50
+                question: "If all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely Lazzies?",
+                options: ["Yes", "No", "Maybe", "Not enough information"],
+                correctAnswer: 0
             },
             {
-                id: 'memory-game',
-                title: "MEMORY MASTER: Match the Planets",
-                type: "memory-game",
-                pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽"],
-                xp: 50
+                question: "Which shape does not belong: Square, Circle, Triangle, Cube?",
+                options: ["Square", "Circle", "Triangle", "Cube"],
+                correctAnswer: 3
             },
             {
-            id: 'word-arrangement-india-4',
-            title: "WORD WIZARD: Sentence Builder",
-            type: "word-arrangement",
-            instruction: "Click the words in order to build a proper sentence:",
-            words: ["of", "India", "the", "anthem", "is", "national", "Gana", "Jana", "Mana"],
-            correctOrder: ["Jana", "Gana", "Mana", "is", "the", "national", "anthem", "of", "India"],
-            xp: 50
+                question: "If some cats are dogs and all dogs are cows, which must be true?",
+                options: ["All cats are cows", "Some cats are cows", "No cats are cows", "All cows are cats"],
+                correctAnswer: 1
             },
             {
-                id: 'learn-fact',
-                title: "SCIENCE DISCOVERY: Amazing Animals",
-                type: "learn-fact",
-                fact: "Did you know? A group of flamingos is called a 'flamboyance'! These pink birds get their color from the shrimp they eat.",
-                question: "What gives flamingos their pink color?",
-                options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
-                correctAnswer: 1,
-                xp: 50
+                question: "What comes next in this pattern: 2, 4, 8, 16, ___?",
+                options: ["18", "20", "24", "32"],
+                correctAnswer: 3
             },
             {
-                id: 'math-puzzle',
-                title: "NUMBER NINJA: Treasure Hunt",
-                type: "brain-teaser",
-                question: "To find the treasure, solve this: If you have 12 gold coins and find 8 more, but lose 5, how many do you have?",
-                options: ["15 coins", "20 coins", "10 coins", "25 coins"],
-                correctAnswer: 0,
-                xp: 50
-            },
-            {
-                id: 'reasoning-quiz',
-                title: "LOGIC MASTER: Reasoning Quiz",
-                type: "reasoning-quiz",
-                questions: [
-                    {
-                        question: "If all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely Lazzies?",
-                        options: ["Yes", "No", "Maybe", "Not enough information"],
-                        correctAnswer: 0
-                    },
-                    {
-                        question: "Which shape does not belong: Square, Circle, Triangle, Cube?",
-                        options: ["Square", "Circle", "Triangle", "Cube"],
-                        correctAnswer: 3
-                    },
-                    {
-                        question: "If some cats are dogs and all dogs are cows, which must be true?",
-                        options: ["All cats are cows", "Some cats are cows", "No cats are cows", "All cows are cats"],
-                        correctAnswer: 1
-                    },
-                    {
-                        question: "What comes next in this pattern: 2, 4, 8, 16, ___?",
-                        options: ["18", "20", "24", "32"],
-                        correctAnswer: 3
-                    },
-                    {
-                        question: "Which word doesn't belong: Apple, Banana, Carrot, Orange?",
-                        options: ["Apple", "Banana", "Carrot", "Orange"],
-                        correctAnswer: 2
-                    }
-                ],
-                xp: 60
+                question: "Which word doesn’t belong: Apple, Banana, Carrot, Orange?",
+                options: ["Apple", "Banana", "Carrot", "Orange"],
+                correctAnswer: 2
             }
-        ];
+        ],
+        xp: 100
+    }
+];
+                
 
         // Achievements Data
         const achievements = [
@@ -1744,7 +1691,7 @@
             
             // Set up back button
             elements.backBtn.addEventListener('click', () => {
-                window.location.href = "https://chizel-websitee.vercel.app/#games";
+                window.location.href = "https://chizel.in";
             });
             
             // Set up Chizel app promotion
