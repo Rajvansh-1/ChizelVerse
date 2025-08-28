@@ -282,6 +282,41 @@
             color: var(--light);
             text-align: center;
         }
+        
+        /* NEW STYLES FOR MOBILE LEVEL DISPLAY */
+        .mobile-level-container {
+            display: none; /* Hidden by default on desktop */
+            background-color: rgba(26, 46, 64, 0.8);
+            border: 2px solid var(--secondary);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 0 20px var(--secondary);
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-level-label {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent);
+        }
+
+        .mobile-level-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--space-purple) 0%, var(--primary) 100%);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            min-width: 45px;
+            text-align: center;
+        }
+
 
         /* Characters - Fixed positioning and animations */
         .character-container {
@@ -1273,14 +1308,18 @@
                 z-index: 10;
                 display: block;
             }
-
+            
+            /* HIDE original stats and SHOW new level display on mobile */
             .game-stats {
-                top: 70px;
-                right: 15px;
-                padding: 8px;
-                gap: 10px;
-                flex-direction: column;
-                align-items: flex-end;
+                display: none; 
+            }
+            
+            .mobile-level-container {
+                display: inline-flex;
+                position: absolute;
+                top: 95px; /* Position below logo */
+                left: 50%;
+                transform: translateX(-50%);
             }
             
             /* Show XP bar on mobile */
@@ -1295,18 +1334,27 @@
                 bottom: 25px; /* Increased from 20px */
             }
             
-            /* Level bar in next line for mobile */
-            .level-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
+            /* Level Bar Styles */
             .level-bar-container {
-                display: flex;
+                display: none;
                 align-items: center;
-                width: 100%;
+                width: 150px;
                 margin-top: 5px;
+            }
+        
+            .level-bar {
+                width: 100%;
+                height: 8px;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+        
+            .level-progress {
+                height: 100%;
+                background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+                border-radius: 4px;
+                transition: width 0.5s ease;
             }
         }
 
@@ -1389,21 +1437,20 @@
             .logo-tagline {
                 font-size: 9px;
             }
-
-            .level-label {
-                font-size: 14px;
-            }
-
-            .level-value {
-                font-size: 14px;
-            }
-
-            .game-stats {
-                top: 60px;
-                flex-direction: column;
-                align-items: flex-end;
-            }
             
+            .mobile-level-container {
+                top: 65px; /* Adjust for smaller logo */
+            }
+
+            .mobile-level-label {
+                font-size: 16px;
+            }
+
+            .mobile-level-value {
+                font-size: 16px;
+                padding: 4px 12px;
+            }
+
             /* XP bar for small mobile */
             .xp-container {
                 width: 100px;
@@ -1416,20 +1463,6 @@
             /* Adjust story tracker position */
             .story-tracker {
                 bottom: 25px; /* Increased from 20px */
-            }
-            
-            /* Level bar in next line for mobile */
-            .level-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .level-bar-container {
-                display: flex;
-                align-items: center;
-                width: 100%;
-                margin-top: 5px;
             }
         }
 
@@ -1482,35 +1515,6 @@
             animation: characterExcited 1s ease infinite;
         }
         
-        /* Level Bar Styles */
-        .level-bar-container {
-            display: none;
-            align-items: center;
-            width: 150px;
-            margin-top: 5px;
-        }
-        
-        .level-bar {
-            width: 100%;
-            height: 8px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .level-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-        
-        /* Show level bar on mobile only */
-        @media (max-width: 768px) {
-            .level-bar-container {
-                display: flex;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1525,32 +1529,28 @@
             <div class="comet" style="top: 30%; left: 80%; --comet-duration: 20s;"></div>
         </div>
 
-        <button class="back-btn" id="back-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
-        </button>
+        <div class="header">
+            <button class="back-btn" id="back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+            </button>
 
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Chizel Logo" class="logo">
-            <div class="logo-tagline">Turning Screen Time To Skill Time!</div>
-        </div>
-
-        <div class="game-stats">
-            <div class="level-container">
-                <div class="level-label">LEVEL:</div>
-                <div class="level-value">1</div>
-                <div class="level-bar-container">
-                    <div class="level-bar">
-                        <div class="level-progress" id="level-progress"></div>
-                    </div>
-                </div>
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="Chizel Logo" class="logo">
+                <div class="logo-tagline">Turning Screen Time To Skill Time!</div>
             </div>
-            <div class="xp-container">
-                <div class="xp-bar">
-                    <div class="xp-progress" id="xp-progress"></div>
+
+            <div class="mobile-level-container">
+                <span class="mobile-level-label">LEVEL:</span>
+                <span class="mobile-level-value" id="mobile-level-value">1</span>
+            </div>
+
+            <div class="game-stats">
+                <div class="level-container">
+                    <div class="level-label">LEVEL:</div>
+                    <div class="level-value">1</div>
                 </div>
-                <div class="xp-text" id="xp-text">0/100 XP</div>
             </div>
         </div>
 
@@ -1605,7 +1605,7 @@
             <button class="promo-close" id="promo-close">×</button>
             <div class="promo-header">
                 <div class="promo-avatar">M</div>
-                <div class="promo-title">LAUNCHING SOON! <br>THE CHIZEL APP</div>
+                <div class="promo-title">MUMMY HELPER</div>
             </div>
             <div class="promo-message">
                 Wow! You're doing amazing! Did you know our CHIZEL app has even more fun learning games and adventures? 
@@ -1643,6 +1643,7 @@
             kidBubbleContent: document.querySelector('#kid-speech .bubble-content'),
             optionsContainer: document.querySelector('.options-container'),
             levelValue: document.querySelector('.level-value'),
+            mobileLevelValue: document.getElementById('mobile-level-value'), // NEW
             levelProgress: document.getElementById('level-progress'),
             xpProgress: document.getElementById('xp-progress'),
             xpText: document.getElementById('xp-text'),
@@ -2827,11 +2828,15 @@ const storyScript = [
             const neededXP = gameState.level * 100;
             const progressPercentage = Math.min(100, (gameState.xp / neededXP) * 100);
             
-            elements.xpProgress.style.width = `${progressPercentage}%`;
-            elements.xpText.textContent = `${gameState.xp}/${neededXP} XP`;
-            
-            // Update level progress bar
-            elements.levelProgress.style.width = `${progressPercentage}%`;
+            if(elements.xpProgress) {
+                elements.xpProgress.style.width = `${progressPercentage}%`;
+            }
+            if(elements.xpText) {
+                elements.xpText.textContent = `${gameState.xp}/${neededXP} XP`;
+            }
+            if(elements.levelProgress) {
+                elements.levelProgress.style.width = `${progressPercentage}%`;
+            }
         }
 
         // Check for level up
@@ -2847,6 +2852,7 @@ const storyScript = [
         // Update level display
         function updateLevel() {
             elements.levelValue.textContent = gameState.level;
+            elements.mobileLevelValue.textContent = gameState.level; // NEW
             updateXPBar();
             localStorage.setItem('chizelLevel', gameState.level.toString());
         }
