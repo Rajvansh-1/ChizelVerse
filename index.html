@@ -1515,7 +1515,6 @@
 </head>
 <body>
     <div class="game-container">
-        <!-- Animated Space Background -->
         <div class="space-background">
             <div class="stars" id="stars"></div>
             <div class="nebula" style="top: 20%; left: 10%;"></div>
@@ -1526,32 +1525,27 @@
             <div class="comet" style="top: 30%; left: 80%; --comet-duration: 20s;"></div>
         </div>
 
-        <!-- Back Button -->
         <button class="back-btn" id="back-btn">
             <svg viewBox="0 0 24 24">
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
             </svg>
         </button>
 
-        <!-- Logo Container -->
         <div class="logo-container">
             <img src="assets/logo.png" alt="Chizel Logo" class="logo">
             <div class="logo-tagline">Turning Screen Time To Skill Time!</div>
         </div>
 
-        <!-- Game Stats -->
         <div class="game-stats">
             <div class="level-container">
                 <div class="level-label">LEVEL:</div>
                 <div class="level-value">1</div>
-                <!-- Level Bar for Mobile -->
                 <div class="level-bar-container">
                     <div class="level-bar">
                         <div class="level-progress" id="level-progress"></div>
                     </div>
                 </div>
             </div>
-            <!-- XP Bar -->
             <div class="xp-container">
                 <div class="xp-bar">
                     <div class="xp-progress" id="xp-progress"></div>
@@ -1560,13 +1554,11 @@
             </div>
         </div>
 
-        <!-- Characters - Bigger mother and son with animations -->
         <div class="character-container">
             <div class="character left character-float">
                 <div class="character-image">
                     <img src="assets/mummy.png" alt="Mummy the Learning Guide">
                 </div>
-                <!-- Speech bubble for mother -->
                 <div class="speech-bubble left-bubble" id="mother-speech">
                     <div class="bubble-content"></div>
                     <div class="typing-indicator">
@@ -1580,32 +1572,26 @@
                 <div class="character-image">
                     <img src="assets/kid.png" alt="You">
                 </div>
-                <!-- Speech bubble for kid -->
                 <div class="speech-bubble right-bubble" id="kid-speech">
                     <div class="bubble-content"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Options Container -->
         <div class="options-container"></div>
 
-        <!-- Task Container -->
         <div class="task-container">
             <div class="task-header"></div>
             <div class="task-content"></div>
             <button class="task-submit hidden">Submit</button>
         </div>
 
-        <!-- Story Progress Tracker -->
         <div class="story-tracker" id="story-tracker"></div>
 
-        <!-- Daily Reward Button -->
         <button class="daily-reward-btn" id="daily-reward-btn">
             <span>🎁</span> Daily Reward
         </button>
 
-        <!-- Achievement Badge -->
         <div class="achievement-badge" id="achievement-badge">
             <div class="badge-icon">🏆</div>
             <div class="badge-title">ACHIEVEMENT UNLOCKED!</div>
@@ -1613,15 +1599,13 @@
             <button class="badge-close">Awesome!</button>
         </div>
 
-        <!-- Power Up Effect -->
         <div class="power-up-effect" id="power-up-effect"></div>
 
-        <!-- Chizel App Promotion -->
         <div class="chizel-promo" id="chizel-promo">
             <button class="promo-close" id="promo-close">×</button>
             <div class="promo-header">
                 <div class="promo-avatar">M</div>
-                <div class="promo-title">MUMMY HELPER</div>
+                <div class="promo-title">LAUNCHING SOON! <br>THE CHIZEL APP</div>
             </div>
             <div class="promo-message">
                 Wow! You're doing amazing! Did you know our CHIZEL app has even more fun learning games and adventures? 
@@ -2186,16 +2170,19 @@ const storyScript = [
             }
         }
 
+        // ========== THE FIX IS HERE ==========
         // Type message with typing animation
         function typeMessage(message, element, callback) {
+            // This line correctly handles emojis and other multi-byte characters
+            const chars = Array.from(message);
             let i = 0;
             element.textContent = '';
             
             function typing() {
-                if (i < message.length) {
-                    element.textContent += message.charAt(i);
+                if (i < chars.length) {
+                    element.textContent += chars[i];
                     i++;
-                    setTimeout(typing, 20);
+                    setTimeout(typing, 20); // Typing speed
                 } else if (callback) {
                     callback();
                 }
