@@ -254,6 +254,35 @@
             text-align: center;
         }
 
+        /* XP Bar Container */
+        .xp-container {
+            display: none;
+            width: 150px;
+            margin-top: 8px;
+        }
+
+        .xp-bar {
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .xp-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .xp-text {
+            font-size: 12px;
+            color: var(--light);
+            text-align: center;
+        }
+
         /* Characters - Fixed positioning and animations */
         .character-container {
             position: absolute;
@@ -848,6 +877,99 @@
             margin-top: 20px;
         }
 
+        /* Scenario Quiz Styles (NEW) */
+        .scenario-quiz {
+            text-align: center;
+        }
+
+        .scenario-text {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--light);
+            background-color: rgba(144, 19, 254, 0.25);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--neon-pink);
+        }
+
+        .scenario-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .scenario-option {
+            padding: 15px;
+            background-color: rgba(80, 227, 194, 0.2);
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--light);
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .scenario-option:hover {
+            background-color: rgba(80, 227, 194, 0.4);
+            transform: translateX(10px);
+        }
+
+        .scenario-option.selected {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: bold;
+            box-shadow: 0 0 20px var(--secondary);
+            transform: scale(1.08);
+        }
+
+        /* Riddle Styles (NEW) */
+        .riddle {
+            text-align: center;
+        }
+
+        .riddle-text {
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--light);
+            background-color: rgba(255, 111, 58, 0.25);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--space-orange);
+        }
+
+        .riddle-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .riddle-option {
+            padding: 15px;
+            background-color: rgba(255, 111, 58, 0.2);
+            border: 3px solid var(--space-orange);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--light);
+            font-size: 18px;
+        }
+
+        .riddle-option:hover {
+            background-color: rgba(255, 111, 58, 0.4);
+            transform: translateX(10px);
+        }
+
+        .riddle-option.selected {
+            background-color: var(--space-orange);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 20px var(--space-orange);
+            transform: scale(1.08);
+        }
+
         /* Achievement Badges */
         .achievement-badge {
             position: fixed;
@@ -1012,6 +1134,7 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .promo-avatar {
@@ -1097,7 +1220,7 @@
             .character {
                 width: 45%;
                 max-width: 200px;
-                bottom: 5%;
+                bottom: 8%; /* Increased from 5% */
             }
             
             .left-bubble {
@@ -1115,7 +1238,7 @@
             }
             
             .options-container {
-                bottom: 8%;
+                bottom: 12%; /* Increased from 8% */
                 padding: 15px;
             }
             
@@ -1156,6 +1279,34 @@
                 right: 15px;
                 padding: 8px;
                 gap: 10px;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            /* Show XP bar on mobile */
+            .xp-container {
+                display: block;
+                width: 120px;
+                margin-top: 8px;
+            }
+            
+            /* Adjust daily reward button position */
+            .daily-reward-btn {
+                bottom: 25px; /* Increased from 20px */
+            }
+            
+            /* Level bar in next line for mobile */
+            .level-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .level-bar-container {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                margin-top: 5px;
             }
         }
 
@@ -1167,7 +1318,7 @@
             .character {
                 width: 50%;
                 max-width: 160px;
-                bottom: 3%;
+                bottom: 10%; /* Increased from 3% */
             }
             
             .left-bubble {
@@ -1187,7 +1338,7 @@
             }
             
             .options-container {
-                bottom: 5%;
+                bottom: 15%; /* Increased from 5% */
                 padding: 12px;
                 gap: 10px;
             }
@@ -1228,6 +1379,7 @@
             .daily-reward-btn {
                 font-size: 14px;
                 padding: 8px 12px;
+                bottom: 30px; /* Increased from default */
             }
 
             .logo {
@@ -1250,6 +1402,34 @@
                 top: 60px;
                 flex-direction: column;
                 align-items: flex-end;
+            }
+            
+            /* XP bar for small mobile */
+            .xp-container {
+                width: 100px;
+            }
+            
+            .xp-text {
+                font-size: 10px;
+            }
+            
+            /* Adjust story tracker position */
+            .story-tracker {
+                bottom: 25px; /* Increased from 20px */
+            }
+            
+            /* Level bar in next line for mobile */
+            .level-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .level-bar-container {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                margin-top: 5px;
             }
         }
 
@@ -1301,6 +1481,36 @@
         .character-excited {
             animation: characterExcited 1s ease infinite;
         }
+        
+        /* Level Bar Styles */
+        .level-bar-container {
+            display: none;
+            align-items: center;
+            width: 150px;
+            margin-top: 5px;
+        }
+        
+        .level-bar {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .level-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Show level bar on mobile only */
+        @media (max-width: 768px) {
+            .level-bar-container {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1334,6 +1544,19 @@
             <div class="level-container">
                 <div class="level-label">LEVEL:</div>
                 <div class="level-value">1</div>
+                <!-- Level Bar for Mobile -->
+                <div class="level-bar-container">
+                    <div class="level-bar">
+                        <div class="level-progress" id="level-progress"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- XP Bar -->
+            <div class="xp-container">
+                <div class="xp-bar">
+                    <div class="xp-progress" id="xp-progress"></div>
+                </div>
+                <div class="xp-text" id="xp-text">0/100 XP</div>
             </div>
         </div>
 
@@ -1436,6 +1659,9 @@
             kidBubbleContent: document.querySelector('#kid-speech .bubble-content'),
             optionsContainer: document.querySelector('.options-container'),
             levelValue: document.querySelector('.level-value'),
+            levelProgress: document.getElementById('level-progress'),
+            xpProgress: document.getElementById('xp-progress'),
+            xpText: document.getElementById('xp-text'),
             taskContainer: document.querySelector('.task-container'),
             taskContent: document.querySelector('.task-content'),
             taskSubmit: document.querySelector('.task-submit'),
@@ -1468,98 +1694,149 @@
             }
         }
  
-        // Story Script - More emotional and interactive
-       const storyScript = [
-    // Introduction
-    {
-        speaker: 'mummy',
-        message: "👋 Hello my little star! I’m so happy to see you today. Welcome to CHIZEL — where screen time becomes growth time.",
-        options: [
-            { text: "Hi Mummy, what’s CHIZEL?", nextStep: 1, xp: 5, emotion: 'curious' },
-            { text: "I’m ready to learn!", nextStep: 2, xp: 5, emotion: 'excited' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "CHIZEL is our safe space for learning and fun. Every game here makes your mind stronger and your heart happier.",
-        options: [
-            { text: "That sounds wonderful!", nextStep: 3, xp: 5, emotion: 'happy' },
-            { text: "What will I do today?", nextStep: 4, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "Each challenge you complete earns XP and shows how much you’re growing. You’re already making me so proud.",
-        options: [
-            { text: "Let’s start, I’m excited!", nextStep: 5, xp: 10, emotion: 'excited' },
-            { text: "Tell me more first!", nextStep: 6, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "Today we have puzzles, memory games, and word adventures — all chosen just for you.",
-        options: [
-            { text: "Yay! Let’s play!", nextStep: 7, xp: 5, emotion: 'excited' },
-            { text: "How will this help me?", nextStep: 8, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "Every game trains your brain like exercise trains muscles. Soon you’ll notice — sharper focus, better memory, quicker problem solving.",
-        options: [
-            { text: "Wow, I’m ready to grow!", nextStep: 5, xp: 10, emotion: 'happy' },
-            { text: "Show me a game please!", nextStep: 9, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "Alright champ! Your first mission has 5 fun challenges. I’ll be right here, cheering for you all the way.",
-        options: [],
-        action: 'startTasks',
-        emotion: 'proud'
-    },
-    {
-        speaker: 'mummy',
-        message: "As you level up, games unlock new worlds. Each level is a step in your real-life growth journey. I’m already imagining your bright future.",
-        options: [
-            { text: "Let’s go, Mummy!", nextStep: 5, xp: 5, emotion: 'excited' },
-            { text: "What do levels mean?", nextStep: 10, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "Sweetheart, CHIZEL is safe. No strangers, no ads. Only pure learning and love. Parents can also see how amazing you’re becoming.",
-        options: [
-            { text: "I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
-            { text: "What else makes CHIZEL special?", nextStep: 11, xp: 5, emotion: 'curious' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "What makes CHIZEL special? It learns with you, adapts to you, and makes every day joyful. It’s built with care, like a gift from me to you.",
-        options: [
-            { text: "I already love it!", nextStep: 5, xp: 20, emotion: 'excited' },
-            { text: "Let’s start right now!", nextStep: 5, xp: 10, emotion: 'excited' }
-        ]
-    },
-    {
-        speaker: 'mummy',
-        message: "⭐ Incredible job, my superstar! ⭐ You’ve earned 250 XP and grown so much today. My heart is full of pride.",
-        options: [],
-        action: 'showFinalMessage',
-        emotion: 'proud'
-    }
+// Story Script – Emotional, Interactive, and Logically Structured
+const storyScript = [
+  // Step 0: Warm Welcome
+  {
+    id: 0,
+    speaker: 'mummy',
+    message: "👋 Hello my little star! I’m so happy to see you today. Welcome to CHIZEL — where screen time becomes growth time.",
+    options: [
+      { text: "Hi Mummy, what’s CHIZEL?", nextStep: 1, xp: 5, emotion: 'curious' },
+      { text: "I’m ready to learn!", nextStep: 2, xp: 5, emotion: 'excited' }
+    ]
+  },
+
+  // Step 1: Intro to CHIZEL (from curiosity)
+  {
+    id: 1,
+    speaker: 'mummy',
+    message: "CHIZEL is our safe space for learning and fun. Every game here makes your mind stronger and your heart happier.",
+    options: [
+      { text: "That sounds wonderful!", nextStep: 3, xp: 5, emotion: 'happy' },
+      { text: "What will I do today?", nextStep: 4, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 2: Eager player goes straight to encouragement
+  {
+    id: 2,
+    speaker: 'mummy',
+    message: "Each challenge you complete earns XP and shows how much you’re growing. You’re already making me so proud.",
+    options: [
+      { text: "Let’s start, I’m excited!", nextStep: 5, xp: 10, emotion: 'excited' },
+      { text: "Tell me more first!", nextStep: 6, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 3: From "That sounds wonderful!" to what's next
+  {
+    id: 3,
+    speaker: 'mummy',
+    message: "Each challenge helps you grow smarter and stronger. And guess what? You earn XP with every step!",
+    options: [
+      { text: "Yay! Let’s play!", nextStep: 5, xp: 10, emotion: 'excited' },
+      { text: "Tell me more!", nextStep: 6, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 4: Activities preview
+  {
+    id: 4,
+    speaker: 'mummy',
+    message: "Today we have puzzles, memory games, and word adventures — all chosen just for you.",
+    options: [
+      { text: "Sounds fun! Let’s start!", nextStep: 5, xp: 10, emotion: 'excited' },
+      { text: "How will this help me?", nextStep: 7, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 5: Transition to tasks
+  {
+    id: 5,
+    speaker: 'mummy',
+    message: "Alright champ! Your first mission has 5 fun challenges. I’ll be right here, cheering for you all the way.",
+    options: [],
+    action: 'startTasks',
+    emotion: 'proud'
+  },
+
+  // Step 6: Explain rewards + levels
+  {
+    id: 6,
+    speaker: 'mummy',
+    message: "As you level up, games unlock new worlds. Each level is a step in your real-life growth journey. I’m already imagining your bright future.",
+    options: [
+      { text: "Let’s go, Mummy!", nextStep: 5, xp: 5, emotion: 'excited' },
+      { text: "What do levels mean?", nextStep: 8, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 7: Why games help you
+  {
+    id: 7,
+    speaker: 'mummy',
+    message: "Every game trains your brain like exercise trains muscles. Soon you’ll notice — sharper focus, better memory, quicker problem solving.",
+    options: [
+      { text: "Wow, I’m ready to grow!", nextStep: 5, xp: 10, emotion: 'happy' },
+      { text: "Show me a game please!", nextStep: 5, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 8: Explaining Levels
+  {
+    id: 8,
+    speaker: 'mummy',
+    message: "Levels show how far you've come. The more you play and grow, the more amazing new things unlock — just for you!",
+    options: [
+      { text: "I want to unlock everything!", nextStep: 5, xp: 10, emotion: 'excited' },
+      { text: "What else makes CHIZEL special?", nextStep: 9, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 9: CHIZEL’s uniqueness
+  {
+    id: 9,
+    speaker: 'mummy',
+    message: "Sweetheart, CHIZEL is safe. No strangers, no ads. Only pure learning and love. Parents can also see how amazing you’re becoming.",
+    options: [
+      { text: "I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
+      { text: "Anything else that’s special?", nextStep: 10, xp: 5, emotion: 'curious' }
+    ]
+  },
+
+  // Step 10: Final reassurance
+  {
+    id: 10,
+    speaker: 'mummy',
+    message: "What makes CHIZEL special? It learns with you, adapts to you, and makes every day joyful. It’s built with care, like a gift from me to you.",
+    options: [
+      { text: "I already love it!", nextStep: 5, xp: 20, emotion: 'excited' },
+      { text: "Let’s start right now!", nextStep: 5, xp: 10, emotion: 'excited' }
+    ]
+  },
+
+  // Final Step (after tasks)
+  {
+    id: 11,
+    speaker: 'mummy',
+    message: "⭐ Incredible job, my superstar! ⭐ You’ve earned 250 XP and grown so much today. My heart is full of pride.",
+    options: [],
+    action: 'showFinalMessage',
+    emotion: 'proud'
+  }
 ];
 
 
+
         // Task Data - Updated with 5 questions and new word wizard sentence
-        const tasks = [
+      const tasks = [
     {
         id: 'brain-teaser',
         title: "🚀 MATH QUEST: Save the Hungry Aliens!",
         type: "brain-teaser",
-        question: "👽 Aliens are trapped on a planet! Each alien needs 5 cookies to survive. You have 20 cookies. How many aliens can you save before the spaceship leaves?",
-        options: ["4 aliens", "6 aliens", "5 aliens", "3 aliens"],
+        question: "👽 Aliens are trapped on a planet! Each alien needs 5 🍪 to survive. You have 20 🍪. How many aliens can you save before the spaceship leaves? ⏳",
+        options: ["4 aliens 🛸", "6 aliens 👽", "5 aliens 🚀", "3 aliens 🌌"],
         correctAnswer: 0,
         xp: 70
     },
@@ -1567,7 +1844,7 @@
         id: 'memory-game',
         title: "🪐 MEMORY MASTER: Match the Cosmic Planets",
         type: "memory-game",
-        instruction: "🚀 Your rocket fuel is locked! Match the cards (🌍 🌕 🪐 ☀️ 🚀 👽) to unlock the booster and continue your space journey!",
+        instruction: "🚀 Your rocket fuel ⛽ is locked! Match the cards (🌍 🌕 🪐 ☀️ 🚀 👽) to unlock the booster and continue your space journey! 🌌",
         pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽"],
         xp: 70
     },
@@ -1575,7 +1852,7 @@
         id: 'word-arrangement-india-4',
         title: "📜 WORD WIZARD: Anthem Builder",
         type: "word-arrangement",
-        instruction: "✨ The magic scroll is broken! Arrange the words to rebuild India’s national anthem correctly:",
+        instruction: "✨ The magic scroll is broken! 🪄 Arrange the words to rebuild India’s national anthem 🇮🇳 correctly:",
         words: ["of", "India", "the", "anthem", "is", "national", "Gana", "Jana", "Mana"],
         correctOrder: ["Jana", "Gana", "Mana", "is", "the", "national", "anthem", "of", "India"],
         xp: 70
@@ -1584,9 +1861,9 @@
         id: 'learn-fact',
         title: "🌍 SCIENCE DISCOVERY: Animal Wonders",
         type: "learn-fact",
-        fact: "💡 Did you know? A group of flamingos is called a 'flamboyance'! Their pink color comes from the shrimp they eat.",
-        question: "What gives flamingos their pink color?",
-        options: ["The sun", "The shrimp they eat", "Pink feathers", "The water"],
+        fact: "💡 Did you know? A group of flamingos is called a 'flamboyance'! 🦩 Their pink color comes from the shrimp 🍤 they eat.",
+        question: "❓ What gives flamingos their pink color?",
+        options: ["☀️ The sun", "🍤 The shrimp they eat", "🪶 Pink feathers", "💧 The water"],
         correctAnswer: 1,
         xp: 70
     },
@@ -1594,8 +1871,8 @@
         id: 'math-puzzle',
         title: "💰 NUMBER NINJA: Treasure Hunt",
         type: "brain-teaser",
-        question: "🏝️ You found 12 gold coins in a cave, then 8 more in a chest, but a sneaky parrot stole 5! How many do you have left?",
-        options: ["15 coins", "20 coins", "10 coins", "25 coins"],
+        question: "🏝️ You found 12 gold coins 💰 in a cave, then 8 more in a chest 🗝️, but a sneaky parrot 🦜 stole 5! How many do you have left?",
+        options: ["15 coins 🏆", "20 coins 💎", "10 coins 📉", "25 coins 🎉"],
         correctAnswer: 0,
         xp: 70
     },
@@ -1603,37 +1880,82 @@
         id: 'reasoning-quiz',
         title: "🧠 LOGIC MASTER: The Puzzle Gate",
         type: "reasoning-quiz",
-        instruction: "⚡ A magical gate blocks your path. Solve 5 riddles of logic to unlock it:",
+        instruction: "⚡ A magical gate blocks your path. Solve 5 riddles of logic to unlock it 🔑:",
         questions: [
             {
-                question: "If all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely Lazzies?",
-                options: ["Yes", "No", "Maybe", "Not enough information"],
-                correctAnswer: 0
-            },
-            {
-                question: "Which shape does not belong: Square, Circle, Triangle, Cube?",
-                options: ["Square", "Circle", "Triangle", "Cube"],
-                correctAnswer: 3
-            },
-            {
-                question: "If some cats are dogs and all dogs are cows, which must be true?",
-                options: ["All cats are cows", "Some cats are cows", "No cats are cows", "All cows are cats"],
+                question: "What word becomes shorter when you add two letters to it? ✍️",
+                options: ["Long", "Short", "Small", "Tiny"],
                 correctAnswer: 1
             },
             {
-                question: "What comes next in this pattern: 2, 4, 8, 16, ___?",
+                question: "Which shape has 3 sides? 🔺",
+                options: ["Square", "Circle", "Triangle", "Star"],
+                correctAnswer: 2
+            },
+            {
+                question: "How many months have 28 days? 📅",
+                options: ["1", "2", "6", "All of them"],
+                correctAnswer: 3
+            },
+            {
+                question: "What comes next in this pattern: 2, 4, 8, 16, ___? 🔢",
                 options: ["18", "20", "24", "32"],
                 correctAnswer: 3
             },
             {
-                question: "Which word doesn’t belong: Apple, Banana, Carrot, Orange?",
-                options: ["Apple", "Banana", "Carrot", "Orange"],
-                correctAnswer: 2
+                question: "If you have only one match and enter a room with an oil lamp, a candle, and a fireplace, what do you light first? 🕯️",
+                options: ["Oil lamp", "Candle", "Fireplace", "The match"],
+                correctAnswer: 3
             }
         ],
         xp: 100
-    }
+    },
+    // NEW TASKS 🚀 (Values + Ethics + Critical Thinking)
+    {
+        id: 'values-task',
+        title: "❤️ KINDNESS QUEST: The Lost Wallet",
+        type: "scenario-quiz",
+        question: "💼 You find a wallet on the road with ₹2000 inside. What will you do? 🤔",
+        options: [
+            "Keep it 🤑",
+            "Donate it 💝",
+            "Return it to the owner 🙌",
+            "Throw it away 🚮"
+        ],
+        correctAnswer: 2,
+        xp: 80
+    },
+    {
+        id: 'ethics-task',
+        title: "⚖️ ETHICS DILEMMA: The Exam Helper",
+        type: "scenario-quiz",
+        question: "📚 During an exam, your best friend asks for help by cheating. What is the best ethical choice?",
+        options: [
+            "Help them 👀",
+            "Say no politely 🙏",
+            "Give wrong answers 😈",
+            "Ignore completely 😶"
+        ],
+        correctAnswer: 1,
+        xp: 80
+    },
+    {
+    id: 'critical-thinking-task-4',
+    title: "🕰️ CRITICAL THINKING: The Upside-Down Clock",
+    type: "riddle",
+    question: "⏰ You look at a clock and the time is 3:15. If you turn the clock upside down, what time will it look like?",
+    options: [
+        "9:45 🔄",
+        "6:30 🔃",
+        "12:00 🔁",
+        "3:15 🔂"
+    ],
+    correctAnswer: 0,
+    xp: 90
+}
+
 ];
+
                 
 
         // Achievements Data
@@ -1663,7 +1985,7 @@
                 id: 'word-wizard',
                 title: "Word Wizard",
                 description: "Completed 5 word challenges!",
-                icon: "🔠",
+                icon: "🏎️",
                 xpBonus: 50
             },
             {
@@ -1672,6 +1994,28 @@
                 description: "Learned 10 science facts!",
                 icon: "🔬",
                 xpBonus: 50
+            },
+            // NEW ACHIEVEMENTS
+            {
+                id: 'values-champion',
+                title: "Values Champion",
+                description: "Completed all values-based challenges!",
+                icon: "❤️",
+                xpBonus: 60
+            },
+            {
+                id: 'ethics-guardian',
+                title: "Ethics Guardian",
+                description: "Made ethical choices in all scenarios!",
+                icon: "⚖️",
+                xpBonus: 70
+            },
+            {
+                id: 'critical-thinker',
+                title: "Critical Thinker",
+                description: "Solved all critical thinking puzzles!",
+                icon: "🔍",
+                xpBonus: 80
             }
         ];
 
@@ -1679,6 +2023,7 @@
         function initGame() {
             createStars();
             updateLevel();
+            updateXPBar();
             showStoryStep(0);
             createStoryTracker();
             checkDailyReward();
@@ -1958,6 +2303,12 @@
                     break;
                 case 'reasoning-quiz':
                     createReasoningQuiz(task);
+                    break;
+                case 'scenario-quiz': // NEW
+                    createScenarioQuiz(task);
+                    break;
+                case 'riddle': // NEW
+                    createRiddle(task);
                     break;
             }
             
@@ -2298,6 +2649,88 @@
             elements.taskContent.appendChild(container);
         }
 
+        // NEW: Create scenario quiz task (Values + Ethics)
+        function createScenarioQuiz(task) {
+            const container = document.createElement('div');
+            container.className = 'scenario-quiz';
+            
+            const scenario = document.createElement('div');
+            scenario.className = 'scenario-text';
+            scenario.textContent = task.question;
+            container.appendChild(scenario);
+            
+            const options = document.createElement('div');
+            options.className = 'scenario-options';
+            
+            task.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'scenario-option';
+                optionElement.textContent = option;
+                
+                optionElement.addEventListener('click', () => {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.scenario-option').forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    optionElement.classList.add('selected');
+                    
+                    // Store selected answer
+                    gameState.currentTask.selectedAnswer = index;
+                    
+                    // Show submit button
+                    elements.taskSubmit.classList.remove('hidden');
+                });
+                
+                options.appendChild(optionElement);
+            });
+            
+            container.appendChild(options);
+            elements.taskContent.appendChild(container);
+        }
+
+        // NEW: Create riddle task (Critical Thinking)
+        function createRiddle(task) {
+            const container = document.createElement('div');
+            container.className = 'riddle';
+            
+            const riddle = document.createElement('div');
+            riddle.className = 'riddle-text';
+            riddle.textContent = task.question;
+            container.appendChild(riddle);
+            
+            const options = document.createElement('div');
+            options.className = 'riddle-options';
+            
+            task.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'riddle-option';
+                optionElement.textContent = option;
+                
+                optionElement.addEventListener('click', () => {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.riddle-option').forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    optionElement.classList.add('selected');
+                    
+                    // Store selected answer
+                    gameState.currentTask.selectedAnswer = index;
+                    
+                    // Show submit button
+                    elements.taskSubmit.classList.remove('hidden');
+                });
+                
+                options.appendChild(optionElement);
+            });
+            
+            container.appendChild(options);
+            elements.taskContent.appendChild(container);
+        }
+
         // Check task answer
         function checkTaskAnswer() {
             const task = gameState.currentTask;
@@ -2307,6 +2740,8 @@
             switch (task.type) {
                 case 'brain-teaser':
                 case 'learn-fact':
+                case 'scenario-quiz': // NEW
+                case 'riddle': // NEW
                     isCorrect = (task.selectedAnswer === task.correctAnswer);
                     break;
                 case 'memory-game':
@@ -2395,8 +2830,21 @@
         // Add XP
         function addXP(amount) {
             gameState.xp += amount;
+            updateXPBar();
             checkLevelUp();
             localStorage.setItem('chizelXP', gameState.xp.toString());
+        }
+
+        // Update XP bar
+        function updateXPBar() {
+            const neededXP = gameState.level * 100;
+            const progressPercentage = Math.min(100, (gameState.xp / neededXP) * 100);
+            
+            elements.xpProgress.style.width = `${progressPercentage}%`;
+            elements.xpText.textContent = `${gameState.xp}/${neededXP} XP`;
+            
+            // Update level progress bar
+            elements.levelProgress.style.width = `${progressPercentage}%`;
         }
 
         // Check for level up
@@ -2405,13 +2853,14 @@
             if (gameState.xp >= neededXP) {
                 gameState.level++;
                 updateLevel();
-                showAchievement(`Level ${gameState.level} Unlocked!`, "⬆️");
+                showAchievement(`Level ${gameState.level} Unlocked!`, "⬆🏎️");
             }
         }
 
         // Update level display
         function updateLevel() {
             elements.levelValue.textContent = gameState.level;
+            updateXPBar();
             localStorage.setItem('chizelLevel', gameState.level.toString());
         }
 
@@ -2491,6 +2940,39 @@
                 localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Word Wizard", "🔠");
                 addXP(50);
+            }
+            
+            // NEW: Values Champion achievement
+            const valuesTasksCompleted = gameState.completedTasks.filter(id => 
+                id === 'values-task').length;
+            if (valuesTasksCompleted >= 1 && 
+                !gameState.achievements.includes('values-champion')) {
+                gameState.achievements.push('values-champion');
+                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                showAchievement("Values Champion", "❤️");
+                addXP(60);
+            }
+            
+            // NEW: Ethics Guardian achievement
+            const ethicsTasksCompleted = gameState.completedTasks.filter(id => 
+                id === 'ethics-task').length;
+            if (ethicsTasksCompleted >= 1 && 
+                !gameState.achievements.includes('ethics-guardian')) {
+                gameState.achievements.push('ethics-guardian');
+                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                showAchievement("Ethics Guardian", "⚖️");
+                addXP(70);
+            }
+            
+            // NEW: Critical Thinker achievement
+            const criticalThinkingTasksCompleted = gameState.completedTasks.filter(id => 
+                id === 'critical-thinking-task').length;
+            if (criticalThinkingTasksCompleted >= 1 && 
+                !gameState.achievements.includes('critical-thinker')) {
+                gameState.achievements.push('critical-thinker');
+                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                showAchievement("Critical Thinker", "🔍");
+                addXP(80);
             }
         }
 
