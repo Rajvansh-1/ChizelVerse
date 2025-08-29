@@ -285,7 +285,8 @@
         
         /* NEW STYLES FOR MOBILE LEVEL DISPLAY */
         .mobile-level-container {
-            display: none; /* Hidden by default on desktop */
+            display: none;
+            /* Hidden by default on desktop */
             background-color: rgba(26, 46, 64, 0.8);
             border: 2px solid var(--secondary);
             border-radius: 25px;
@@ -458,8 +459,10 @@
         }
 
         @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
-            30% { transform: translateY(-5px); opacity: 1; }
+            0%, 60%, 100% { transform: translateY(0);
+            opacity: 0.6; }
+            30% { transform: translateY(-5px); opacity: 1;
+            }
         }
 
         /* Options Container - Simplified layout */
@@ -1273,7 +1276,8 @@
             }
             
             .options-container {
-                bottom: 12%; /* Increased from 8% */
+                bottom: 12%;
+                /* Increased from 8% */
                 padding: 15px;
             }
             
@@ -1311,7 +1315,7 @@
             
             /* HIDE original stats and SHOW new level display on mobile */
             .game-stats {
-                display: none; 
+                display: none;
             }
             
             .mobile-level-container {
@@ -1331,7 +1335,8 @@
             
             /* Adjust daily reward button position */
             .daily-reward-btn {
-                bottom: 25px; /* Increased from 20px */
+                bottom: 25px;
+                /* Increased from 20px */
             }
             
             /* Level Bar Styles */
@@ -1363,8 +1368,9 @@
                 font-size: 14px;
             }
             .mobile-level-container {
-    top: 80px; /* This adds the needed gap on small screens */
-}
+                top: 80px;
+                /* This adds the needed gap on small screens */
+            }
             
             .character {
                 width: 50%;
@@ -1389,7 +1395,8 @@
             }
             
             .options-container {
-                bottom: 15%; /* Increased from 5% */
+                bottom: 15%;
+                /* Increased from 5% */
                 padding: 12px;
                 gap: 10px;
             }
@@ -1442,7 +1449,8 @@
             }
             
             .mobile-level-container {
-                top: 80px; /* Adjust for smaller logo */
+                top: 80px;
+                /* Adjust for smaller logo */
             }
 
             .mobile-level-label {
@@ -1465,7 +1473,8 @@
             
             /* Adjust story tracker position */
             .story-tracker {
-                bottom: 25px; /* Increased from 20px */
+                bottom: 25px;
+                /* Increased from 20px */
             }
         }
 
@@ -1608,11 +1617,10 @@
             <button class="promo-close" id="promo-close">×</button>
             <div class="promo-header">
                 <div class="promo-avatar">M</div>
-                <div class="promo-title">LAUNCHING SOON! <br>THE CHIZEL APP 💙</div>
+                <div class="promo-title">LAUNCHING SOON!<br>THE CHIZEL APP 💙</div>
             </div>
             <div class="promo-message">
-                Wow! You're doing amazing! Did you know our CHIZEL app has even more fun learning games and adventures? 
-                <br><br>
+                Wow! You're doing amazing! Did you know our CHIZEL app has even more fun learning games and adventures?<br><br>
                 Get the full experience with 100+ activities, daily challenges, and special rewards!
             </div>
             <button class="promo-button" id="promo-button">
@@ -1625,17 +1633,17 @@
         // Game State
         const gameState = {
             currentStep: 0,
-            xp: localStorage.getItem('chizelXP') ? parseInt(localStorage.getItem('chizelXP')) : 0,
-            level: localStorage.getItem('chizelLevel') ? parseInt(localStorage.getItem('chizelLevel')) : 1,
-            completedTasks: JSON.parse(localStorage.getItem('chizelCompletedTasks')) || [],
-            achievements: JSON.parse(localStorage.getItem('chizelAchievements')) || [],
+            xp: 0,
+            level: 1,
+            completedTasks: [],
+            achievements: [],
             currentTask: null,
             taskCompleted: false,
             storyProgress: 0,
-            lastLoginDate: localStorage.getItem('chizelLastLogin') || null,
+            lastLoginDate: null,
             audioEnabled: false
         };
-
+        
         // DOM Elements
         const elements = {
             leftCharacter: document.querySelector('.character.left'),
@@ -1665,7 +1673,7 @@
             promoClose: document.getElementById('promo-close'),
             promoButton: document.getElementById('promo-button')
         };
-
+        
         // Create stars for background
         function createStars() {
             for (let i = 0; i < 200; i++) {
@@ -1682,270 +1690,265 @@
             }
         }
  
-// Story Script – Emotional, Interactive, and Logically Structured
-const storyScript = [
-  // Step 0: Warm Welcome
-  {
-    id: 0,
-    speaker: 'mummy',
-    message: "👋 Hello my little star! I’m so happy to see you today. Welcome to CHIZEL — where screen time becomes growth time.",
-    options: [
-      { text: "Hi Mummy, what’s CHIZEL?", nextStep: 1, xp: 5, emotion: 'curious' },
-      { text: "I’m ready to learn!", nextStep: 2, xp: 5, emotion: 'excited' }
-    ]
-  },
+        // Story Script – Emotional, Interactive, and Logically Structured
+        const storyScript = [
+          // Step 0: Warm Welcome
+          {
+            id: 0,
+            speaker: 'mummy',
+            message: "👋 Hello my little star! I’m so happy to see you today. Welcome to CHIZEL — where screen time becomes growth time.",
+            options: [
+              { text: "Hi Mummy, what’s CHIZEL?", nextStep: 1, xp: 5, emotion: 'curious' },
+              { text: "I’m ready to learn!", nextStep: 2, xp: 5, emotion: 'excited' }
+            ]
+          },
 
-  // Step 1: Intro to CHIZEL (from curiosity)
-  {
-    id: 1,
-    speaker: 'mummy',
-    message: "CHIZEL is our safe space for learning and fun. Every game here makes your mind stronger and your heart happier.",
-    options: [
-      { text: "That sounds wonderful!", nextStep: 3, xp: 5, emotion: 'happy' },
-      { text: "What will I do today?", nextStep: 4, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 1: Intro to CHIZEL (from curiosity)
+          {
+            id: 1,
+            speaker: 'mummy',
+            message: "CHIZEL is our safe space for learning and fun. Every game here makes your mind stronger and your heart happier.",
+            options: [
+              { text: "That sounds wonderful!", nextStep: 3, xp: 5, emotion: 'happy' },
+              { text: "What will I do today?", nextStep: 4, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 2: Eager player goes straight to encouragement
-  {
-    id: 2,
-    speaker: 'mummy',
-    message: "Each challenge you complete earns XP and shows how much you’re growing. You’re already making me so proud.",
-    options: [
-      { text: "Let’s start, I’m excited!", nextStep: 5, xp: 10, emotion: 'excited' },
-      { text: "Tell me more first!", nextStep: 6, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 2: Eager player goes straight to encouragement
+          {
+            id: 2,
+            speaker: 'mummy',
+            message: "Each challenge you complete earns XP and shows how much you’re growing. You’re already making me so proud.",
+            options: [
+              { text: "Let’s start, I’m excited!", nextStep: 5, xp: 10, emotion: 'excited' },
+              { text: "Tell me more first!", nextStep: 6, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 3: From "That sounds wonderful!" to what's next
-  {
-    id: 3,
-    speaker: 'mummy',
-    message: "Each challenge helps you grow smarter and stronger. And guess what? You earn XP with every step!",
-    options: [
-      { text: "Yay! Let’s play!", nextStep: 5, xp: 10, emotion: 'excited' },
-      { text: "Tell me more!", nextStep: 6, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 3: From "That sounds wonderful!" to what's next
+          {
+            id: 3,
+            speaker: 'mummy',
+            message: "Each challenge helps you grow smarter and stronger. And guess what? You earn XP with every step!",
+            options: [
+              { text: "Yay! Let’s play!", nextStep: 5, xp: 10, emotion: 'excited' },
+              { text: "Tell me more!", nextStep: 6, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 4: Activities preview
-  {
-    id: 4,
-    speaker: 'mummy',
-    message: "Today we have puzzles, memory games, and word adventures — all chosen just for you.",
-    options: [
-      { text: "Sounds fun! Let’s start!", nextStep: 5, xp: 10, emotion: 'excited' },
-      { text: "How will this help me?", nextStep: 7, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 4: Activities preview
+          {
+            id: 4,
+            speaker: 'mummy',
+            message: "Today we have puzzles, memory games, and word adventures — all chosen just for you.",
+            options: [
+              { text: "Sounds fun! Let’s start!", nextStep: 5, xp: 10, emotion: 'excited' },
+              { text: "How will this help me?", nextStep: 7, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 5: Transition to tasks
-  {
-    id: 5,
-    speaker: 'mummy',
-    message: "Alright champ! Your first mission has 5 fun challenges. I’ll be right here, cheering for you all the way.",
-    options: [],
-    action: 'startTasks',
-    emotion: 'proud'
-  },
+          // Step 5: Transition to tasks
+          {
+            id: 5,
+            speaker: 'mummy',
+            message: "Alright champ! Your first mission has 5 fun challenges. I’ll be right here, cheering for you all the way.",
+            options: [],
+            action: 'startTasks',
+            emotion: 'proud'
+          },
 
-  // Step 6: Explain rewards + levels
-  {
-    id: 6,
-    speaker: 'mummy',
-    message: "As you level up, games unlock new worlds. Each level is a step in your real-life growth journey. I’m already imagining your bright future.",
-    options: [
-      { text: "Let’s go, Mummy!", nextStep: 5, xp: 5, emotion: 'excited' },
-      { text: "What do levels mean?", nextStep: 8, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 6: Explain rewards + levels
+          {
+            id: 6,
+            speaker: 'mummy',
+            message: "As you level up, games unlock new worlds. Each level is a step in your real-life growth journey. I’m already imagining your bright future.",
+            options: [
+              { text: "Let’s go, Mummy!", nextStep: 5, xp: 5, emotion: 'excited' },
+              { text: "What do levels mean?", nextStep: 8, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 7: Why games help you
-  {
-    id: 7,
-    speaker: 'mummy',
-    message: "Every game trains your brain like exercise trains muscles. Soon you’ll notice — sharper focus, better memory, quicker problem solving.",
-    options: [
-      { text: "Wow, I’m ready to grow!", nextStep: 5, xp: 10, emotion: 'happy' },
-      { text: "Show me a game please!", nextStep: 5, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 7: Why games help you
+          {
+            id: 7,
+            speaker: 'mummy',
+            message: "Every game trains your brain like exercise trains muscles. Soon you’ll notice — sharper focus, better memory, quicker problem solving.",
+            options: [
+              { text: "Wow, I’m ready to grow!", nextStep: 5, xp: 10, emotion: 'happy' },
+              { text: "Show me a game please!", nextStep: 5, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 8: Explaining Levels
-  {
-    id: 8,
-    speaker: 'mummy',
-    message: "Levels show how far you've come. The more you play and grow, the more amazing new things unlock — just for you!",
-    options: [
-      { text: "I want to unlock everything!", nextStep: 5, xp: 10, emotion: 'excited' },
-      { text: "What else makes CHIZEL special?", nextStep: 9, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 8: Explaining Levels
+          {
+            id: 8,
+            speaker: 'mummy',
+            message: "Levels show how far you've come. The more you play and grow, the more amazing new things unlock — just for you!",
+            options: [
+              { text: "I want to unlock everything!", nextStep: 5, xp: 10, emotion: 'excited' },
+              { text: "What else makes CHIZEL special?", nextStep: 9, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 9: CHIZEL’s uniqueness
-  {
-    id: 9,
-    speaker: 'mummy',
-    message: "Sweetheart, CHIZEL is safe. No strangers, no ads. Only pure learning and love. Parents can also see how amazing you’re becoming.",
-    options: [
-      { text: "I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
-      { text: "Anything else that’s special?", nextStep: 10, xp: 5, emotion: 'curious' }
-    ]
-  },
+          // Step 9: CHIZEL’s uniqueness
+          {
+            id: 9,
+            speaker: 'mummy',
+            message: "Sweetheart, CHIZEL is safe. No strangers, no ads. Only pure learning and love. Parents can also see how amazing you’re becoming.",
+            options: [
+              { text: "I love making them proud!", nextStep: 5, xp: 15, emotion: 'happy' },
+              { text: "Anything else that’s special?", nextStep: 10, xp: 5, emotion: 'curious' }
+            ]
+          },
 
-  // Step 10: Final reassurance
-  {
-    id: 10,
-    speaker: 'mummy',
-    message: "What makes CHIZEL special? It learns with you, adapts to you, and makes every day joyful. It’s built with care, like a gift from me to you.",
-    options: [
-      { text: "I already love it!", nextStep: 5, xp: 20, emotion: 'excited' },
-      { text: "Let’s start right now!", nextStep: 5, xp: 10, emotion: 'excited' }
-    ]
-  },
+          // Step 10: Final reassurance
+          {
+            id: 10,
+            speaker: 'mummy',
+            message: "What makes CHIZEL special? It learns with you, adapts to you, and makes every day joyful. It’s built with care, like a gift from me to you.",
+            options: [
+              { text: "I already love it!", nextStep: 5, xp: 20, emotion: 'excited' },
+              { text: "Let’s start right now!", nextStep: 5, xp: 10, emotion: 'excited' }
+            ]
+          },
 
-  // Final Step (after tasks)
-  {
-    id: 11,
-    speaker: 'mummy',
-    message: "⭐ Incredible job, my superstar! ⭐ You’ve earned 250 XP and grown so much today. My heart is full of pride.",
-    options: [],
-    action: 'showFinalMessage',
-    emotion: 'proud'
-  }
-];
-
-
+          // Final Step (after tasks)
+          {
+            id: 11,
+            speaker: 'mummy',
+            message: "⭐ Incredible job, my superstar! ⭐ You’ve earned 250 XP and grown so much today. My heart is full of pride.",
+            options: [],
+            action: 'showFinalMessage',
+            emotion: 'proud'
+          }
+        ];
 
         // Task Data - Updated with 5 questions and new word wizard sentence
-      const tasks = [
-    {
-        id: 'brain-teaser',
-        title: "🚀 MATH QUEST: Save the Hungry Aliens!",
-        type: "brain-teaser",
-        question: "👽 Aliens are trapped on a planet! Each alien needs 5 🍪 to survive. You have 20 🍪. How many aliens can you save before the spaceship leaves? ⏳",
-        options: ["4 aliens 🛸", "6 aliens 👽", "5 aliens 🚀", "3 aliens 🌌"],
-        correctAnswer: 0,
-        xp: 70
-    },
-    {
-        id: 'memory-game',
-        title: "🪐 MEMORY MASTER: Match the Cosmic Planets",
-        type: "memory-game",
-        instruction: "🚀 Your rocket fuel ⛽ is locked! Match the cards (🌍 🌕 🪐 ☀️ 🚀 👽) to unlock the booster and continue your space journey! 🌌",
-        pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽"],
-        xp: 70
-    },
-    {
-        id: 'word-arrangement-india-4',
-        title: "📜 WORD WIZARD: Anthem Builder",
-        type: "word-arrangement",
-        instruction: "✨ The magic scroll is broken! 🪄 Arrange the words to rebuild India’s national anthem 🇮🇳 correctly:",
-        words: ["of", "India", "the", "anthem", "is", "national", "Gana", "Jana", "Mana"],
-        correctOrder: ["Jana", "Gana", "Mana", "is", "the", "national", "anthem", "of", "India"],
-        xp: 70
-    },
-    {
-        id: 'learn-fact',
-        title: "🌍 SCIENCE DISCOVERY: Animal Wonders",
-        type: "learn-fact",
-        fact: "💡 Did you know? A group of flamingos is called a 'flamboyance'! 🦩 Their pink color comes from the shrimp 🍤 they eat.",
-        question: "❓ What gives flamingos their pink color?",
-        options: ["☀️ The sun", "🍤 The shrimp they eat", "🪶 Pink feathers", "💧 The water"],
-        correctAnswer: 1,
-        xp: 70
-    },
-    {
-        id: 'math-puzzle',
-        title: "💰 NUMBER NINJA: Treasure Hunt",
-        type: "brain-teaser",
-        question: "🏝️ You found 12 gold coins 💰 in a cave, then 8 more in a chest 🗝️, but a sneaky parrot 🦜 stole 5! How many do you have left?",
-        options: ["15 coins 🏆", "20 coins 💎", "10 coins 📉", "25 coins 🎉"],
-        correctAnswer: 0,
-        xp: 70
-    },
-    {
-        id: 'reasoning-quiz',
-        title: "🧠 LOGIC MASTER: The Puzzle Gate",
-        type: "reasoning-quiz",
-        instruction: "⚡ A magical gate blocks your path. Solve 5 riddles of logic to unlock it 🔑:",
-        questions: [
+        const tasks = [
             {
-                question: "What word becomes shorter when you add two letters to it? ✍️",
-                options: ["Long", "Short", "Small", "Tiny"],
-                correctAnswer: 1
+                id: 'brain-teaser',
+                title: "🚀 MATH QUEST: Save the Hungry Aliens!",
+                type: "brain-teaser",
+                question: "👽 Aliens are trapped on a planet! Each alien needs 5 🍪 to survive. You have 20 🍪. How many aliens can you save before the spaceship leaves? ⏳",
+                options: ["4 aliens 🛸", "6 aliens 👽", "5 aliens 🚀", "3 aliens 🌌"],
+                correctAnswer: 0,
+                xp: 70
             },
             {
-                question: "Which shape has 3 sides? 🔺",
-                options: ["Square", "Circle", "Triangle", "Star"],
-                correctAnswer: 2
+                id: 'memory-game',
+                title: "🪐 MEMORY MASTER: Match the Cosmic Planets",
+                type: "memory-game",
+                instruction: "🚀 Your rocket fuel ⛽ is locked! Match the cards (🌍 🌕 🪐 ☀️ 🚀 👽) to unlock the booster and continue your space journey! 🌌",
+                pairs: ["🌍", "🌕", "🪐", "☀️", "🚀", "👽"],
+                xp: 70
             },
             {
-                question: "How many months have 28 days? 📅",
-                options: ["1", "2", "6", "All of them"],
-                correctAnswer: 3
+                id: 'word-arrangement-india-4',
+                title: "📜 WORD WIZARD: Anthem Builder",
+                type: "word-arrangement",
+                instruction: "✨ The magic scroll is broken! 🪄 Arrange the words to rebuild India’s national anthem 🇮🇳 correctly:",
+                words: ["of", "India", "the", "anthem", "is", "national", "Gana", "Jana", "Mana"],
+                correctOrder: ["Jana", "Gana", "Mana", "is", "the", "national", "anthem", "of", "India"],
+                xp: 70
             },
             {
-                question: "What comes next in this pattern: 2, 4, 8, 16, ___? 🔢",
-                options: ["18", "20", "24", "32"],
-                correctAnswer: 3
+                id: 'learn-fact',
+                title: "🌍 SCIENCE DISCOVERY: Animal Wonders",
+                type: "learn-fact",
+                fact: "💡 Did you know? A group of flamingos is called a 'flamboyance'! 🦩 Their pink color comes from the shrimp 🍤 they eat.",
+                question: "❓ What gives flamingos their pink color?",
+                options: ["☀️ The sun", "🍤 The shrimp they eat", "🪶 Pink feathers", "💧 The water"],
+                correctAnswer: 1,
+                xp: 70
             },
             {
-                question: "If you have only one match and enter a room with an oil lamp, a candle, and a fireplace, what do you light first? 🕯️",
-                options: ["Oil lamp", "Candle", "Fireplace", "The match"],
-                correctAnswer: 3
+                id: 'math-puzzle',
+                title: "💰 NUMBER NINJA: Treasure Hunt",
+                type: "brain-teaser",
+                question: "🏝️ You found 12 gold coins 💰 in a cave, then 8 more in a chest 🗝️, but a sneaky parrot 🦜 stole 5! How many do you have left?",
+                options: ["15 coins 🏆", "20 coins 💎", "10 coins 📉", "25 coins 🎉"],
+                correctAnswer: 0,
+                xp: 70
+            },
+            {
+                id: 'reasoning-quiz',
+                title: "🧠 LOGIC MASTER: The Puzzle Gate",
+                type: "reasoning-quiz",
+                instruction: "⚡ A magical gate blocks your path. Solve 5 riddles of logic to unlock it 🔑:",
+                questions: [
+                    {
+                        question: "What word becomes shorter when you add two letters to it? ✍️",
+                        options: ["Long", "Short", "Small", "Tiny"],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Which shape has 3 sides? 🔺",
+                        options: ["Square", "Circle", "Triangle", "Star"],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "How many months have 28 days? 📅",
+                        options: ["1", "2", "6", "All of them"],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "What comes next in this pattern: 2, 4, 8, 16, ___? 🔢",
+                        options: ["18", "20", "24", "32"],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "If you have only one match and enter a room with an oil lamp, a candle, and a fireplace, what do you light first? 🕯️",
+                        options: ["Oil lamp", "Candle", "Fireplace", "The match"],
+                        correctAnswer: 3
+                    }
+                ],
+                xp: 100
+            },
+            // NEW TASKS 🚀 (Values + Ethics + Critical Thinking)
+            {
+                id: 'values-task',
+                title: "❤️ KINDNESS QUEST: The Lost Wallet",
+                type: "scenario-quiz",
+                question: "💼 You find a wallet on the road with ₹2000 inside. What will you do? 🤔",
+                options: [
+                    "Keep it 🤑",
+                    "Donate it 💝",
+                    "Return it to the owner 🙌",
+                    "Throw it away 🚮"
+                ],
+                correctAnswer: 2,
+                xp: 80
+            },
+            {
+                id: 'ethics-task',
+                title: "⚖️ ETHICS DILEMMA: The Exam Helper",
+                type: "scenario-quiz",
+                question: "📚 During an exam, your best friend asks for help by cheating. What is the best ethical choice?",
+                options: [
+                    "Help them 👀",
+                    "Say no politely 🙏",
+                    "Give wrong answers 😈",
+                    "Ignore completely 😶"
+                ],
+                correctAnswer: 1,
+                xp: 80
+            },
+            {
+                id: 'critical-thinking-task-4',
+                title: "🕰️ CRITICAL THINKING: The Upside-Down Clock",
+                type: "riddle",
+                question: "⏰ You look at a clock and the time is 3:15. If you turn the clock upside down, what time will it look like?",
+                options: [
+                    "9:45 🔄",
+                    "6:30 🔃",
+                    "12:00 🔁",
+                    "3:15 🔂"
+                ],
+                correctAnswer: 0,
+                xp: 90
             }
-        ],
-        xp: 100
-    },
-    // NEW TASKS 🚀 (Values + Ethics + Critical Thinking)
-    {
-        id: 'values-task',
-        title: "❤️ KINDNESS QUEST: The Lost Wallet",
-        type: "scenario-quiz",
-        question: "💼 You find a wallet on the road with ₹2000 inside. What will you do? 🤔",
-        options: [
-            "Keep it 🤑",
-            "Donate it 💝",
-            "Return it to the owner 🙌",
-            "Throw it away 🚮"
-        ],
-        correctAnswer: 2,
-        xp: 80
-    },
-    {
-        id: 'ethics-task',
-        title: "⚖️ ETHICS DILEMMA: The Exam Helper",
-        type: "scenario-quiz",
-        question: "📚 During an exam, your best friend asks for help by cheating. What is the best ethical choice?",
-        options: [
-            "Help them 👀",
-            "Say no politely 🙏",
-            "Give wrong answers 😈",
-            "Ignore completely 😶"
-        ],
-        correctAnswer: 1,
-        xp: 80
-    },
-    {
-    id: 'critical-thinking-task-4',
-    title: "🕰️ CRITICAL THINKING: The Upside-Down Clock",
-    type: "riddle",
-    question: "⏰ You look at a clock and the time is 3:15. If you turn the clock upside down, what time will it look like?",
-    options: [
-        "9:45 🔄",
-        "6:30 🔃",
-        "12:00 🔁",
-        "3:15 🔂"
-    ],
-    correctAnswer: 0,
-    xp: 90
-}
-
-];
-
-                
-
+        ];
+        
         // Achievements Data
         const achievements = [
             {
@@ -2006,7 +2009,7 @@ const storyScript = [
                 xpBonus: 80
             }
         ];
-
+        
         // Initialize the game
         function initGame() {
             createStars();
@@ -2018,30 +2021,45 @@ const storyScript = [
             
             // Set up task submit button
             elements.taskSubmit.addEventListener('click', checkTaskAnswer);
-            
             // Set up daily reward button
             elements.dailyRewardBtn.addEventListener('click', giveDailyReward);
-            
             // Set up back button
             elements.backBtn.addEventListener('click', () => {
                 window.location.href = "https://chizel.in";
             });
-            
             // Set up Chizel app promotion
             elements.promoClose.addEventListener('click', () => toggleChizelPromo(false));
             elements.promoButton.addEventListener('click', () => {
                 alert("Redirecting to app store to download CHIZEL app!");
                 toggleChizelPromo(false);
             });
-            
             // Show characters with animation
             setTimeout(() => {
                 elements.leftCharacter.classList.add('visible');
                 elements.rightCharacter.classList.add('visible');
             }, 500);
-            
             // Check for achievements
             checkAchievements();
+        }
+
+        // NEW: Function to reset the game state for "Play Again"
+        function resetGame() {
+            // Reset game state variables
+            gameState.currentStep = 0;
+            gameState.xp = 0;
+            gameState.level = 1;
+            gameState.completedTasks = [];
+            gameState.achievements = [];
+            gameState.currentTask = null;
+            gameState.taskCompleted = false;
+            
+            // Update UI elements to reflect the reset state
+            updateLevel();
+            updateXPBar();
+            
+            // Hide the task container and restart the story
+            elements.taskContainer.classList.remove('visible');
+            showStoryStep(0);
         }
 
         // Toggle Chizel app promotion
@@ -2075,7 +2093,6 @@ const storyScript = [
             
             addXP(rewardAmount);
             showAchievement(`Daily Reward: ${rewardAmount} XP!`, isWeekend ? "🎉" : "🎁");
-            
             elements.dailyRewardBtn.style.display = 'none';
         }
 
@@ -2113,28 +2130,22 @@ const storyScript = [
             
             // Update story progress
             gameState.storyProgress = (stepIndex / storyScript.length) * 100;
-            
             // Clear options
             elements.optionsContainer.innerHTML = '';
             elements.optionsContainer.classList.remove('visible');
-            
             // Hide kid bubble if it's Mummy's turn to speak
             elements.kidSpeech.classList.remove('visible');
-            
             // Set character emotion
             setCharacterEmotion(step.emotion || 'normal');
-            
             if (step.speaker === 'mummy') {
                 // Show typing indicator
+                elements.motherSpeech.classList.add('visible');
+                elements.motherBubbleContent.innerHTML = '';
                 elements.typingIndicator.style.display = 'flex';
-                
                 // Type out the message
                 typeMessage(step.message, elements.motherBubbleContent, () => {
                     // Hide typing indicator when done
                     elements.typingIndicator.style.display = 'none';
-                    
-                    // Show bubble
-                    elements.motherSpeech.classList.add('visible');
                     
                     // If there's an action, perform it
                     if (step.action) {
@@ -2165,7 +2176,6 @@ const storyScript = [
         function setCharacterEmotion(emotion) {
             // Remove all emotion classes
             elements.leftCharacter.classList.remove('character-happy', 'character-excited');
-            
             // Add appropriate emotion class
             if (emotion === 'happy') {
                 elements.leftCharacter.classList.add('character-happy');
@@ -2174,7 +2184,6 @@ const storyScript = [
             }
         }
 
-        // ========== THE FIX IS HERE ==========
         // Type message with typing animation
         function typeMessage(message, element, callback) {
             // This line correctly handles emojis and other multi-byte characters
@@ -2198,7 +2207,6 @@ const storyScript = [
         // Show response options
         function showOptions(options) {
             elements.optionsContainer.innerHTML = '';
-            
             options.forEach(option => {
                 const button = document.createElement('button');
                 button.className = 'option-btn';
@@ -2223,7 +2231,6 @@ const storyScript = [
                         }
                     }, 800);
                 });
-                
                 elements.optionsContainer.appendChild(button);
             });
             
@@ -2262,22 +2269,23 @@ const storyScript = [
 
         // Show task
         function showTask(taskIndex) {
-            if (taskIndex >= tasks.length) {
+            const availableTasks = tasks.filter(t => !gameState.completedTasks.includes(t.id));
+            if (availableTasks.length === 0)
+
+{ // End after 5 tasks
                 // All tasks completed
-                showStoryStep(storyScript.length - 1);
+                showStoryStep(11); // Go to final story step
                 return;
             }
             
-            const task = tasks[taskIndex];
+            const task = availableTasks[0]; // Always show the next available task
             gameState.currentTask = task;
             
             // Set task header
             elements.taskHeader.textContent = task.title;
-            
             // Clear previous task content
             elements.taskContent.innerHTML = '';
             elements.taskSubmit.classList.add('hidden');
-            
             // Create task based on type
             switch (task.type) {
                 case 'brain-teaser':
@@ -2330,7 +2338,7 @@ const storyScript = [
                     document.querySelectorAll('.teaser-option').forEach(el => {
                         el.classList.remove('selected');
                     });
-                    
+            
                     // Add selected class to clicked option
                     optionElement.classList.add('selected');
                     
@@ -2356,7 +2364,6 @@ const storyScript = [
             const instruction = document.createElement('div');
             instruction.className = 'challenge-instruction';
             instruction.textContent = "Match the pairs to strengthen your memory!";
-            
             // Countdown timer
             let countdown = 2;
             const countdownInterval = setInterval(() => {
@@ -2364,15 +2371,14 @@ const storyScript = [
                 countdown--;
                 if (countdown < 0) {
                     clearInterval(countdownInterval);
+                
                     instruction.textContent = "Match the pairs to strengthen your memory!";
                 }
             }, 1000);
-            
             container.appendChild(instruction);
             
             // Select 4 pairs for the 3x3 grid (8 cards + 1 unmatched card)
             const selectedPairs = task.pairs.slice(0, 4);
-            
             // Create cards array with pairs and one extra card
             const cards = [...selectedPairs, ...selectedPairs, task.pairs[4]];
             shuffleArray(cards);
@@ -2396,7 +2402,6 @@ const storyScript = [
                 
                 board.appendChild(card);
             });
-            
             container.appendChild(board);
             elements.taskContent.appendChild(container);
             
@@ -2421,7 +2426,6 @@ const storyScript = [
                         card.classList.add('flipped');
                         card.textContent = card.dataset.symbol;
                         flippedCards.push(card);
-                        
                         // Check for match when two cards are flipped
                         if (flippedCards.length === 2) {
                             if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
@@ -2434,7 +2438,6 @@ const storyScript = [
                                 
                                 // Clear flipped cards array
                                 flippedCards = [];
-                                
                                 // Check if all pairs are matched
                                 if (matchedPairs === selectedPairs.length) {
                                     gameState.currentTask.completed = true;
@@ -2509,7 +2512,6 @@ const storyScript = [
                                 errorMsg.style.marginTop = '15px';
                                 errorMsg.textContent = 'Not quite right! Try again!';
                                 container.appendChild(errorMsg);
-                                
                                 // Reset after delay
                                 setTimeout(() => {
                                     grid.querySelectorAll('.word-tile').forEach(t => {
@@ -2522,7 +2524,6 @@ const storyScript = [
                         }
                     }
                 });
-                
                 grid.appendChild(tile);
             });
             
@@ -2537,7 +2538,6 @@ const storyScript = [
             
             let currentQuestion = 0;
             let score = 0;
-            
             function showQuestion(index) {
                 container.innerHTML = '';
                 const question = task.questions[index];
@@ -2558,6 +2558,7 @@ const storyScript = [
                     optionElement.addEventListener('click', () => {
                         if (i === question.correctAnswer) {
                             score++;
+                            
                             optionElement.style.backgroundColor = 'var(--success)';
                         } else {
                             optionElement.style.backgroundColor = 'var(--danger)';
@@ -2611,7 +2612,6 @@ const storyScript = [
             
             const options = document.createElement('div');
             options.className = 'fact-options';
-            
             task.options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'fact-option';
@@ -2622,7 +2622,7 @@ const storyScript = [
                     document.querySelectorAll('.fact-option').forEach(el => {
                         el.classList.remove('selected');
                     });
-                    
+                
                     // Add selected class to clicked option
                     optionElement.classList.add('selected');
                     
@@ -2663,7 +2663,7 @@ const storyScript = [
                     document.querySelectorAll('.scenario-option').forEach(el => {
                         el.classList.remove('selected');
                     });
-                    
+            
                     // Add selected class to clicked option
                     optionElement.classList.add('selected');
                     
@@ -2704,7 +2704,7 @@ const storyScript = [
                     document.querySelectorAll('.riddle-option').forEach(el => {
                         el.classList.remove('selected');
                     });
-                    
+            
                     // Add selected class to clicked option
                     optionElement.classList.add('selected');
                     
@@ -2743,9 +2743,9 @@ const storyScript = [
             }
             
             if (isCorrect) {
+                elements.taskSubmit.classList.add('hidden');
                 // Add XP
                 addXP(task.xp);
-                
                 // Mark task as completed
                 gameState.completedTasks.push(task.id);
                 gameState.taskCompleted = true;
@@ -2759,19 +2759,15 @@ const storyScript = [
                         <button class="option-btn" style="margin-top: 20px;" id="next-task-btn">Next Challenge</button>
                     </div>
                 `;
-                
                 // Add confetti effect
                 createConfetti();
-                
                 // Show power up effect
                 showPowerUpEffect();
-                
                 // Set up next task button
                 document.getElementById('next-task-btn').addEventListener('click', () => {
                     elements.taskContainer.classList.remove('visible');
                     showTask(gameState.completedTasks.length);
                 });
-                
                 // Check for achievements
                 checkAchievements();
             } else {
@@ -2790,6 +2786,7 @@ const storyScript = [
 
         // Show final message
         function showFinalMessage() {
+            elements.taskSubmit.classList.add('hidden');
             elements.taskHeader.textContent = "LEARNING COMPLETE!";
             elements.taskContent.innerHTML = `
                 <div style="text-align: center;">
@@ -2800,17 +2797,12 @@ const storyScript = [
                     <button class="option-btn" style="margin-top: 10px; background: var(--space-purple);" id="chizel-promo-btn">More in CHIZEL App</button>
                 </div>
             `;
-            
             elements.taskContainer.classList.add('visible');
             
             // Add confetti effect
             createConfetti();
-            
-            // Set up restart button
-            document.getElementById('restart-btn').addEventListener('click', () => {
-                elements.taskContainer.classList.remove('visible');
-                showStoryStep(0);
-            });
+            // Set up restart button to call the new resetGame function
+            document.getElementById('restart-btn').addEventListener('click', resetGame);
             
             // Set up Chizel promo button
             document.getElementById('chizel-promo-btn').addEventListener('click', () => {
@@ -2823,7 +2815,8 @@ const storyScript = [
             gameState.xp += amount;
             updateXPBar();
             checkLevelUp();
-            localStorage.setItem('chizelXP', gameState.xp.toString());
+            // We can remove saving to localStorage if progress should never persist
+            // localStorage.setItem('chizelXP', gameState.xp.toString()); 
         }
 
         // Update XP bar
@@ -2857,13 +2850,13 @@ const storyScript = [
             elements.levelValue.textContent = gameState.level;
             elements.mobileLevelValue.textContent = gameState.level; // NEW
             updateXPBar();
-            localStorage.setItem('chizelLevel', gameState.level.toString());
+             // We can remove saving to localStorage if progress should never persist
+            // localStorage.setItem('chizelLevel', gameState.level.toString());
         }
 
         // Create confetti effect
         function createConfetti() {
             const colors = ['#4A90E2', '#50E3C2', '#F8E71C', '#FF10F0', '#39FF14'];
-            
             for (let i = 0; i < 150; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -2875,7 +2868,6 @@ const storyScript = [
                 confetti.style.animationDelay = `${Math.random() * 0.5}s`;
                 
                 document.body.appendChild(confetti);
-                
                 // Remove confetti after animation
                 setTimeout(() => {
                     confetti.remove();
@@ -2886,7 +2878,6 @@ const storyScript = [
         // Show power up effect
         function showPowerUpEffect() {
             elements.powerUpEffect.style.opacity = '1';
-            
             setTimeout(() => {
                 elements.powerUpEffect.style.opacity = '0';
             }, 2000);
@@ -2911,7 +2902,7 @@ const storyScript = [
             if (gameState.completedTasks.length >= 3 && 
                 !gameState.achievements.includes('quick-learner')) {
                 gameState.achievements.push('quick-learner');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Quick Learner", "🏎️");
                 addXP(20);
             }
@@ -2922,7 +2913,7 @@ const storyScript = [
             if (mathTasksCompleted >= 3 && 
                 !gameState.achievements.includes('math-whiz')) {
                 gameState.achievements.push('math-whiz');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Math Whiz", "➕");
                 addXP(50);
             }
@@ -2933,7 +2924,7 @@ const storyScript = [
             if (wordTasksCompleted >= 3 && 
                 !gameState.achievements.includes('word-wizard')) {
                 gameState.achievements.push('word-wizard');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Word Wizard", "🔠");
                 addXP(50);
             }
@@ -2944,7 +2935,7 @@ const storyScript = [
             if (valuesTasksCompleted >= 1 && 
                 !gameState.achievements.includes('values-champion')) {
                 gameState.achievements.push('values-champion');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Values Champion", "❤️");
                 addXP(60);
             }
@@ -2955,7 +2946,7 @@ const storyScript = [
             if (ethicsTasksCompleted >= 1 && 
                 !gameState.achievements.includes('ethics-guardian')) {
                 gameState.achievements.push('ethics-guardian');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Ethics Guardian", "⚖️");
                 addXP(70);
             }
@@ -2966,7 +2957,7 @@ const storyScript = [
             if (criticalThinkingTasksCompleted >= 1 && 
                 !gameState.achievements.includes('critical-thinker')) {
                 gameState.achievements.push('critical-thinker');
-                localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
+                // localStorage.setItem('chizelAchievements', JSON.stringify(gameState.achievements));
                 showAchievement("Critical Thinker", "🔍");
                 addXP(80);
             }
