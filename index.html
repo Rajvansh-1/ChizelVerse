@@ -1544,10 +1544,10 @@
 
         <div class="header">
             <button class="back-btn" id="back-btn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-                </svg>
-            </button>
+    <svg viewBox="0 0 24 24">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+</button>
 
             <div class="logo-container">
                 <img src="assets/logo.png" alt="Chizel Logo" class="logo">
@@ -2975,6 +2975,18 @@
 
         // Initialize the game when DOM is loaded
         document.addEventListener('DOMContentLoaded', initGame);
+
+        // Back button functionality
+    const backBtn = document.getElementById('back-btn');
+    backBtn.addEventListener('click', () => {
+        // Try to close the window if it was opened in a new tab
+        window.close();
+        
+        // If in an iframe, send a message to the parent to exit fullscreen
+        if (window.self !== window.top) {
+            window.parent.postMessage('closeChizelverseDemo', '*');
+        }
+    });
     </script>
 </body>
 </html>
