@@ -2025,8 +2025,25 @@
             // Set up daily reward button
             elements.dailyRewardBtn.addEventListener('click', giveDailyReward);
             // Set up back button
+            // Set up back button
             elements.backBtn.addEventListener('click', () => {
-                window.location.href = "https://chizel.in";
+                // If the page is inside an iframe (like on the main site),
+                // send a message to the parent window to exit fullscreen.
+                if (window.self !== window.top) {
+                    window.parent.postMessage('closeChizelverseDemo', '*');
+                } else {
+                    // Otherwise, it's in its own tab. First, try to close it.
+                    // This works if the tab was opened by a script.
+                    window.close();
+
+                    // As a fallback for cases where the tab can't be closed automatically,
+                    // this will navigate back to the previous page in the browser's history.
+                    setTimeout(() => {
+                        if (!window.closed) {
+                            window.history.back();
+                        }
+                    }, 100);
+                }
             });
             // Set up Chizel app promotion
             elements.promoClose.addEventListener('click', () => toggleChizelPromo(false));
@@ -2976,17 +2993,7 @@
         // Initialize the game when DOM is loaded
         document.addEventListener('DOMContentLoaded', initGame);
 
-        // Back button functionality
-    const backBtn = document.getElementById('back-btn');
-    backBtn.addEventListener('click', () => {
-        // Try to close the window if it was opened in a new tab
-        window.close();
-        
-        // If in an iframe, send a message to the parent to exit fullscreen
-        if (window.self !== window.top) {
-            window.parent.postMessage('closeChizelverseDemo', '*');
-        }
-    });
+      
     </script>
 </body>
 </html>
